@@ -494,7 +494,7 @@
 <footer class="border-t border-slate-800 mt-8 bg-slate-950 py-8">
     <div class="container mx-auto px-4 text-center">
         <p class="text-slate-600 text-xs font-mono">
-            SYSTEME AGWIN V.3.4.0 // DIGITAL HIVE PROJECT <br>
+            SYSTEME AGWIN V.3.4.1 // DIGITAL HIVE PROJECT <br>
             INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI)
         </p>
     </div>
@@ -730,11 +730,19 @@
         document.getElementById('spell-count').innerText = sCount;
         document.getElementById('trap-count').innerText = tCount;
 
+        // --- PASSIVE DESCRIPTION UPDATE ---
         const passiveBlock = document.getElementById('passive-block');
         if (level >= 5.0) {
             passiveBlock.classList.remove('hidden');
-            document.getElementById('passive-name').innerText = level >= 6.0 ? "Reality Overlay" : "Network Sense";
-            document.getElementById('passive-desc').innerText = level >= 6.0 ? "Vision du code source de la réalité." : "Perception des flux de données et d'aura.";
+            if (level >= 6.0) {
+                // GOD TIER PASSIVE
+                document.getElementById('passive-name').innerText = "Reality Overlay (Superposition de Réalité)";
+                document.getElementById('passive-desc').innerText = "Kaito ne voit plus le monde, il voit son code source. Les objets et les gens apparaissent avec des 'glitchs' indiquant leurs points faibles structurels. Il peut lire les micro-expressions et les battements de cœur comme des lignes de debug, rendant le mensonge impossible face à lui. C'est une vision 'Administrateur' qui superpose des données tactiques sur sa rétine en temps réel.";
+            } else {
+                // HIGH TIER PASSIVE
+                document.getElementById('passive-name').innerText = "Network Sense (Sens Réseau)";
+                document.getElementById('passive-desc').innerText = "Kaito perçoit les ondes invisibles (Wifi, 4G, Aura) comme une toile d'araignée sensitive. Il 'sent' les appareils électroniques actifs et les activations de capacités dans un rayon de 50m, rendant toute embuscade impossible. Il vit dans un bruit de fond constant de données qu'il a appris à filtrer pour isoler les menaces.";
+            }
         } else {
             passiveBlock.classList.add('hidden');
         }
