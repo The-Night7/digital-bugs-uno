@@ -402,8 +402,22 @@
 
         <!-- Details Section: Lore & Stats Breakdown -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Character Analysis (New) -->
+            <div class="card-bg p-6 lg:col-span-1 relative overflow-hidden">
+                <div class="absolute right-0 top-0 p-4 opacity-10">
+                    <i class="fa-solid fa-brain text-6xl text-pink-500"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-4 font-mono uppercase relative z-10">
+                    <span class="text-pink-400">//</span> Profil Psychologique
+                </h3>
+                <p class="text-xs text-slate-300 leading-relaxed text-justify font-mono relative z-10">
+                    Kaito mesure 175 cm, pèse 58 kg, a un QI de 400 et est de groupe sanguin « B ». Il est populaire à l'école. C'est un filou compulsif qui aime démontrer ses tours de magie et les partager, et déteste voir les gens bouleversés.<br><br>
+                    Bien qu'il ne l'ait pas démontré en costume complet, Kaito a une peur extrême du poisson (Icthyophobie).
+                </p>
+            </div>
+
             <!-- Detailed Stats Analysis -->
-            <div class="card-bg p-6 lg:col-span-3">
+            <div class="card-bg p-6 lg:col-span-2">
                 <h3 class="text-lg font-bold text-white mb-4 font-mono uppercase">
                     <span class="text-green-400">//</span> Analyse Tactique
                 </h3>
@@ -777,7 +791,7 @@
     }
 
     slider.addEventListener('input', (e) => updateUI(e.target.value));
-    updateUI(45); // Start at 4.5
+    updateUI(99); // Start at 9.9
 </script>
 </body>
 </html>
