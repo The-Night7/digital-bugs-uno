@@ -494,7 +494,7 @@
 <footer class="border-t border-slate-800 mt-8 bg-slate-950 py-8">
     <div class="container mx-auto px-4 text-center">
         <p class="text-slate-600 text-xs font-mono">
-            SYSTEME AGWIN V.3.4.2 // DIGITAL HIVE PROJECT <br>
+            SYSTEME AGWIN V.3.4.3 // DIGITAL HIVE PROJECT <br>
             INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI)
         </p>
     </div>
@@ -655,7 +655,16 @@
         },
         options: {
             responsive: true, maintainAspectRatio: false,
-            scales: { r: { angleLines: { color: 'rgba(255,255,255,0.05)' }, grid: { color: 'rgba(255,255,255,0.1)' }, pointLabels: { color: '#94a3b8', font: { family: 'Orbitron', size: 10 } }, ticks: { display: false, max: 10, min: 0 } } },
+            scales: {
+                r: {
+                    min: 0,
+                    max: 10,
+                    angleLines: { color: 'rgba(255,255,255,0.05)' },
+                    grid: { color: 'rgba(255,255,255,0.1)' },
+                    pointLabels: { color: '#94a3b8', font: { family: 'Orbitron', size: 10 } },
+                    ticks: { display: false, stepSize: 2 }
+                }
+            },
             plugins: { legend: { display: false } }
         }
     });
@@ -671,13 +680,13 @@
         levelDisplay.innerText = level.toFixed(1);
         studentId.innerText = `AGW-${Math.floor(level * 1024 + 500)}-X`;
 
-        // 1. CALCUL DES STATS (Formule: Math.round(Niveau * Ratio))
+        // 1. CALCUL DES STATS (Formule: Max(1, Math.round(Niveau * Ratio)))
         // Arrondi à l'entier
-        const p = Math.round(level * statRatios.power);
-        const d = Math.round(level * statRatios.defense);
-        const s = Math.round(level * statRatios.speed);
-        const r = Math.round(level * statRatios.recovery);
-        const t = Math.round(level * statRatios.trick);
+        const p = Math.max(1, Math.round(level * statRatios.power));
+        const d = Math.max(1, Math.round(level * statRatios.defense));
+        const s = Math.max(1, Math.round(level * statRatios.speed));
+        const r = Math.max(1, Math.round(level * statRatios.recovery));
+        const t = Math.max(1, Math.round(level * statRatios.trick));
 
         // Update Graph
         radarChart.data.datasets[0].data = [p, d, s, r, t];
@@ -751,7 +760,7 @@
     }
 
     slider.addEventListener('input', (e) => updateUI(e.target.value));
-    updateUI(45); // Start at 4.5
+    updateUI(99); // Start at 9.9
 </script>
 </body>
 </html>
