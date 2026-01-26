@@ -494,7 +494,7 @@
 <footer class="border-t border-slate-800 mt-8 bg-slate-950 py-8">
     <div class="container mx-auto px-4 text-center">
         <p class="text-slate-600 text-xs font-mono">
-            SYSTEME AGWIN V.3.4.3 // DIGITAL HIVE PROJECT <br>
+            SYSTEME AGWIN V.3.4.4 // DIGITAL HIVE PROJECT <br>
             INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI)
         </p>
     </div>
@@ -535,19 +535,20 @@
         }
     }
 
-    // --- CARD DATABASE (Same as before) ---
+    // --- CARD DATABASE (With ATK/DEF Factors) ---
+    // factors are approx YGO stats / 1000
     const cardDatabase = [
-        { id: 'm1', name: 'Digital Bug Cocoondenser', type: 'monster', icon: 'fa-lightbulb', levelReq: 1.0, descReal: "Lumière : Invoque un insecte depuis le Cimetière.", descVirtual: "Data Recovery : Restaure des données perdues." },
-        { id: 'm2', name: 'Digital Bug Centibit', type: 'monster', icon: 'fa-bugs', levelReq: 2.0, descReal: "Mille-pattes : Invoque du deck au changement de mode.", descVirtual: "Search Index : Scanne la base pour un script." },
-        { id: 'm3', name: 'Digital Bug Websolder', type: 'monster', icon: 'fa-spider', levelReq: 2.5, descReal: "Araignée : Change position cible, def à 0.", descVirtual: "Firewall Breach : Force l'ouverture des ports." },
-        { id: 'm4', name: 'Digital Bug LEDybug', type: 'monster', icon: 'fa-sun', levelReq: 3.0, descReal: "Coccinelle : Pioche 1 carte.", descVirtual: "Data Mining : Analyse flux pour info bonus." },
-        { id: 'm5', name: 'Digital Bug Registrider', type: 'monster', icon: 'fa-motorcycle', levelReq: 3.5, descReal: "Cavalier : Donne 'Perçant' à l'Xyz.", descVirtual: "Rootkit Driver : Contourne protections natives." },
-        { id: 'm6', name: 'Galaxy Worm', type: 'monster', icon: 'fa-worm', levelReq: 4.0, descReal: "Ver : Invoque Jeton (Clone).", descVirtual: "Worm Replica : Crée copie fantôme." },
-        { id: 'm7', name: 'Bachibachibachi', type: 'monster', icon: 'fa-bolt', levelReq: 4.2, descReal: "Guêpe : Donne 'Perçant'.", descVirtual: "Penetration Tester : Diagnostic offensif." },
-        { id: 'x1', name: 'Number 20: Giga-Brilliant', type: 'xyz', icon: 'fa-star', levelReq: 3.0, descReal: "Fourmi : Boost ATK de 300.", descVirtual: "System Overclock : Boost cadence processus." },
-        { id: 'x2', name: 'Digital Bug Scaradiator', type: 'xyz', icon: 'fa-shield-halved', levelReq: 3.5, descReal: "Scarabée Tank : Annule effet + change position.", descVirtual: "Packet Sniffer : Bloque paquets suspects." },
-        { id: 'x3', name: 'Digital Bug Corebage', type: 'xyz', icon: 'fa-dungeon', levelReq: 5.0, descReal: "Foreur : Mélange défenseur dans deck.", descVirtual: "Kernel Panic : Force reboot sous-système." },
-        { id: 'x4', name: 'Digital Bug Rhinosebus', type: 'xyz', icon: 'fa-chess-rook', levelReq: 6.5, descReal: "Colosse : Attaque tout + perçant.", descVirtual: "System Purge : Nettoyage disque complet." },
+        { id: 'm1', name: 'Digital Bug Cocoondenser', type: 'monster', icon: 'fa-lightbulb', levelReq: 1.0, descReal: "Lumière : Invoque un insecte depuis le Cimetière.", descVirtual: "Data Recovery : Restaure des données perdues.", atkFactor: 0.1, defFactor: 2.0 },
+        { id: 'm2', name: 'Digital Bug Centibit', type: 'monster', icon: 'fa-bugs', levelReq: 2.0, descReal: "Mille-pattes : Invoque du deck au changement de mode.", descVirtual: "Search Index : Scanne la base pour un script.", atkFactor: 1.5, defFactor: 0.5 },
+        { id: 'm3', name: 'Digital Bug Websolder', type: 'monster', icon: 'fa-spider', levelReq: 2.5, descReal: "Araignée : Change position cible, def à 0.", descVirtual: "Firewall Breach : Force l'ouverture des ports.", atkFactor: 0.5, defFactor: 1.5 },
+        { id: 'm4', name: 'Digital Bug LEDybug', type: 'monster', icon: 'fa-sun', levelReq: 3.0, descReal: "Coccinelle : Pioche 1 carte.", descVirtual: "Data Mining : Analyse flux pour info bonus.", atkFactor: 0.5, defFactor: 0.1 },
+        { id: 'm5', name: 'Digital Bug Registrider', type: 'monster', icon: 'fa-motorcycle', levelReq: 3.5, descReal: "Cavalier : Donne 'Perçant' à l'Xyz.", descVirtual: "Rootkit Driver : Contourne protections natives.", atkFactor: 1.8, defFactor: 0.1 },
+        { id: 'm6', name: 'Galaxy Worm', type: 'monster', icon: 'fa-worm', levelReq: 4.0, descReal: "Ver : Invoque Jeton (Clone).", descVirtual: "Worm Replica : Crée copie fantôme.", atkFactor: 1.2, defFactor: 1.0 },
+        { id: 'm7', name: 'Bachibachibachi', type: 'monster', icon: 'fa-bolt', levelReq: 4.2, descReal: "Guêpe : Donne 'Perçant'.", descVirtual: "Penetration Tester : Diagnostic offensif.", atkFactor: 0.8, defFactor: 0.8 },
+        { id: 'x1', name: 'Number 20: Giga-Brilliant', type: 'xyz', icon: 'fa-star', levelReq: 3.0, descReal: "Fourmi : Boost ATK de 300.", descVirtual: "System Overclock : Boost cadence processus.", atkFactor: 1.8, defFactor: 1.8 },
+        { id: 'x2', name: 'Digital Bug Scaradiator', type: 'xyz', icon: 'fa-shield-halved', levelReq: 3.5, descReal: "Scarabée Tank : Annule effet + change position.", descVirtual: "Packet Sniffer : Bloque paquets suspects.", atkFactor: 1.8, defFactor: 1.4 },
+        { id: 'x3', name: 'Digital Bug Corebage', type: 'xyz', icon: 'fa-dungeon', levelReq: 5.0, descReal: "Foreur : Mélange défenseur dans deck.", descVirtual: "Kernel Panic : Force reboot sous-système.", atkFactor: 2.2, defFactor: 1.8 },
+        { id: 'x4', name: 'Digital Bug Rhinosebus', type: 'xyz', icon: 'fa-chess-rook', levelReq: 6.5, descReal: "Colosse : Attaque tout + perçant.", descVirtual: "System Purge : Nettoyage disque complet.", atkFactor: 2.6, defFactor: 2.4 },
         { id: 's1', name: 'Bug Signal', type: 'spell', icon: 'fa-tower-broadcast', levelReq: 1.5, descReal: "Quick-Play : Évolution Xyz.", descVirtual: "Hotfix Patch : Mise à jour critique instantanée." },
         { id: 's2', name: 'Stumbling', type: 'spell', icon: 'fa-person-falling', levelReq: 4.0, descReal: "Continu : Invocations passent en Défense.", descVirtual: "Lag Switch : Force mode 'Veille'." },
         { id: 's3', name: 'Foolish Burial', type: 'spell', icon: 'fa-tombstone', levelReq: 2.5, descReal: "Envoie monstre au cimetière.", descVirtual: "Cache Dump : Envoie données en cache." },
@@ -573,6 +574,18 @@
             const reqText = isLocked ? `<span class="text-red-500 font-bold">Lvl ${card.levelReq}</span>` : `<span class="text-green-500">Débloqué</span>`;
             let cardClass = card.type === 'monster' ? 'card-monster' : card.type === 'xyz' ? 'card-xyz' : card.type === 'spell' ? 'card-spell' : 'card-trap';
 
+            // Calculate Stats for Monsters/Xyz
+            let statBlock = '';
+            if (card.type === 'monster' || card.type === 'xyz') {
+                const atk = Math.floor(currentLevel * card.atkFactor * 100);
+                const def = Math.floor(currentLevel * card.defFactor * 100);
+                statBlock = `
+                <div class="flex justify-between mt-1 pt-1 border-t border-white/20 text-[9px] font-mono">
+                    <span class="text-orange-300">ATK/${atk}</span>
+                    <span class="text-blue-300">DEF/${def}</span>
+                </div>`;
+            }
+
             const html = `
                 <div class="ygo-card ${cardClass} ${opacity}">
                     ${lockIcon}
@@ -585,6 +598,7 @@
                         <div class="mb-1 border-b border-black/20 pb-1"><strong>[Physique]</strong><br>${card.descReal}</div>
                         <div class="mb-1"><strong>[Virtuel]</strong><br>${card.descVirtual}</div>
                     </div>
+                    ${statBlock}
                     <div class="mt-1 text-[8px] text-center bg-black/80 text-white rounded py-0.5">${reqText}</div>
                 </div>`;
             if(sections[card.type]) sections[card.type].innerHTML += html;
