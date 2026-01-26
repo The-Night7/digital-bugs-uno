@@ -23,7 +23,7 @@
             font-family: 'Share Tech Mono', monospace;
         }
 
-        /* Glitch Effect Updated */
+        /* Glitch Effect */
         .glitch-effect {
             position: relative;
             display: inline-block;
@@ -138,11 +138,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #334155;
         }
-
-        .holo-text {
-            color: #22d3ee;
-            text-shadow: 0 0 5px rgba(34, 211, 238, 0.5);
-        }
     </style>
 </head>
 <body class="min-h-screen hex-bg text-slate-300">
@@ -256,7 +251,7 @@
                             <span class="w-2 h-6 bg-cyan-500 block"></span>
                             SIMULATION D'ÉVOLUTION
                         </h3>
-                        <p class="text-xs text-slate-400 mt-1 max-w-md">Déplacez le curseur pour observer l'évolution de la capacité, du niveau débutant au niveau divin.</p>
+                        <p class="text-xs text-slate-400 mt-1 max-w-md">Déplacez le curseur pour observer l'évolution de la capacité, du niveau débutant au niveau absolu.</p>
                     </div>
                     <div class="text-right mt-4 md:mt-0">
                         <div class="text-xs text-slate-500 font-mono mb-1">CURRENT LEVEL</div>
@@ -268,13 +263,15 @@
                 </div>
 
                 <div class="relative z-10 px-2">
-                    <input type="range" min="10" max="80" value="45" class="w-full mb-2" id="level-slider">
+                    <!-- Updated max to 100 for Level 10.0 -->
+                    <input type="range" min="10" max="100" value="45" class="w-full mb-2" id="level-slider">
                     <div class="flex justify-between text-[10px] text-slate-500 font-mono uppercase tracking-widest">
-                        <span>Low (1.0)</span>
-                        <span>Mid (2.0)</span>
-                        <span>Elite (3.5)</span>
-                        <span>High (5.0)</span>
-                        <span>God (6.0+)</span>
+                        <span>1.0</span>
+                        <span>2.0</span>
+                        <span>4.0</span>
+                        <span>6.0</span>
+                        <span>8.0</span>
+                        <span>10.0</span>
                     </div>
                 </div>
             </div>
@@ -398,7 +395,7 @@
 <footer class="border-t border-slate-800 mt-8 bg-slate-950 py-8">
     <div class="container mx-auto px-4 text-center">
         <p class="text-slate-600 text-xs font-mono">
-            SYSTEME ARCHIVE V.2.0.4 <br>
+            SYSTEME ARCHIVE V.2.1.0 <br>
             INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI) <br>
             ACCÈS RESTREINT - USAGE INTERNE SEULEMENT
         </p>
@@ -466,7 +463,7 @@
                     <p><strong class="text-cyan-400">Combat :</strong> Le Deck s'étoffe. Kaito peut changer la "Position de Combat" de ses invocations instantanément (Attaque = Piques / Défense = Bouclier lourd). Il invoque <strong>Scaradiator</strong> (taille humaine) qui peut absorber l'aura adverse.</p>
                     <p class="mt-2"><strong class="text-purple-400">Hacking Avancé :</strong> Il peut "voir" à travers les yeux de ses insectes. En envoyant un insecte minuscule (taille d'une mouche) dans un port serveur, il peut télécharger des données directement dans sa mémoire à court terme. Il peut couper le courant d'un étage entier.</p>
                 `,
-            passive: null, // Toujours pas de passif avant 5.0
+            passive: null,
             signatures: [
                 { name: "Xyz: Scaradiator", type: "monster", desc: "Scarabée Tank. Absorbe l'aura cinétique et la renvoie." },
                 { name: "Magie: Bug Signal", type: "spell", desc: "Téléporte un insecte instantanément sur une autre cible." },
@@ -508,7 +505,7 @@
         },
         {
             minLevel: 6.0,
-            maxLevel: 8.0,
+            maxLevel: 10.0, // Extention jusqu'au niveau 10
             tier: "God Tier",
             stats: { power: 9.5, defense: 8.5, speed: 7.0, recovery: 5.0, trick: 10.0 },
             deckCounts: { monster: 99, spell: 99, trap: 99 },
@@ -538,10 +535,9 @@
     // --- CHART SETUP ---
     const ctx = document.getElementById('statsChart').getContext('2d');
 
-    // Gradient for the chart area
     let gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgba(6, 182, 212, 0.5)'); // Cyan
-    gradient.addColorStop(1, 'rgba(147, 51, 234, 0.1)'); // Purple
+    gradient.addColorStop(0, 'rgba(6, 182, 212, 0.5)');
+    gradient.addColorStop(1, 'rgba(147, 51, 234, 0.1)');
 
     let radarChart = new Chart(ctx, {
         type: 'radar',
@@ -590,15 +586,12 @@
         const level = levelVal / 10;
         levelDisplay.innerText = level.toFixed(1);
 
-        // Generate Random ID based on level for flavor
         const uniqueId = Math.floor(level * 1024 + 500);
         studentId.innerText = `DB-${uniqueId}-X`;
 
-        // Find data corresponding to level
         let data = evolutionData.find(d => level >= d.minLevel && level <= d.maxLevel);
-        if (!data) data = evolutionData[evolutionData.length - 1]; // Fallback to max
+        if (!data) data = evolutionData[evolutionData.length - 1];
 
-        // Update Tier Label Color and Text
         tierLabel.innerText = data.tier;
         tierLabel.className = "text-sm font-bold tracking-widest px-2 py-1 rounded border uppercase ";
         if(data.tier.includes("God")) tierLabel.className += "bg-pink-950/50 border-pink-500 text-pink-400";
@@ -607,41 +600,42 @@
         else if(data.tier.includes("Mid")) tierLabel.className += "bg-yellow-950/50 border-yellow-500 text-yellow-400";
         else tierLabel.className += "bg-slate-800 border-slate-600 text-slate-400";
 
-        // Update Chart Data with slight interpolation visual effect
-        const p = data.stats.power;
-        const d = data.stats.defense;
-        const s = data.stats.speed;
-        const r = data.stats.recovery;
-        const t = data.stats.trick;
+        // Calcul interpolation pour monter jusqu'au niveau 10
+        // Si on est dans le dernier palier (>6.0), on booste les stats si on approche de 10
+        let boost = 0;
+        if (level > 8.0) {
+            boost = (level - 8.0) * 0.5; // Ajoute jusqu'à 1 point bonus au dela de 8.0
+        }
+
+        const p = Math.min(10, data.stats.power + boost);
+        const d = Math.min(10, data.stats.defense + boost);
+        const s = Math.min(10, data.stats.speed + boost);
+        const r = Math.min(10, data.stats.recovery + boost);
+        const t = Math.min(10, data.stats.trick); // Trick est déjà maxé souvent
 
         radarChart.data.datasets[0].data = [p, d, s, r, t];
         radarChart.update();
 
-        // Update Number Displays
-        document.getElementById('val-power').innerText = p;
-        document.getElementById('val-defense').innerText = d;
-        document.getElementById('val-speed').innerText = s;
-        document.getElementById('val-recovery').innerText = r;
-        document.getElementById('val-trick').innerText = t;
+        document.getElementById('val-power').innerText = p.toFixed(1);
+        document.getElementById('val-defense').innerText = d.toFixed(1);
+        document.getElementById('val-speed').innerText = s.toFixed(1);
+        document.getElementById('val-recovery').innerText = r.toFixed(1);
+        document.getElementById('val-trick').innerText = t.toFixed(1);
 
-        // Update Hacking Bar
         const hackVal = parseInt(data.hackPot);
         document.getElementById('trick-bar').style.width = data.hackPot;
         document.getElementById('hack-potential').innerText = data.hackPot;
 
-        // Update Deck Counts
         document.getElementById('monster-count').innerText = data.deckCounts.monster;
         document.getElementById('spell-count').innerText = data.deckCounts.spell;
         document.getElementById('trap-count').innerText = data.deckCounts.trap;
 
-        // Update Text Descriptions
         document.getElementById('mastery-content').innerHTML = data.mastery;
         document.getElementById('desc-power').innerText = data.descriptions.power;
         document.getElementById('desc-defense').innerText = data.descriptions.defense;
         document.getElementById('desc-trick').innerText = data.descriptions.trick;
         document.getElementById('desc-speed').innerText = data.descriptions.speed;
 
-        // Update Passive
         const passiveBlock = document.getElementById('passive-block');
         if (data.passive) {
             passiveBlock.classList.remove('hidden');
@@ -651,7 +645,6 @@
             passiveBlock.classList.add('hidden');
         }
 
-        // Update Signatures
         const sigList = document.getElementById('signature-list');
         sigList.innerHTML = data.signatures.map(s => {
             let colorClass = "text-slate-200";
@@ -671,9 +664,8 @@
         }).join('');
     }
 
-    // Initialize
     slider.addEventListener('input', (e) => updateUI(e.target.value));
-    updateUI(45); // Start at level 4.5
+    updateUI(45);
 
 </script>
 </body>
