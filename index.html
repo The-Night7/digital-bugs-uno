@@ -494,7 +494,7 @@
 <footer class="border-t border-slate-800 mt-8 bg-slate-950 py-8">
     <div class="container mx-auto px-4 text-center">
         <p class="text-slate-600 text-xs font-mono">
-            SYSTEME AGWIN V.3.4.5 // DIGITAL HIVE PROJECT <br>
+            SYSTEME AGWIN V.3.4.6 // DIGITAL HIVE PROJECT <br>
             INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI)
         </p>
     </div>
@@ -535,19 +535,19 @@
         }
     }
 
-    // --- CARD DATABASE (New Ratios: 0.0 to 1.0 based on Kaito's PWR/DEF) ---
+    // --- CARD DATABASE (New Ratios: 0.0 to 1.0 based on Kaito's PWR/DEF/SPD/REC) ---
     const cardDatabase = [
-        { id: 'm1', name: 'Digital Bug Cocoondenser', type: 'monster', icon: 'fa-lightbulb', levelReq: 1.0, descReal: "Lumière : Invoque un insecte depuis le Cimetière.", descVirtual: "Data Recovery : Restaure des données perdues.", atkRatio: 0.2, defRatio: 0.8 },
-        { id: 'm2', name: 'Digital Bug Centibit', type: 'monster', icon: 'fa-bugs', levelReq: 2.0, descReal: "Mille-pattes : Invoque du deck au changement de mode.", descVirtual: "Search Index : Scanne la base pour un script.", atkRatio: 0.6, defRatio: 0.6 },
-        { id: 'm3', name: 'Digital Bug Websolder', type: 'monster', icon: 'fa-spider', levelReq: 2.5, descReal: "Araignée : Change position cible, def à 0.", descVirtual: "Firewall Breach : Force l'ouverture des ports.", atkRatio: 0.3, defRatio: 0.9 },
-        { id: 'm4', name: 'Digital Bug LEDybug', type: 'monster', icon: 'fa-sun', levelReq: 3.0, descReal: "Coccinelle : Pioche 1 carte.", descVirtual: "Data Mining : Analyse flux pour info bonus.", atkRatio: 0.1, defRatio: 0.2 },
-        { id: 'm5', name: 'Digital Bug Registrider', type: 'monster', icon: 'fa-motorcycle', levelReq: 3.5, descReal: "Cavalier : Donne 'Perçant' à l'Xyz.", descVirtual: "Rootkit Driver : Contourne protections natives.", atkRatio: 0.8, defRatio: 0.4 },
-        { id: 'm6', name: 'Galaxy Worm', type: 'monster', icon: 'fa-worm', levelReq: 4.0, descReal: "Ver : Invoque Jeton (Clone).", descVirtual: "Worm Replica : Crée copie fantôme.", atkRatio: 0.5, defRatio: 0.5 },
-        { id: 'm7', name: 'Bachibachibachi', type: 'monster', icon: 'fa-bolt', levelReq: 4.2, descReal: "Guêpe : Donne 'Perçant'.", descVirtual: "Penetration Tester : Diagnostic offensif.", atkRatio: 0.9, defRatio: 0.2 },
-        { id: 'x1', name: 'Number 20: Giga-Brilliant', type: 'xyz', icon: 'fa-star', levelReq: 3.0, descReal: "Fourmi : Boost ATK de 300.", descVirtual: "System Overclock : Boost cadence processus.", atkRatio: 0.8, defRatio: 0.8 },
-        { id: 'x2', name: 'Digital Bug Scaradiator', type: 'xyz', icon: 'fa-shield-halved', levelReq: 3.5, descReal: "Scarabée Tank : Annule effet + change position.", descVirtual: "Packet Sniffer : Bloque paquets suspects.", atkRatio: 0.7, defRatio: 1.0 },
-        { id: 'x3', name: 'Digital Bug Corebage', type: 'xyz', icon: 'fa-dungeon', levelReq: 5.0, descReal: "Foreur : Mélange défenseur dans deck.", descVirtual: "Kernel Panic : Force reboot sous-système.", atkRatio: 0.9, defRatio: 0.7 },
-        { id: 'x4', name: 'Digital Bug Rhinosebus', type: 'xyz', icon: 'fa-chess-rook', levelReq: 6.5, descReal: "Colosse : Attaque tout + perçant.", descVirtual: "System Purge : Nettoyage disque complet.", atkRatio: 1.0, defRatio: 1.0 },
+        { id: 'm1', name: 'Digital Bug Cocoondenser', type: 'monster', icon: 'fa-lightbulb', levelReq: 1.0, descReal: "Lumière : Invoque un insecte depuis le Cimetière.", descVirtual: "Data Recovery : Restaure des données perdues.", atkRatio: 0.2, defRatio: 0.8, spdRatio: 0.8, recRatio: 0.5 },
+        { id: 'm2', name: 'Digital Bug Centibit', type: 'monster', icon: 'fa-bugs', levelReq: 2.0, descReal: "Mille-pattes : Invoque du deck au changement de mode.", descVirtual: "Search Index : Scanne la base pour un script.", atkRatio: 0.6, defRatio: 0.6, spdRatio: 0.5, recRatio: 0.3 },
+        { id: 'm3', name: 'Digital Bug Websolder', type: 'monster', icon: 'fa-spider', levelReq: 2.5, descReal: "Araignée : Change position cible, def à 0.", descVirtual: "Firewall Breach : Force l'ouverture des ports.", atkRatio: 0.3, defRatio: 0.9, spdRatio: 0.3, recRatio: 0.6 },
+        { id: 'm4', name: 'Digital Bug LEDybug', type: 'monster', icon: 'fa-sun', levelReq: 3.0, descReal: "Coccinelle : Pioche 1 carte.", descVirtual: "Data Mining : Analyse flux pour info bonus.", atkRatio: 0.1, defRatio: 0.2, spdRatio: 0.7, recRatio: 0.2 },
+        { id: 'm5', name: 'Digital Bug Registrider', type: 'monster', icon: 'fa-motorcycle', levelReq: 3.5, descReal: "Cavalier : Donne 'Perçant' à l'Xyz.", descVirtual: "Rootkit Driver : Contourne protections natives.", atkRatio: 0.8, defRatio: 0.4, spdRatio: 0.9, recRatio: 0.2 },
+        { id: 'm6', name: 'Galaxy Worm', type: 'monster', icon: 'fa-worm', levelReq: 4.0, descReal: "Ver : Invoque Jeton (Clone).", descVirtual: "Worm Replica : Crée copie fantôme.", atkRatio: 0.5, defRatio: 0.5, spdRatio: 0.2, recRatio: 0.8 },
+        { id: 'm7', name: 'Bachibachibachi', type: 'monster', icon: 'fa-bolt', levelReq: 4.2, descReal: "Guêpe : Donne 'Perçant'.", descVirtual: "Penetration Tester : Diagnostic offensif.", atkRatio: 0.9, defRatio: 0.2, spdRatio: 0.8, recRatio: 0.2 },
+        { id: 'x1', name: 'Number 20: Giga-Brilliant', type: 'xyz', icon: 'fa-star', levelReq: 3.0, descReal: "Fourmi : Boost ATK de 300.", descVirtual: "System Overclock : Boost cadence processus.", atkRatio: 0.8, defRatio: 0.8, spdRatio: 0.7, recRatio: 0.4 },
+        { id: 'x2', name: 'Digital Bug Scaradiator', type: 'xyz', icon: 'fa-shield-halved', levelReq: 3.5, descReal: "Scarabée Tank : Annule effet + change position.", descVirtual: "Packet Sniffer : Bloque paquets suspects.", atkRatio: 0.7, defRatio: 1.0, spdRatio: 0.4, recRatio: 0.9 },
+        { id: 'x3', name: 'Digital Bug Corebage', type: 'xyz', icon: 'fa-dungeon', levelReq: 5.0, descReal: "Foreur : Mélange défenseur dans deck.", descVirtual: "Kernel Panic : Force reboot sous-système.", atkRatio: 0.9, defRatio: 0.7, spdRatio: 0.6, recRatio: 0.5 },
+        { id: 'x4', name: 'Digital Bug Rhinosebus', type: 'xyz', icon: 'fa-chess-rook', levelReq: 6.5, descReal: "Colosse : Attaque tout + perçant.", descVirtual: "System Purge : Nettoyage disque complet.", atkRatio: 1.0, defRatio: 1.0, spdRatio: 0.7, recRatio: 1.0 },
         { id: 's1', name: 'Bug Signal', type: 'spell', icon: 'fa-tower-broadcast', levelReq: 1.5, descReal: "Quick-Play : Évolution Xyz.", descVirtual: "Hotfix Patch : Mise à jour critique instantanée." },
         { id: 's2', name: 'Stumbling', type: 'spell', icon: 'fa-person-falling', levelReq: 4.0, descReal: "Continu : Invocations passent en Défense.", descVirtual: "Lag Switch : Force mode 'Veille'." },
         { id: 's3', name: 'Foolish Burial', type: 'spell', icon: 'fa-tombstone', levelReq: 2.5, descReal: "Envoie monstre au cimetière.", descVirtual: "Cache Dump : Envoie données en cache." },
@@ -556,7 +556,7 @@
         { id: 't2', name: 'Mirror Force', type: 'trap', icon: 'fa-mirror', levelReq: 5.0, descReal: "Miroir : Renvoie l'attaque physique.", descVirtual: "DDoS Reflection : Renvoie trafic malveillant." }
     ];
 
-    function renderDeck(currentLevel, kaitoPower, kaitoDefense) {
+    function renderDeck(currentLevel, kaitoPower, kaitoDefense, kaitoSpeed, kaitoRecovery) {
         const sections = {
             monster: document.getElementById('deck-monsters'),
             xyz: document.getElementById('deck-xyz'),
@@ -578,10 +578,14 @@
             if (card.type === 'monster' || card.type === 'xyz') {
                 const atk = Math.round(kaitoPower * card.atkRatio);
                 const def = Math.round(kaitoDefense * card.defRatio);
+                const spd = Math.round(kaitoSpeed * card.spdRatio);
+                const rec = Math.round(kaitoRecovery * card.recRatio);
                 statBlock = `
-                <div class="flex justify-between mt-1 pt-1 border-t border-white/20 text-[9px] font-mono">
-                    <span class="text-orange-300">PWR/${atk}</span>
-                    <span class="text-blue-300">DEF/${def}</span>
+                <div class="grid grid-cols-2 gap-x-2 gap-y-0.5 mt-1 pt-1 border-t border-white/20 text-[8px] font-mono">
+                    <span class="text-orange-300">PWR ${atk}</span>
+                    <span class="text-blue-300 text-right">DEF ${def}</span>
+                    <span class="text-yellow-300">SPD ${spd}</span>
+                    <span class="text-green-300 text-right">REC ${rec}</span>
                 </div>`;
             }
 
@@ -769,11 +773,11 @@
             passiveBlock.classList.add('hidden');
         }
 
-        renderDeck(level, p, d);
+        renderDeck(level, p, d, s, r);
     }
 
     slider.addEventListener('input', (e) => updateUI(e.target.value));
-    updateUI(99); // Start at 9.9
+    updateUI(45); // Start at 4.5
 </script>
 </body>
 </html>
