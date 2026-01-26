@@ -244,11 +244,11 @@
                         <div class="w-full grid grid-cols-2 gap-y-4 gap-x-2 text-left text-sm font-mono border-t border-slate-700/50 pt-4">
                             <div>
                                 <span class="text-slate-500 block text-[10px] uppercase">Âge</span>
-                                <span class="text-slate-200">17 Ans</span>
+                                <span class="text-slate-200">19 Ans</span>
                             </div>
                             <div>
                                 <span class="text-slate-500 block text-[10px] uppercase">Affiliation</span>
-                                <span class="text-slate-200">Club Info / Sécurité</span>
+                                <span class="text-red-400">Surveillance</span>
                             </div>
                             <div class="col-span-2">
                                 <span class="text-slate-500 block text-[10px] uppercase">Capacité</span>
@@ -260,6 +260,26 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Security Alert / History Card -->
+                <div class="card-bg p-4 border-l-4 border-l-red-500 relative overflow-hidden bg-red-950/10">
+                    <div class="absolute right-0 top-0 p-2 opacity-20 text-red-500"><i class="fa-solid fa-triangle-exclamation text-4xl"></i></div>
+                    <h3 class="text-xs font-bold text-red-400 mb-2 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-file-shield"></i> Casier Disciplinaire
+                    </h3>
+                    <p class="text-xs text-slate-300 leading-relaxed text-justify font-mono">
+                        <span class="text-slate-500 block mb-1">STATUT SCOLAIRE:</span>
+                        <span class="text-white">Terminale (2x Redoublant)</span>
+                        <br><br>
+                        <span class="text-slate-500 block mb-1">INCIDENT MAJEUR:</span>
+                        Incarcération (6 mois) en centre de détention juvénile.
+                        <br>
+                        <span class="text-slate-500 block mt-1 mb-1">MOTIF:</span>
+                        <span class="text-red-300">Intrusion cybernétique de niveau 4</span> dans les serveurs régionaux du Bureau des Autorités.
+                        <br><br>
+                        <span class="text-slate-500">NOTE:</span> Élève brillant mais réfractaire à l'autorité. Accès réseau restreint par bracelet électronique virtuel.
+                    </p>
                 </div>
 
                 <!-- Deck Stats Mini -->
@@ -474,7 +494,7 @@
 <footer class="border-t border-slate-800 mt-8 bg-slate-950 py-8">
     <div class="container mx-auto px-4 text-center">
         <p class="text-slate-600 text-xs font-mono">
-            SYSTEME AGWIN V.3.3.1 // DIGITAL HIVE PROJECT <br>
+            SYSTEME AGWIN V.3.4.0 // DIGITAL HIVE PROJECT <br>
             INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI)
         </p>
     </div>
@@ -571,14 +591,56 @@
         });
     }
 
-    // --- EVOLUTION LORE ---
+    // --- EVOLUTION LORE (COMPLETE & DETAILED) ---
     const evolutionLore = [
-        { min: 1.0, max: 1.9, tier: "Low Tier", mastery: "Projection lumineuse non solide. Intimidation et Override basique (portes).", descP: "Inexistant.", descD: "Peut parer un couteau.", descT: "Confusion simple.", descS: "Humain." },
-        { min: 2.0, max: 3.4, tier: "Mid Tier", mastery: "Insectes solides (voxels). Attaques physiques et hacking local (caméras).", descP: "Casse un bras.", descD: "Résiste aux poings.", descT: "Surveillance pièce.", descS: "Rapide." },
-        { min: 3.5, max: 4.9, tier: "Elite Tier", mastery: "Changement de Mode (Atk/Def). Hacking via insectes espions. Absorbe aura.", descP: "Broyeur de métal.", descD: "Mur résistant.", descT: "Vol d'identité.", descS: "Surf aérien." },
-        { min: 5.0, max: 5.9, tier: "High Tier", mastery: "Hologrammes (plus de cartes). Passif Network Sense. Fusion (Rank-Up).", descP: "Destruction bâtiment.", descD: "Digitalisation corps.", descT: "Contrôle infra.", descS: "Réaction instant." },
-        { min: 6.0, max: 7.9, tier: "God Tier", mastery: "Réécriture réalité locale. Boss Rhinosebus. Omniscience locale.", descP: "Catastrophe.", descD: "Respawn.", descT: "Dieu machine.", descS: "Téléport." },
-        { min: 8.0, max: 10.0, tier: "Max Tier", mastery: "Omniscience Numérique Mondiale. Contrôle absolu des flux.", descP: "Illimitée.", descD: "Intouchable.", descT: "Omniscient.", descS: "Instantanné." }
+        {
+            min: 1.0, max: 1.9, tier: "Low Tier",
+            mastery: "La capacité est embryonnaire. Kaito doit tenir la carte physique en main pour l'activer. L'insecte généré est une simple projection lumineuse sans masse, incapable d'interagir avec la matière. Utilisé pour éclairer ou surprendre.",
+            descP: "Négligeable. Aucun impact cinétique, tout juste capable d'éblouir.",
+            descD: "La carte en main durcit légèrement, parant à peine une griffure.",
+            descT: "Confusion basique. Peut perturber des capteurs optiques très simples.",
+            descS: "Aucune amélioration. Vitesse humaine standard."
+        },
+        {
+            min: 2.0, max: 3.4, tier: "Mid Tier",
+            mastery: "Matérialisation réussie. Les insectes sortent des cartes et atteignent la taille d'un chat domestique, composés de voxels solides. Kaito peut effectuer des piratages de proximité en posant physiquement une carte sur l'appareil cible (verrou électronique, caméra).",
+            descP: "Morsures électriques mineures, capables d'engourdir un membre ou de brûler la peau.",
+            descD: "Les carapaces de voxels sont assez dures pour bloquer un coup de poing standard.",
+            descT: "Hacking par contact direct. Peut mettre en boucle une caméra de surveillance.",
+            descS: "Les insectes sont vifs et autonomes, mais l'utilisateur reste à vitesse humaine.",
+        },
+        {
+            min: 3.5, max: 4.9, tier: "Elite Tier",
+            mastery: "Contrôle tactique avancé. Kaito peut changer instantanément le mode de ses insectes (Attaque/Défense). Le hacking devient distant via des micro-insectes espions qui infiltrent les ports de données. Invocations de taille humaine.",
+            descP: "Scaradiator peut broyer du métal léger et causer des fractures.",
+            descD: "Peut ériger un mur de 'Websolder' résistant à plusieurs assauts physiques.",
+            descT: "Hacking avancé : Vol d'identité, coupure de courant locale, brouillage de signal.",
+            descS: "Mobilité accrue : Peut se faire tracter ou porter par un insecte volant.",
+        },
+        {
+            min: 5.0, max: 5.9, tier: "High Tier",
+            mastery: "Dématérialisation du support. Plus besoin de cartes physiques, elles apparaissent comme des hologrammes autour de lui. Passif 'Network Sense' éveillé : Kaito 'voit' les flux de données et d'aura. Fusion d'insectes pour créer des formes évoluées (Rank-Up).",
+            descP: "Destruction structurelle. Corebage peut percer des murs en béton armé.",
+            descD: "Digitalisation corporelle partielle (1s) pour esquiver des attaques mortelles.",
+            descT: "Contrôle d'infrastructure urbaine (feux tricolores, réseau électrique de quartier).",
+            descS: "Réflexes surhumains grâce à l'analyse prédictive des mouvements adverses.",
+        },
+        {
+            min: 6.0, max: 7.9, tier: "God Tier",
+            mastery: "Réécriture de la réalité locale. Kaito peut transformer l'environnement immédiat en données brutes (sol liquide, murs pixelisés). Invocation du Boss 'Rhinosebus', une forteresse volante autonome.",
+            descP: "Catastrophique. Rayons lasers capables de raser un petit bâtiment.",
+            descD: "Respawn : Peut régénérer des blessures graves en réécrivant son propre code.",
+            descT: "Dieu dans la machine. Accès root total sur toute technologie à portée.",
+            descS: "Téléportation à courte portée via les flux de données (Blink).",
+        },
+        {
+            min: 8.0, max: 10.0, tier: "Max Tier",
+            mastery: "Omniscience Numérique Mondiale. Il n'y a plus de distinction entre le monde physique et le cyberespace. Kaito a un accès administrateur sur la réalité. Il voit les statistiques vitales et les points faibles de chacun comme une interface utilisateur.",
+            descP: "Virtuellement illimitée. Peut matérialiser une armée de données.",
+            descD: "Intangibilité sélective permanente. Il est un fantôme dans le système.",
+            descT: "Omniscience. Rien ne peut lui être caché, ni secrets ni intentions.",
+            descS: "Transmission instantanée. Il est partout où il y a un signal.",
+        }
     ];
 
     // --- CHART SETUP ---
