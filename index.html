@@ -473,7 +473,7 @@
 <footer class="border-t border-slate-800 mt-8 bg-slate-950 py-8">
     <div class="container mx-auto px-4 text-center">
         <p class="text-slate-600 text-xs font-mono">
-            SYSTEME AGWIN V.3.1.0 // DIGITAL HIVE PROJECT <br>
+            SYSTEME AGWIN V.3.2.0 // DIGITAL HIVE PROJECT <br>
             INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI)
         </p>
     </div>
@@ -595,7 +595,7 @@
         },
         {
             id: 't2', name: 'Mirror Force', type: 'trap', icon: 'fa-mirror', levelReq: 5.0,
-            descReal: "Force de Miroir : Détruit tous les monstres en attaque de l'adversaire.",
+            descReal: "Force de Miroir : Génère un miroir solide qui retourne l'attaque physique directement contre l'adversaire.",
             descVirtual: "DDoS Reflection : Renvoie le trafic malveillant vers l'attaquant pour faire crasher ses serveurs."
         }
     ];
@@ -662,7 +662,7 @@
             maxLevel: 1.9,
             tier: "Low Tier",
             stats: { power: 1.2, defense: 1.5, speed: 1.0, recovery: 1.0, trick: 2.5 },
-            deckCounts: { monster: 1, spell: 1, trap: 0 },
+            deckCounts: { monster: 3, spell: 2, trap: 0 }, // 5 Cards
             hackPot: "15%",
             mastery: `
                     <p><strong class="text-cyan-400">Combat :</strong> À ce stade, Kaito doit tenir la carte physique en main pour activer l'effet. Il ne peut matérialiser qu'une "projection lumineuse" de l'insecte, incapable de bouger ou d'attaquer. C'est surtout de l'intimidation ou de la distraction (flash lumineux).</p>
@@ -681,7 +681,7 @@
             maxLevel: 3.4,
             tier: "Mid Tier",
             stats: { power: 3.0, defense: 3.5, speed: 2.0, recovery: 1.5, trick: 4.5 },
-            deckCounts: { monster: 3, spell: 2, trap: 1 },
+            deckCounts: { monster: 8, spell: 5, trap: 2 }, // 15 Cards
             hackPot: "35%",
             mastery: `
                     <p><strong class="text-cyan-400">Combat :</strong> Les insectes sortent des cartes ! Ils font la taille d'un chat et sont composés de voxels solides. Kaito peut invoquer <strong>Centibit</strong> pour attaquer (morsure électrique) ou <strong>Websolder</strong> pour créer un petit bouclier.</p>
@@ -700,7 +700,7 @@
             maxLevel: 4.9,
             tier: "Elite Tier",
             stats: { power: 5.0, defense: 5.5, speed: 3.0, recovery: 2.0, trick: 7.0 },
-            deckCounts: { monster: 5, spell: 4, trap: 3 },
+            deckCounts: { monster: 15, spell: 10, trap: 5 }, // 30 Cards
             hackPot: "65%",
             mastery: `
                     <p><strong class="text-cyan-400">Combat :</strong> Le Deck s'étoffe. Kaito peut changer la "Position de Combat" de ses invocations instantanément (Attaque = Piques / Défense = Bouclier lourd). Il invoque <strong>Scaradiator</strong> (taille humaine) qui peut absorber l'aura adverse.</p>
@@ -719,7 +719,7 @@
             maxLevel: 5.9,
             tier: "High Tier",
             stats: { power: 7.5, defense: 6.5, speed: 4.5, recovery: 3.0, trick: 9.0 },
-            deckCounts: { monster: 7, spell: 6, trap: 5 },
+            deckCounts: { monster: 25, spell: 15, trap: 10 }, // 50 Cards (Full Deck)
             hackPot: "85%",
             mastery: `
                     <p><strong class="text-cyan-400">Combat :</strong> Kaito n'a plus besoin de cartes physiques, elles apparaissent comme des hologrammes autour de lui. Il invoque <strong>Corebage</strong>, un insecte foreur massif. Il peut fusionner deux insectes pour créer une variante plus forte (Rank-Up).</p>
@@ -738,24 +738,44 @@
         },
         {
             minLevel: 6.0,
-            maxLevel: 10.0,
+            maxLevel: 7.9,
             tier: "God Tier",
-            stats: { power: 9.5, defense: 8.5, speed: 7.0, recovery: 5.0, trick: 10.0 },
-            deckCounts: { monster: 99, spell: 99, trap: 99 },
-            hackPot: "100%",
+            stats: { power: 8.5, defense: 7.5, speed: 6.0, recovery: 4.0, trick: 10.0 },
+            deckCounts: { monster: 40, spell: 30, trap: 20 }, // 90 Cards
+            hackPot: "95%",
             mastery: `
-                    <p><strong class="text-cyan-400">Maître du Système :</strong> La frontière entre le réel et le virtuel n'existe plus pour Kaito. Il peut "réécrire" l'environnement local (transformer le sol en données liquides, faire apparaître des murs de pixels). Son invocation ultime, <strong>Rhinosebus</strong>, est une forteresse volante.</p>
-                    <p class="mt-2"><strong class="text-purple-400">Omniscience Numérique :</strong> Il peut accéder à n'importe quelle base de données mondiale instantanément. En combat, il voit les stats de l'ennemi (Power, Speed, etc.) affichées au-dessus de leur tête et peut ajuster ses insectes pour contrer parfaitement leurs faiblesses.</p>
+                    <p><strong class="text-cyan-400">Maître du Système :</strong> La frontière entre le réel et le virtuel n'existe plus. Kaito peut "réécrire" l'environnement local (transformer le sol en données liquides). Son invocation ultime, <strong>Rhinosebus</strong>, est une forteresse volante.</p>
                 `,
             passive: {
-                name: "Reality Overlay (Superposition de Réalité)",
-                desc: "Le monde lui apparaît comme du code source. Il voit les points faibles structurels des objets et des gens. Il détecte les mensonges en analysant les micro-variations biométriques comme des 'bugs'."
+                name: "Reality Overlay",
+                desc: "Le monde lui apparaît comme du code source. Il voit les points faibles structurels."
             },
             descriptions: {
                 power: "Catastrophe naturelle. Peut raser un quartier.",
-                defense: "Peut se sauvegarder et 'respawn' un peu plus loin s'il est blessé (soin via données).",
-                trick: "Dieu dans la machine. Rien ne lui échappe.",
-                speed: "Déplacement par téléportation courte distance (Blink)."
+                defense: "Peut se sauvegarder et 'respawn' un peu plus loin.",
+                trick: "Dieu dans la machine.",
+                speed: "Déplacement par téléportation courte distance."
+            }
+        },
+        {
+            minLevel: 8.0,
+            maxLevel: 10.0,
+            tier: "Max Tier",
+            stats: { power: 10.0, defense: 9.0, speed: 8.0, recovery: 6.0, trick: 10.0 },
+            deckCounts: { monster: 99, spell: 99, trap: 99 }, // Infinite
+            hackPot: "100%",
+            mastery: `
+                    <p><strong class="text-pink-500">Omniscience Numérique :</strong> Il peut accéder à n'importe quelle base de données mondiale instantanément. En combat, il voit les stats de l'ennemi affichées au-dessus de leur tête et peut ajuster ses insectes pour contrer parfaitement leurs faiblesses.</p>
+                `,
+            passive: {
+                name: "Absolute Admin Access",
+                desc: "Contrôle total sur les flux d'information et d'aura locaux."
+            },
+            descriptions: {
+                power: "Illimitée virtuellement.",
+                defense: "Intouchable.",
+                trick: "Omniscient.",
+                speed: "Instantannée."
             }
         }
     ];
@@ -822,7 +842,7 @@
 
         tierLabel.innerText = data.tier;
         tierLabel.className = "text-sm font-bold tracking-widest px-2 py-1 rounded border uppercase ";
-        if(data.tier.includes("God")) tierLabel.className += "bg-pink-950/50 border-pink-500 text-pink-400";
+        if(data.tier.includes("God") || data.tier.includes("Max")) tierLabel.className += "bg-pink-950/50 border-pink-500 text-pink-400";
         else if(data.tier.includes("High")) tierLabel.className += "bg-red-950/50 border-red-500 text-red-400";
         else if(data.tier.includes("Elite")) tierLabel.className += "bg-cyan-950/50 border-cyan-500 text-cyan-400";
         else if(data.tier.includes("Mid")) tierLabel.className += "bg-yellow-950/50 border-yellow-500 text-yellow-400";
