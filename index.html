@@ -300,7 +300,7 @@
                                 <span class="w-2 h-6 bg-cyan-500 block"></span>
                                 SIMULATION D'ÉVOLUTION
                             </h3>
-                            <p class="text-xs text-slate-400 mt-1 max-w-md">Déplacez le curseur pour observer l'évolution de la capacité.</p>
+                            <p class="text-xs text-slate-400 mt-1 max-w-md">Déplacez le curseur pour observer l'évolution de la capacité avec précision décimale.</p>
                         </div>
                         <div class="text-right mt-4 md:mt-0">
                             <div class="text-xs text-slate-500 font-mono mb-1">NIVEAU ACTUEL</div>
@@ -312,6 +312,7 @@
                     </div>
 
                     <div class="relative z-10 px-2">
+                        <!-- Slider 1.0 to 10.0 -->
                         <input type="range" min="10" max="100" value="45" class="w-full mb-2" id="level-slider">
                         <div class="flex justify-between text-[10px] text-slate-500 font-mono uppercase tracking-widest">
                             <span>1.0</span>
@@ -331,13 +332,13 @@
                     <div class="card-bg p-4 flex flex-col items-center justify-center min-h-[350px] relative">
                         <!-- Stats Overlay -->
                         <div class="absolute top-4 left-4 text-[10px] font-mono text-cyan-600">
-                            <div>PWR: <span id="val-power" class="text-cyan-300">0</span></div>
-                            <div>DEF: <span id="val-defense" class="text-cyan-300">0</span></div>
+                            <div>PWR: <span id="val-power" class="text-cyan-300">0.00</span></div>
+                            <div>DEF: <span id="val-defense" class="text-cyan-300">0.00</span></div>
                         </div>
                         <div class="absolute top-4 right-4 text-[10px] font-mono text-cyan-600 text-right">
-                            <div>SPD: <span id="val-speed" class="text-cyan-300">0</span></div>
-                            <div>REC: <span id="val-recovery" class="text-cyan-300">0</span></div>
-                            <div>TRK: <span id="val-trick" class="text-cyan-300">0</span></div>
+                            <div>SPD: <span id="val-speed" class="text-cyan-300">0.00</span></div>
+                            <div>REC: <span id="val-recovery" class="text-cyan-300">0.00</span></div>
+                            <div>TRK: <span id="val-trick" class="text-cyan-300">0.00</span></div>
                         </div>
 
                         <canvas id="statsChart" class="max-h-[250px]"></canvas>
@@ -348,7 +349,7 @@
                             </div>
                             <div class="flex justify-between text-[10px] text-purple-300 mt-1 font-mono">
                                 <span>POTENTIEL DE HACKING</span>
-                                <span id="hack-potential">0%</span>
+                                <span id="hack-potential">0.0%</span>
                             </div>
                         </div>
                     </div>
@@ -428,7 +429,7 @@
         </div>
     </div>
 
-    <!-- VIEW: DECK DATABASE (New Content) -->
+    <!-- VIEW: DECK DATABASE (Original Content) -->
     <div id="view-deck" class="hidden space-y-6">
         <div class="flex justify-between items-center border-b border-slate-700 pb-4">
             <h2 class="text-2xl font-bold text-white font-mono"><i class="fa-solid fa-database text-cyan-500 mr-2"></i> BASE DE DONNÉES DU DECK</h2>
@@ -473,13 +474,23 @@
 <footer class="border-t border-slate-800 mt-8 bg-slate-950 py-8">
     <div class="container mx-auto px-4 text-center">
         <p class="text-slate-600 text-xs font-mono">
-            SYSTEME AGWIN V.3.2.0 // DIGITAL HIVE PROJECT <br>
+            SYSTEME AGWIN V.3.3.1 // DIGITAL HIVE PROJECT <br>
             INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI)
         </p>
     </div>
 </footer>
 
 <script>
+    // --- CONSTANTS ---
+    // RATIOS DE STATISTIQUES (Ratio * Niveau = Stat)
+    const statRatios = {
+        power: 1.0,     // 1.0 : Puissance pure (9.9 à Lvl 9.9)
+        defense: 0.9,   // 0.9 : Très solide mais pas impénétrable
+        speed: 0.8,     // 0.8 : Vitesse décente
+        recovery: 0.6,  // 0.6 : Faible (Construct, pas soin bio)
+        trick: 1.05     // 1.05 : Stat maîtresse (Max à Lvl 9.6)
+    };
+
     // --- NAVIGATION LOGIC ---
     function switchView(viewName) {
         const profileView = document.getElementById('view-profile');
@@ -504,100 +515,25 @@
         }
     }
 
-    // --- CARD DATABASE ---
+    // --- CARD DATABASE (Same as before) ---
     const cardDatabase = [
-        // MONSTERS (Programmes) - Core Digital Bugs + Supports
-        {
-            id: 'm1', name: 'Digital Bug Cocoondenser', type: 'monster', icon: 'fa-lightbulb', levelReq: 1.0,
-            descReal: "Lumière : Invoque un insecte depuis le Cimetière (Recyclage).",
-            descVirtual: "Data Recovery : Restaure des paquets de données perdus pour réinitialiser une routine."
-        },
-        {
-            id: 'm2', name: 'Digital Bug Centibit', type: 'monster', icon: 'fa-bugs', levelReq: 2.0,
-            descReal: "Mille-pattes : Invoque un autre insecte du deck quand il change de mode.",
-            descVirtual: "Search Index : Scanne la base de données pour appeler un script spécifique."
-        },
-        {
-            id: 'm3', name: 'Digital Bug Websolder', type: 'monster', icon: 'fa-spider', levelReq: 2.5,
-            descReal: "Araignée : Change la position d'une cible et réduit sa défense à 0.",
-            descVirtual: "Firewall Breach : Force l'ouverture des ports de sécurité d'un système cible."
-        },
-        {
-            id: 'm4', name: 'Digital Bug LEDybug', type: 'monster', icon: 'fa-sun', levelReq: 3.0,
-            descReal: "Coccinelle : S'attache pour piocher 1 carte (Boost de ressources).",
-            descVirtual: "Data Mining : Analyse les flux pour extraire des informations bonus."
-        },
-        {
-            id: 'm5', name: 'Digital Bug Registrider', type: 'monster', icon: 'fa-motorcycle', levelReq: 3.5,
-            descReal: "Cavalier : S'équipe pour donner l'effet 'Attaque Perçante' à l'Xyz.",
-            descVirtual: "Rootkit Driver : Installe un pilote permettant de contourner les protections natives."
-        },
-        {
-            id: 'm6', name: 'Galaxy Worm', type: 'monster', icon: 'fa-worm', levelReq: 4.0,
-            descReal: "Ver Galactique : Si contrôlé seul, invoque un Jeton (Clonage).",
-            descVirtual: "Worm Replica : Crée une copie fantôme du processus pour saturer la mémoire."
-        },
-        {
-            id: 'm7', name: 'Bachibachibachi', type: 'monster', icon: 'fa-bolt', levelReq: 4.2,
-            descReal: "Guêpe : Donne 'Dommages Perçants' à un monstre Xyz.",
-            descVirtual: "Penetration Tester : Outil de diagnostic offensif pour percer les pare-feux."
-        },
-
-        // XYZ (Archives Noires - High Level)
-        {
-            id: 'x1', name: 'Number 20: Giga-Brilliant', type: 'xyz', icon: 'fa-star', levelReq: 3.0,
-            descReal: "Fourmi : Augmente l'attaque de tous les monstres de 300.",
-            descVirtual: "System Overclock : Augmente temporairement la cadence de tous les processus alliés."
-        },
-        {
-            id: 'x2', name: 'Digital Bug Scaradiator', type: 'xyz', icon: 'fa-shield-halved', levelReq: 3.5,
-            descReal: "Scarabée Tank : Annule les effets adverses et change leur position.",
-            descVirtual: "Packet Sniffer/Jammer : Intercepte et bloque les paquets suspects en temps réel."
-        },
-        {
-            id: 'x3', name: 'Digital Bug Corebage', type: 'xyz', icon: 'fa-dungeon', levelReq: 5.0,
-            descReal: "Foreur : Mélange un monstre en défense dans le deck (Retrait).",
-            descVirtual: "Kernel Panic : Force le redémarrage d'un sous-système adverse, le retirant du combat."
-        },
-        {
-            id: 'x4', name: 'Digital Bug Rhinosebus', type: 'xyz', icon: 'fa-chess-rook', levelReq: 6.5,
-            descReal: "Colosse : Attaque tous les monstres adverses avec perçage.",
-            descVirtual: "System Purge : Lance un nettoyage complet du disque, attaquant tous les fichiers corrompus."
-        },
-
-        // SPELLS (Scripts)
-        {
-            id: 's1', name: 'Bug Signal', type: 'spell', icon: 'fa-tower-broadcast', levelReq: 1.5,
-            descReal: "Quick-Play : Évolue un Xyz Insecte en un rang supérieur.",
-            descVirtual: "Hotfix Patch : Applique une mise à jour critique instantanée pour améliorer le système."
-        },
-        {
-            id: 's2', name: 'Stumbling', type: 'spell', icon: 'fa-person-falling', levelReq: 4.0,
-            descReal: "Continu : Tout monstre invoqué passe immédiatement en Défense.",
-            descVirtual: "Lag Switch : Force tous les nouveaux processus à entrer en mode 'Veille' (Sleep Mode)."
-        },
-        {
-            id: 's3', name: 'Foolish Burial', type: 'spell', icon: 'fa-tombstone', levelReq: 2.5,
-            descReal: "Envoie un monstre du deck au cimetière (Setup).",
-            descVirtual: "Cache Dump : Envoie des données directement en mémoire cache pour un accès rapide."
-        },
-        {
-            id: 's4', name: 'Mystical Space Typhoon', type: 'spell', icon: 'fa-wind', levelReq: 3.0,
-            descReal: "Détruit une Magie/Piège adverse.",
-            descVirtual: "Process Kill : Termine de force une application ou un script adverse."
-        },
-
-        // TRAPS (Sécurité)
-        {
-            id: 't1', name: 'Bug Emergency', type: 'trap', icon: 'fa-kit-medical', levelReq: 2.0,
-            descReal: "Invocation Spéciale : Rappelle 2 insectes du cimetière.",
-            descVirtual: "Backup Restore : Lance une restauration système à partir d'une sauvegarde antérieure."
-        },
-        {
-            id: 't2', name: 'Mirror Force', type: 'trap', icon: 'fa-mirror', levelReq: 5.0,
-            descReal: "Force de Miroir : Génère un miroir solide qui retourne l'attaque physique directement contre l'adversaire.",
-            descVirtual: "DDoS Reflection : Renvoie le trafic malveillant vers l'attaquant pour faire crasher ses serveurs."
-        }
+        { id: 'm1', name: 'Digital Bug Cocoondenser', type: 'monster', icon: 'fa-lightbulb', levelReq: 1.0, descReal: "Lumière : Invoque un insecte depuis le Cimetière.", descVirtual: "Data Recovery : Restaure des données perdues." },
+        { id: 'm2', name: 'Digital Bug Centibit', type: 'monster', icon: 'fa-bugs', levelReq: 2.0, descReal: "Mille-pattes : Invoque du deck au changement de mode.", descVirtual: "Search Index : Scanne la base pour un script." },
+        { id: 'm3', name: 'Digital Bug Websolder', type: 'monster', icon: 'fa-spider', levelReq: 2.5, descReal: "Araignée : Change position cible, def à 0.", descVirtual: "Firewall Breach : Force l'ouverture des ports." },
+        { id: 'm4', name: 'Digital Bug LEDybug', type: 'monster', icon: 'fa-sun', levelReq: 3.0, descReal: "Coccinelle : Pioche 1 carte.", descVirtual: "Data Mining : Analyse flux pour info bonus." },
+        { id: 'm5', name: 'Digital Bug Registrider', type: 'monster', icon: 'fa-motorcycle', levelReq: 3.5, descReal: "Cavalier : Donne 'Perçant' à l'Xyz.", descVirtual: "Rootkit Driver : Contourne protections natives." },
+        { id: 'm6', name: 'Galaxy Worm', type: 'monster', icon: 'fa-worm', levelReq: 4.0, descReal: "Ver : Invoque Jeton (Clone).", descVirtual: "Worm Replica : Crée copie fantôme." },
+        { id: 'm7', name: 'Bachibachibachi', type: 'monster', icon: 'fa-bolt', levelReq: 4.2, descReal: "Guêpe : Donne 'Perçant'.", descVirtual: "Penetration Tester : Diagnostic offensif." },
+        { id: 'x1', name: 'Number 20: Giga-Brilliant', type: 'xyz', icon: 'fa-star', levelReq: 3.0, descReal: "Fourmi : Boost ATK de 300.", descVirtual: "System Overclock : Boost cadence processus." },
+        { id: 'x2', name: 'Digital Bug Scaradiator', type: 'xyz', icon: 'fa-shield-halved', levelReq: 3.5, descReal: "Scarabée Tank : Annule effet + change position.", descVirtual: "Packet Sniffer : Bloque paquets suspects." },
+        { id: 'x3', name: 'Digital Bug Corebage', type: 'xyz', icon: 'fa-dungeon', levelReq: 5.0, descReal: "Foreur : Mélange défenseur dans deck.", descVirtual: "Kernel Panic : Force reboot sous-système." },
+        { id: 'x4', name: 'Digital Bug Rhinosebus', type: 'xyz', icon: 'fa-chess-rook', levelReq: 6.5, descReal: "Colosse : Attaque tout + perçant.", descVirtual: "System Purge : Nettoyage disque complet." },
+        { id: 's1', name: 'Bug Signal', type: 'spell', icon: 'fa-tower-broadcast', levelReq: 1.5, descReal: "Quick-Play : Évolution Xyz.", descVirtual: "Hotfix Patch : Mise à jour critique instantanée." },
+        { id: 's2', name: 'Stumbling', type: 'spell', icon: 'fa-person-falling', levelReq: 4.0, descReal: "Continu : Invocations passent en Défense.", descVirtual: "Lag Switch : Force mode 'Veille'." },
+        { id: 's3', name: 'Foolish Burial', type: 'spell', icon: 'fa-tombstone', levelReq: 2.5, descReal: "Envoie monstre au cimetière.", descVirtual: "Cache Dump : Envoie données en cache." },
+        { id: 's4', name: 'Mystical Space Typhoon', type: 'spell', icon: 'fa-wind', levelReq: 3.0, descReal: "Détruit Magie/Piège.", descVirtual: "Process Kill : Termine application." },
+        { id: 't1', name: 'Bug Emergency', type: 'trap', icon: 'fa-kit-medical', levelReq: 2.0, descReal: "Rappelle 2 insectes.", descVirtual: "Backup Restore : Restauration système." },
+        { id: 't2', name: 'Mirror Force', type: 'trap', icon: 'fa-mirror', levelReq: 5.0, descReal: "Miroir : Renvoie l'attaque physique.", descVirtual: "DDoS Reflection : Renvoie trafic malveillant." }
     ];
 
     function renderDeck(currentLevel) {
@@ -607,11 +543,7 @@
             spell: document.getElementById('deck-spells'),
             trap: document.getElementById('deck-traps')
         };
-
-        // Update total count
         document.getElementById('total-cards-db').innerText = cardDatabase.length;
-
-        // Clear sections
         Object.values(sections).forEach(el => el.innerHTML = '');
 
         cardDatabase.forEach(card => {
@@ -619,12 +551,7 @@
             const opacity = isLocked ? 'opacity-50 grayscale' : '';
             const lockIcon = isLocked ? '<div class="absolute inset-0 flex items-center justify-center bg-black/60 z-20"><i class="fa-solid fa-lock text-2xl text-slate-500"></i></div>' : '';
             const reqText = isLocked ? `<span class="text-red-500 font-bold">Lvl ${card.levelReq}</span>` : `<span class="text-green-500">Débloqué</span>`;
-
-            let cardClass = '';
-            if(card.type === 'monster') cardClass = 'card-monster';
-            if(card.type === 'xyz') cardClass = 'card-xyz';
-            if(card.type === 'spell') cardClass = 'card-spell';
-            if(card.type === 'trap') cardClass = 'card-trap';
+            let cardClass = card.type === 'monster' ? 'card-monster' : card.type === 'xyz' ? 'card-xyz' : card.type === 'spell' ? 'card-spell' : 'card-trap';
 
             const html = `
                 <div class="ygo-card ${cardClass} ${opacity}">
@@ -633,198 +560,45 @@
                         <span class="text-[10px] font-bold text-white truncate w-2/3">${card.name}</span>
                         <div class="text-[8px] bg-black/50 px-1 rounded text-white border border-white/20">${card.type.toUpperCase().substring(0,3)}</div>
                     </div>
-                    <div class="card-art">
-                        <i class="fa-solid ${card.icon} text-4xl text-white/80"></i>
-                    </div>
+                    <div class="card-art"><i class="fa-solid ${card.icon} text-4xl text-white/80"></i></div>
                     <div class="card-desc-box">
-                        <div class="mb-1 border-b border-black/20 pb-1">
-                            <strong>[Physique]</strong><br>${card.descReal}
-                        </div>
-                        <div class="mb-1">
-                            <strong>[Virtuel]</strong><br>${card.descVirtual}
-                        </div>
+                        <div class="mb-1 border-b border-black/20 pb-1"><strong>[Physique]</strong><br>${card.descReal}</div>
+                        <div class="mb-1"><strong>[Virtuel]</strong><br>${card.descVirtual}</div>
                     </div>
-                    <div class="mt-1 text-[8px] text-center bg-black/80 text-white rounded py-0.5">
-                        ${reqText}
-                    </div>
-                </div>
-                `;
-
+                    <div class="mt-1 text-[8px] text-center bg-black/80 text-white rounded py-0.5">${reqText}</div>
+                </div>`;
             if(sections[card.type]) sections[card.type].innerHTML += html;
         });
     }
 
-
-    // --- EVOLUTION DATA MODEL ---
-    const evolutionData = [
-        {
-            minLevel: 1.0,
-            maxLevel: 1.9,
-            tier: "Low Tier",
-            stats: { power: 1.2, defense: 1.5, speed: 1.0, recovery: 1.0, trick: 2.5 },
-            deckCounts: { monster: 3, spell: 2, trap: 0 }, // 5 Cards
-            hackPot: "15%",
-            mastery: `
-                    <p><strong class="text-cyan-400">Combat :</strong> À ce stade, Kaito doit tenir la carte physique en main pour activer l'effet. Il ne peut matérialiser qu'une "projection lumineuse" de l'insecte, incapable de bouger ou d'attaquer. C'est surtout de l'intimidation ou de la distraction (flash lumineux).</p>
-                    <p class="mt-2"><strong class="text-purple-400">Informatique :</strong> En collant une carte "Digital Bug" sur un appareil (téléphone, serrure électronique), il peut effectuer un "Override" basique : forcer l'ouverture d'une porte non sécurisée ou faire planter un téléphone (Blue Screen of Death).</p>
-                `,
-            passive: null,
-            descriptions: {
-                power: "Inexistant. Un coup de poing normal fait plus mal.",
-                defense: "La carte elle-même peut durcir légèrement pour parer un coup de couteau, mais c'est tout.",
-                trick: "Repose sur la confusion. Utile pour tricher aux examens ou ouvrir un casier.",
-                speed: "Aucune amélioration physique."
-            }
-        },
-        {
-            minLevel: 2.0,
-            maxLevel: 3.4,
-            tier: "Mid Tier",
-            stats: { power: 3.0, defense: 3.5, speed: 2.0, recovery: 1.5, trick: 4.5 },
-            deckCounts: { monster: 8, spell: 5, trap: 2 }, // 15 Cards
-            hackPot: "35%",
-            mastery: `
-                    <p><strong class="text-cyan-400">Combat :</strong> Les insectes sortent des cartes ! Ils font la taille d'un chat et sont composés de voxels solides. Kaito peut invoquer <strong>Centibit</strong> pour attaquer (morsure électrique) ou <strong>Websolder</strong> pour créer un petit bouclier.</p>
-                    <p class="mt-2"><strong class="text-purple-400">Informatique :</strong> Kaito n'a plus besoin de contact physique. S'il lance une carte près d'une caméra, l'insecte invoqué peut "manger" le flux vidéo et le remplacer par une image statique (loop). Il peut aussi corrompre des fichiers sur un ordinateur à distance de vue.</p>
-                `,
-            passive: null,
-            descriptions: {
-                power: "Suffisant pour casser un bras ou laisser des brûlures électriques.",
-                defense: "Les carapaces des insectes résistent aux coups de poing standards.",
-                trick: "Peut désactiver les alarmes et surveiller une pièce adjacente.",
-                speed: "Les insectes sont rapides, mais Kaito reste humain."
-            }
-        },
-        {
-            minLevel: 3.5,
-            maxLevel: 4.9,
-            tier: "Elite Tier",
-            stats: { power: 5.0, defense: 5.5, speed: 3.0, recovery: 2.0, trick: 7.0 },
-            deckCounts: { monster: 15, spell: 10, trap: 5 }, // 30 Cards
-            hackPot: "65%",
-            mastery: `
-                    <p><strong class="text-cyan-400">Combat :</strong> Le Deck s'étoffe. Kaito peut changer la "Position de Combat" de ses invocations instantanément (Attaque = Piques / Défense = Bouclier lourd). Il invoque <strong>Scaradiator</strong> (taille humaine) qui peut absorber l'aura adverse.</p>
-                    <p class="mt-2"><strong class="text-purple-400">Hacking Avancé :</strong> Il peut "voir" à travers les yeux de ses insectes. En envoyant un insecte minuscule (taille d'une mouche) dans un port serveur, il peut télécharger des données directement dans sa mémoire à court terme. Il peut couper le courant d'un étage entier.</p>
-                `,
-            passive: null,
-            descriptions: {
-                power: "Scaradiator peut broyer du métal avec ses mandibules.",
-                defense: "Peut créer un mur d'insectes 'Websolder' très résistant.",
-                trick: "Hacking de niveau gouvernemental local. Vol d'identité numérique.",
-                speed: "Peut surfer sur un insecte volant pour se déplacer."
-            }
-        },
-        {
-            minLevel: 5.0,
-            maxLevel: 5.9,
-            tier: "High Tier",
-            stats: { power: 7.5, defense: 6.5, speed: 4.5, recovery: 3.0, trick: 9.0 },
-            deckCounts: { monster: 25, spell: 15, trap: 10 }, // 50 Cards (Full Deck)
-            hackPot: "85%",
-            mastery: `
-                    <p><strong class="text-cyan-400">Combat :</strong> Kaito n'a plus besoin de cartes physiques, elles apparaissent comme des hologrammes autour de lui. Il invoque <strong>Corebage</strong>, un insecte foreur massif. Il peut fusionner deux insectes pour créer une variante plus forte (Rank-Up).</p>
-                    <p class="mt-2"><strong class="text-purple-400">Cyber-Dominance :</strong> Passif débloqué : <em>Network Sense</em>. Il "sent" les connexions wifi, les ondes radio et les flux d'aura comme une matrice 3D. Il peut hacker un système rien qu'en le regardant intensément, sans insecte. Il peut isoler l'aura d'un ennemi en le "tagguant" numériquement.</p>
-                `,
-            passive: {
-                name: "Network Sense (Sens Réseau)",
-                desc: "Perception omnidirectionnelle de tous les flux de données (Wifi, 4G, Radio) et des signatures d'aura dans un rayon de 50m. Impossible de le surprendre s'il y a un appareil électronique à proximité."
-            },
-            descriptions: {
-                power: "Destruction de bâtiment possible avec Corebage.",
-                defense: "Peut digitaliser son propre corps 1 seconde pour esquiver une attaque fatale.",
-                trick: "Contrôle total des infrastructures (Feux rouges, Portes, Électricité).",
-                speed: "Réaction quasi-instantanée grâce à l'analyse prédictive."
-            }
-        },
-        {
-            minLevel: 6.0,
-            maxLevel: 7.9,
-            tier: "God Tier",
-            stats: { power: 8.5, defense: 7.5, speed: 6.0, recovery: 4.0, trick: 10.0 },
-            deckCounts: { monster: 40, spell: 30, trap: 20 }, // 90 Cards
-            hackPot: "95%",
-            mastery: `
-                    <p><strong class="text-cyan-400">Maître du Système :</strong> La frontière entre le réel et le virtuel n'existe plus. Kaito peut "réécrire" l'environnement local (transformer le sol en données liquides). Son invocation ultime, <strong>Rhinosebus</strong>, est une forteresse volante.</p>
-                `,
-            passive: {
-                name: "Reality Overlay",
-                desc: "Le monde lui apparaît comme du code source. Il voit les points faibles structurels."
-            },
-            descriptions: {
-                power: "Catastrophe naturelle. Peut raser un quartier.",
-                defense: "Peut se sauvegarder et 'respawn' un peu plus loin.",
-                trick: "Dieu dans la machine.",
-                speed: "Déplacement par téléportation courte distance."
-            }
-        },
-        {
-            minLevel: 8.0,
-            maxLevel: 10.0,
-            tier: "Max Tier",
-            stats: { power: 10.0, defense: 9.0, speed: 8.0, recovery: 6.0, trick: 10.0 },
-            deckCounts: { monster: 99, spell: 99, trap: 99 }, // Infinite
-            hackPot: "100%",
-            mastery: `
-                    <p><strong class="text-pink-500">Omniscience Numérique :</strong> Il peut accéder à n'importe quelle base de données mondiale instantanément. En combat, il voit les stats de l'ennemi affichées au-dessus de leur tête et peut ajuster ses insectes pour contrer parfaitement leurs faiblesses.</p>
-                `,
-            passive: {
-                name: "Absolute Admin Access",
-                desc: "Contrôle total sur les flux d'information et d'aura locaux."
-            },
-            descriptions: {
-                power: "Illimitée virtuellement.",
-                defense: "Intouchable.",
-                trick: "Omniscient.",
-                speed: "Instantannée."
-            }
-        }
+    // --- EVOLUTION LORE ---
+    const evolutionLore = [
+        { min: 1.0, max: 1.9, tier: "Low Tier", mastery: "Projection lumineuse non solide. Intimidation et Override basique (portes).", descP: "Inexistant.", descD: "Peut parer un couteau.", descT: "Confusion simple.", descS: "Humain." },
+        { min: 2.0, max: 3.4, tier: "Mid Tier", mastery: "Insectes solides (voxels). Attaques physiques et hacking local (caméras).", descP: "Casse un bras.", descD: "Résiste aux poings.", descT: "Surveillance pièce.", descS: "Rapide." },
+        { min: 3.5, max: 4.9, tier: "Elite Tier", mastery: "Changement de Mode (Atk/Def). Hacking via insectes espions. Absorbe aura.", descP: "Broyeur de métal.", descD: "Mur résistant.", descT: "Vol d'identité.", descS: "Surf aérien." },
+        { min: 5.0, max: 5.9, tier: "High Tier", mastery: "Hologrammes (plus de cartes). Passif Network Sense. Fusion (Rank-Up).", descP: "Destruction bâtiment.", descD: "Digitalisation corps.", descT: "Contrôle infra.", descS: "Réaction instant." },
+        { min: 6.0, max: 7.9, tier: "God Tier", mastery: "Réécriture réalité locale. Boss Rhinosebus. Omniscience locale.", descP: "Catastrophe.", descD: "Respawn.", descT: "Dieu machine.", descS: "Téléport." },
+        { min: 8.0, max: 10.0, tier: "Max Tier", mastery: "Omniscience Numérique Mondiale. Contrôle absolu des flux.", descP: "Illimitée.", descD: "Intouchable.", descT: "Omniscient.", descS: "Instantanné." }
     ];
 
     // --- CHART SETUP ---
     const ctx = document.getElementById('statsChart').getContext('2d');
-
     let gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgba(6, 182, 212, 0.5)');
-    gradient.addColorStop(1, 'rgba(147, 51, 234, 0.1)');
-
+    gradient.addColorStop(0, 'rgba(6, 182, 212, 0.5)'); gradient.addColorStop(1, 'rgba(147, 51, 234, 0.1)');
     let radarChart = new Chart(ctx, {
         type: 'radar',
         data: {
             labels: ['POWER', 'DEFENSE', 'SPEED', 'RECOVERY', 'TRICK'],
-            datasets: [{
-                label: 'Stats',
-                data: [1, 1, 1, 1, 1],
-                backgroundColor: gradient,
-                borderColor: '#06b6d4',
-                borderWidth: 2,
-                pointBackgroundColor: '#fff',
-                pointBorderColor: '#a855f7',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: '#a855f7',
-                pointRadius: 3
-            }]
+            datasets: [{ label: 'Stats', data: [1, 1, 1, 1, 1], backgroundColor: gradient, borderColor: '#06b6d4', borderWidth: 2, pointBackgroundColor: '#fff', pointBorderColor: '#a855f7' }]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                r: {
-                    angleLines: { color: 'rgba(255, 255, 255, 0.05)' },
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                    pointLabels: {
-                        color: '#94a3b8',
-                        font: { family: 'Orbitron', size: 10 }
-                    },
-                    ticks: { display: false, max: 10, min: 0 }
-                }
-            },
-            plugins: {
-                legend: { display: false }
-            }
+            responsive: true, maintainAspectRatio: false,
+            scales: { r: { angleLines: { color: 'rgba(255,255,255,0.05)' }, grid: { color: 'rgba(255,255,255,0.1)' }, pointLabels: { color: '#94a3b8', font: { family: 'Orbitron', size: 10 } }, ticks: { display: false, max: 10, min: 0 } } },
+            plugins: { legend: { display: false } }
         }
     });
 
-    // --- LOGIC ---
+    // --- MAIN LOGIC ---
     const slider = document.getElementById('level-slider');
     const levelDisplay = document.getElementById('level-display');
     const tierLabel = document.getElementById('tier-label');
@@ -833,71 +607,81 @@
     function updateUI(levelVal) {
         const level = levelVal / 10;
         levelDisplay.innerText = level.toFixed(1);
+        studentId.innerText = `AGW-${Math.floor(level * 1024 + 500)}-X`;
 
-        const uniqueId = Math.floor(level * 1024 + 500);
-        studentId.innerText = `AGW-${uniqueId}-X`; // Agwin ID
+        // 1. CALCUL DES STATS (Formule: Min(10, Niveau * Ratio))
+        // Pas d'arrondi ici, on garde le float pour le graphique
+        const p = Math.min(10, level * statRatios.power);
+        const d = Math.min(10, level * statRatios.defense);
+        const s = Math.min(10, level * statRatios.speed);
+        const r = Math.min(10, level * statRatios.recovery);
+        const t = Math.min(10, level * statRatios.trick);
 
-        let data = evolutionData.find(d => level >= d.minLevel && level <= d.maxLevel);
-        if (!data) data = evolutionData[evolutionData.length - 1];
-
-        tierLabel.innerText = data.tier;
-        tierLabel.className = "text-sm font-bold tracking-widest px-2 py-1 rounded border uppercase ";
-        if(data.tier.includes("God") || data.tier.includes("Max")) tierLabel.className += "bg-pink-950/50 border-pink-500 text-pink-400";
-        else if(data.tier.includes("High")) tierLabel.className += "bg-red-950/50 border-red-500 text-red-400";
-        else if(data.tier.includes("Elite")) tierLabel.className += "bg-cyan-950/50 border-cyan-500 text-cyan-400";
-        else if(data.tier.includes("Mid")) tierLabel.className += "bg-yellow-950/50 border-yellow-500 text-yellow-400";
-        else tierLabel.className += "bg-slate-800 border-slate-600 text-slate-400";
-
-        let boost = 0;
-        if (level > 8.0) {
-            boost = (level - 8.0) * 0.5;
-        }
-
-        const p = Math.min(10, data.stats.power + boost);
-        const d = Math.min(10, data.stats.defense + boost);
-        const s = Math.min(10, data.stats.speed + boost);
-        const r = Math.min(10, data.stats.recovery + boost);
-        const t = Math.min(10, data.stats.trick);
-
+        // Update Graph with raw float values
         radarChart.data.datasets[0].data = [p, d, s, r, t];
         radarChart.update();
 
-        document.getElementById('val-power').innerText = p.toFixed(1);
-        document.getElementById('val-defense').innerText = d.toFixed(1);
-        document.getElementById('val-speed').innerText = s.toFixed(1);
-        document.getElementById('val-recovery').innerText = r.toFixed(1);
-        document.getElementById('val-trick').innerText = t.toFixed(1);
+        // Update Text with 2 decimals
+        document.getElementById('val-power').innerText = p.toFixed(2);
+        document.getElementById('val-defense').innerText = d.toFixed(2);
+        document.getElementById('val-speed').innerText = s.toFixed(2);
+        document.getElementById('val-recovery').innerText = r.toFixed(2);
+        document.getElementById('val-trick').innerText = t.toFixed(2);
 
-        const hackVal = parseInt(data.hackPot);
-        document.getElementById('trick-bar').style.width = data.hackPot;
-        document.getElementById('hack-potential').innerText = data.hackPot;
+        // 2. LORE & TIER
+        let lore = evolutionLore.find(d => level >= d.min && level <= d.max);
+        if (!lore) lore = evolutionLore[evolutionLore.length - 1];
 
-        document.getElementById('monster-count').innerText = data.deckCounts.monster;
-        document.getElementById('spell-count').innerText = data.deckCounts.spell;
-        document.getElementById('trap-count').innerText = data.deckCounts.trap;
+        tierLabel.innerText = lore.tier;
+        tierLabel.className = "text-sm font-bold tracking-widest px-2 py-1 rounded border uppercase ";
+        if(lore.tier.includes("God") || lore.tier.includes("Max")) tierLabel.className += "bg-pink-950/50 border-pink-500 text-pink-400";
+        else if(lore.tier.includes("High")) tierLabel.className += "bg-red-950/50 border-red-500 text-red-400";
+        else if(lore.tier.includes("Elite")) tierLabel.className += "bg-cyan-950/50 border-cyan-500 text-cyan-400";
+        else if(lore.tier.includes("Mid")) tierLabel.className += "bg-yellow-950/50 border-yellow-500 text-yellow-400";
+        else tierLabel.className += "bg-slate-800 border-slate-600 text-slate-400";
 
-        document.getElementById('mastery-content').innerHTML = data.mastery;
-        document.getElementById('desc-power').innerText = data.descriptions.power;
-        document.getElementById('desc-defense').innerText = data.descriptions.defense;
-        document.getElementById('desc-trick').innerText = data.descriptions.trick;
-        document.getElementById('desc-speed').innerText = data.descriptions.speed;
+        document.getElementById('mastery-content').innerHTML = lore.mastery;
+        document.getElementById('desc-power').innerText = lore.descP;
+        document.getElementById('desc-defense').innerText = lore.descD;
+        document.getElementById('desc-trick').innerText = lore.descT;
+        document.getElementById('desc-speed').innerText = lore.descS;
+
+        // 3. EXTRAS (Hacking & Passive)
+        // Calcul précis pour le hacking potential: (Niveau / 10) * 100 avec un boost progressif
+        let rawHack = (level / 10) * 100;
+        if(level > 6.0) rawHack += 20; // Boost après God Tier
+        const hackPot = Math.min(100, rawHack).toFixed(1);
+
+        document.getElementById('trick-bar').style.width = hackPot + "%";
+        document.getElementById('hack-potential').innerText = hackPot + "%";
+
+        // Deck Count Simulation (Progressive)
+        let mCount, sCount, tCount;
+        if(level < 2.0) { mCount=3; sCount=2; tCount=0; } // 5
+        else if(level < 3.5) { mCount=8; sCount=5; tCount=2; } // 15
+        else if(level < 5.0) { mCount=15; sCount=10; tCount=5; } // 30
+        else if(level < 6.0) { mCount=25; sCount=15; tCount=10; } // 50
+        else if(level < 8.0) { mCount=40; sCount=30; tCount=20; } // 90
+        else { mCount=99; sCount=99; tCount=99; } // ∞
+
+        document.getElementById('monster-count').innerText = mCount;
+        document.getElementById('spell-count').innerText = sCount;
+        document.getElementById('trap-count').innerText = tCount;
 
         const passiveBlock = document.getElementById('passive-block');
-        if (data.passive) {
+        if (level >= 5.0) {
             passiveBlock.classList.remove('hidden');
-            document.getElementById('passive-name').innerText = data.passive.name;
-            document.getElementById('passive-desc').innerText = data.passive.desc;
+            document.getElementById('passive-name').innerText = level >= 6.0 ? "Reality Overlay" : "Network Sense";
+            document.getElementById('passive-desc').innerText = level >= 6.0 ? "Vision du code source de la réalité." : "Perception des flux de données et d'aura.";
         } else {
             passiveBlock.classList.add('hidden');
         }
 
-        // Re-render the deck with new lock states based on level
         renderDeck(level);
     }
 
     slider.addEventListener('input', (e) => updateUI(e.target.value));
-    updateUI(45);
-
+    updateUI(45); // Start at 4.5
 </script>
 </body>
 </html>
