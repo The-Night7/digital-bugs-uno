@@ -342,16 +342,11 @@
                         </div>
                     </div>
 
-                    <!-- Dynamic Description & Passive -->
+                    <!-- Dynamic Description & Passive (REBUILT FOR ROBUSTNESS) -->
                     <div class="card-bg p-6 flex flex-col gap-4">
-                        <!-- Passive Block -->
-                        <div id="passive-block" class="bg-slate-900/80 border border-slate-700 p-4 rounded relative overflow-hidden hidden">
-                            <div class="absolute -right-2 -top-2 text-6xl text-slate-800/50">
-                                <i class="fa-brands fa-usb"></i>
-                            </div>
-                            <h4 class="text-xs text-yellow-500 font-bold uppercase mb-1 tracking-wider"><i class="fa-solid fa-unlock-keyhole mr-1"></i> Passif Débloqué</h4>
-                            <div class="text-sm font-bold text-white mb-2 font-mono" id="passive-name">Nom du Passif</div>
-                            <p class="text-xs text-slate-400 leading-relaxed" id="passive-desc">Description du passif...</p>
+                        <!-- Passive Block (Target for JS Injection) -->
+                        <div id="passive-block">
+                            <!-- JS will inject content here -->
                         </div>
 
                         <!-- Mastery Text -->
@@ -431,7 +426,7 @@
         </div>
     </div>
 
-    <!-- VIEW: HISTORY (New Section) -->
+    <!-- VIEW: HISTORY (Enhanced Section) -->
     <div id="view-history" class="hidden space-y-6">
         <div class="flex justify-between items-center border-b border-yellow-700/50 pb-4">
             <h2 class="text-2xl font-bold text-white font-mono"><i class="fa-solid fa-file-contract text-yellow-500 mr-2"></i> ARCHIVES BIOGRAPHIQUES</h2>
@@ -453,8 +448,12 @@
                     <p class="text-sm text-slate-400 leading-relaxed text-justify mb-2">
                         Kaito Vance manifeste sa capacité très tôt. Fils unique, il développe une fascination obsessionnelle pour l'illusionnisme et la magie de scène pour compenser un manque d'attention parentale. Sa capacité "Digital Hive" ne se manifeste d'abord que par des flashs lumineux (les "lucioles").
                     </p>
+                    <div class="bg-slate-900/50 p-3 rounded border-l-2 border-slate-600 my-3">
+                        <div class="text-[10px] text-slate-500 mb-1">INCIDENT #04-ALPHA (Primaires)</div>
+                        <p class="text-xs text-slate-300 italic">"L'élève Vance a fait 'disparaitre' les résultats d'examens de toute sa classe. Aucune trace papier retrouvée. Les serveurs de l'école affichaient une image de lapin pixélisé. Il a prétendu que c'était 'juste de la magie'. QI testé à 400 suite à l'incident."</p>
+                    </div>
                     <p class="text-sm text-slate-400 leading-relaxed text-justify">
-                        Il utilise ses premiers insectes pour tricher à l'école et jouer des tours. Son QI exceptionnel (détecté à 400) le rend arrogant et détaché de ses pairs. Il commence à voir le monde comme un système à exploiter.
+                        Il commence à voir le monde comme un système à exploiter.
                     </p>
                 </div>
             </div>
@@ -467,12 +466,16 @@
                         <span>PÉRIODE: 15 - 17 ANS</span>
                         <span>LIEU: AGWIN HIGH SCHOOL</span>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2">L'Ascension et l'Hubris</h3>
+                    <h3 class="text-lg font-bold text-white mb-2">Le Réseau "The Hive"</h3>
                     <p class="text-sm text-slate-400 leading-relaxed text-justify mb-2">
-                        À Agwin, Kaito devient rapidement populaire mais problématique. Il refuse la hiérarchie traditionnelle, utilisant son charme et ses tours pour séduire et manipuler. Ses tendances de "filou" s'aggravent (vols mineurs de données, blagues humiliantes sur la royauté).
+                        À Agwin, Kaito refuse la hiérarchie traditionnelle. Il fonde "The Hive", un réseau de chantage basé sur la collecte de secrets numériques.
                     </p>
+                    <div class="bg-slate-900/50 p-3 rounded border-l-2 border-blue-600 my-3">
+                        <div class="text-[10px] text-blue-400 mb-1">NOTE DISCIPLINAIRE (Directeur)</div>
+                        <p class="text-xs text-slate-300 italic">"Vance est ingérable. Il a humilié le Roi d'Agwin en piratant le système de sonorisation pour diffuser des bruits de canard à chaque fois que le Roi parlait. Il prétend que c'est de l'art performatif. Ses notes sont parfaites, impossible de l'expulser académiquement."</p>
+                    </div>
                     <p class="text-sm text-slate-400 leading-relaxed text-justify">
-                        <strong>L'Incident Zero:</strong> À 17 ans, par simple défi intellectuel, il lance une cyber-attaque massive contre les serveurs régionaux du Bureau. Il ne vole rien, se contentant de changer les fonds d'écran des terminaux sécurisés par des images de lapins sortant de chapeaux. Il est tracé en moins de 4 heures.
+                        <strong>L'Incident Zero:</strong> À 17 ans, par simple défi intellectuel, il lance une cyber-attaque massive contre les serveurs régionaux du Bureau. Il ne vole rien, se contentant de signer son passage. Il est tracé en moins de 4 heures.
                     </p>
                 </div>
             </div>
@@ -487,8 +490,12 @@
                     </div>
                     <h3 class="text-lg font-bold text-red-400 mb-2">Le Brisement (Instructeur Keon)</h3>
                     <p class="text-sm text-slate-300 leading-relaxed text-justify mb-2">
-                        Arrêté pour cyber-terrorisme. Keon prend en charge son dossier. Les séances de "Memory Recall" forcent Kaito à revivre en boucle la solitude de son enfance et la vacuité de ses tours de magie.
+                        Arrêté pour cyber-terrorisme. Keon prend en charge son dossier.
                     </p>
+                    <div class="bg-black/40 p-3 rounded border border-red-900 my-3">
+                        <div class="text-[10px] text-red-500 mb-1">RAPPORT DE SÉANCE #12 (Keon)</div>
+                        <p class="text-xs text-red-200 font-mono">"Le sujet résiste au Memory Recall. Au lieu de succomber à la peur, il analyse mes techniques. Il a tenté de 'déboguer' ma capacité en visualisant son esprit comme un pare-feu. J'ai dû augmenter l'intensité. Il a fini par craquer au bout de 72h d'isolation sensorielle, régressant à un état infantile, pleurant sur sa solitude."</p>
+                    </div>
                     <p class="text-sm text-slate-300 leading-relaxed text-justify">
                         Keon brise méthodiquement son ego. Kaito passe de l'arrogance au mutisme complet en 3 semaines. Son esprit brillant s'effondre sous la culpabilité fabriquée. Il est classé comme "À risque d'échec critique".
                     </p>
@@ -503,10 +510,14 @@
                         <span>INTERVENTION SPÉCIALE</span>
                         <span>AGENT: FARRAH</span>
                     </div>
-                    <h3 class="text-lg font-bold text-purple-400 mb-2">La Reprogrammation</h3>
+                    <h3 class="text-lg font-bold text-purple-400 mb-2">La Mère de Substitution</h3>
                     <p class="text-sm text-slate-300 leading-relaxed text-justify mb-2">
                         L'agent Farrah repère le potentiel de Kaito (God-Tier + Génie tactique). Elle interrompt le protocole de Keon pour appliquer une méthode plus subtile : l'hypnose et le conditionnement positif.
                     </p>
+                    <div class="bg-black/40 p-3 rounded border border-purple-900 my-3">
+                        <div class="text-[10px] text-purple-500 mb-1">TRANSCRIPTION AUDIO (Farrah)</div>
+                        <p class="text-xs text-purple-200 italic">"Tu n'es pas cassé, mon petit magicien. Tu étais juste... mal dirigé. Keon veut te faire peur. Moi ? Je veux te voir briller. Mais tu ne brilleras que pour nous. Je serai ta famille. Valérie sera ta reine. Et toi... tu seras notre meilleur tour de magie."</p>
+                    </div>
                     <p class="text-sm text-slate-300 leading-relaxed text-justify">
                         Elle ne le force pas à détester son pouvoir, mais à l'aimer <em>uniquement</em> lorsqu'il sert l'Ordre. Elle devient une figure maternelle tordue. Kaito développe une loyauté inébranlable envers elle et, par extension, envers Valérie. Sa personnalité de "magicien" est restaurée, mais comme un masque pour ses opérations.
                     </p>
@@ -525,6 +536,10 @@
                     <p class="text-sm text-slate-300 leading-relaxed text-justify mb-2">
                         Relâché avec un casier "nettoyé". Il reprend ses études de droit et obtient son diplôme en un temps record (2 ans) grâce à des cours intensifs et son QI.
                     </p>
+                    <div class="bg-slate-900/50 p-3 rounded border-l-2 border-yellow-600 my-3">
+                        <div class="text-[10px] text-yellow-500 mb-1">FAIT D'ARME RÉCENT (Opération Clean-Sweep)</div>
+                        <p class="text-xs text-slate-300 italic">"Suite à l'assassinat d'une cible par Volcan (Valérie), des images de surveillance avaient fuité. Kaito a non seulement effacé les serveurs à distance, mais a fabriqué une trace numérique incriminant un groupe de justiciers locaux. Résultat : Acquittement public de l'agent et arrestation des gêneurs."</p>
+                    </div>
                     <p class="text-sm text-slate-300 leading-relaxed text-justify">
                         Aujourd'hui, Kaito Vance est un avocat respecté qui défend les intérêts des corporations liées au Bureau. En secret, il est l'Opérateur Alpha pour l'unité de Valérie au sein d'EMBER. Il gère la surveillance numérique, l'effacement de preuves et le support tactique via ses insectes. Il est l'œil qui voit tout, le magicien qui fait disparaître les problèmes... et les gens.
                     </p>
@@ -781,12 +796,12 @@
     const studentId = document.getElementById('student-id');
 
     function updateUI(levelVal) {
-        const level = levelVal / 10;
+        // Parse input safely
+        const level = parseFloat(levelVal) / 10;
         levelDisplay.innerText = level.toFixed(1);
-        studentId.innerText = `BUR-${Math.floor(level * 1024 + 500)}-EM`; // BUR for Bureau, EM for EMBER
+        studentId.innerText = `BUR-${Math.floor(level * 1024 + 500)}-EM`;
 
         // 1. CALCUL DES STATS (Formule: Max(1, Math.round(Niveau * Ratio)))
-        // Arrondi à l'entier
         const p = Math.max(1, Math.round(level * statRatios.power));
         const d = Math.max(1, Math.round(level * statRatios.defense));
         const s = Math.max(1, Math.round(level * statRatios.speed));
@@ -823,49 +838,63 @@
         document.getElementById('desc-speed').innerText = lore.descS;
 
         // 3. EXTRAS (Hacking & Passive)
-        // Calcul précis pour le hacking potential: (Niveau / 10) * 100 avec un boost progressif
         let rawHack = (level / 10) * 100;
-        if(level > 6.0) rawHack += 20; // Boost après God Tier
+        if(level > 6.0) rawHack += 20;
         const hackPot = Math.min(100, rawHack).toFixed(1);
 
         document.getElementById('trick-bar').style.width = hackPot + "%";
         document.getElementById('hack-potential').innerText = hackPot + "%";
 
-        // Deck Count Simulation (Progressive)
-        let mCount, sCount, tCount;
-        if(level < 2.0) { mCount=3; sCount=2; tCount=0; } // 5
-        else if(level < 3.5) { mCount=8; sCount=5; tCount=2; } // 15
-        else if(level < 5.0) { mCount=15; sCount=10; tCount=5; } // 30
-        else if(level < 6.0) { mCount=25; sCount=15; tCount=10; } // 50
-        else if(level < 8.0) { mCount=40; sCount=30; tCount=20; } // 90
-        else { mCount=99; sCount=99; tCount=99; } // ∞
-
-        document.getElementById('monster-count').innerText = mCount;
-        document.getElementById('spell-count').innerText = sCount;
-        document.getElementById('trap-count').innerText = tCount;
-
-        // --- PASSIVE DESCRIPTION UPDATE ---
+        // --- PASSIVE DESCRIPTION UPDATE (REBUILT LOGIC) ---
         const passiveBlock = document.getElementById('passive-block');
+
         if (level >= 5.0) {
-            passiveBlock.classList.remove('hidden');
-            if (level >= 6.0) {
-                // GOD TIER PASSIVE
-                document.getElementById('passive-name').innerText = "Reality Overlay (Superposition de Réalité)";
-                document.getElementById('passive-desc').innerText = "Kaito ne voit plus le monde, il voit son code source. Les objets et les gens apparaissent avec des 'glitchs' indiquant leurs points faibles structurels. Il peut lire les micro-expressions et les battements de cœur comme des lignes de debug, rendant le mensonge impossible face à lui. C'est une vision 'Administrateur' qui superpose des données tactiques sur sa rétine en temps réel.";
-            } else {
-                // HIGH TIER PASSIVE
-                document.getElementById('passive-name').innerText = "Network Sense (Sens Réseau)";
-                document.getElementById('passive-desc').innerText = "Kaito perçoit les ondes invisibles (Wifi, 4G, Aura) comme une toile d'araignée sensitive. Il 'sent' les appareils électroniques actifs et les activations de capacités dans un rayon de 50m, rendant toute embuscade impossible. Il vit dans un bruit de fond constant de données qu'il a appris à filtrer pour isoler les menaces.";
-            }
+            // UNLOCKED STATE
+            const isGod = level >= 6.0;
+            // Completely reset class string to ensure no "grayscale" remains
+            passiveBlock.className = "bg-slate-900 border border-yellow-500 p-4 rounded relative overflow-hidden transition-all duration-300 shadow-lg shadow-yellow-500/20";
+
+            // Rebuild innerHTML
+            passiveBlock.innerHTML = `
+                <div class="absolute -right-2 -top-2 text-6xl text-yellow-500/20">
+                    <i class="fa-solid ${isGod ? 'fa-eye' : 'fa-wifi'}"></i>
+                </div>
+                <h4 class="text-xs text-yellow-500 font-bold uppercase mb-1 tracking-wider">
+                    <i class="fa-solid fa-unlock-keyhole mr-1"></i> Passif Éveillé
+                </h4>
+                <div class="text-sm font-bold text-white mb-2 font-mono">
+                    ${isGod ? 'Reality Overlay (Superposition)' : 'Network Sense (Sens Réseau)'}
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    ${isGod ? 'Kaito voit le "code source" de la réalité. Il lit les micro-expressions et faiblesses structurelles comme des données.' : 'Kaito perçoit les ondes et appareils électroniques actifs dans un rayon de 50m. Aucune embuscade technologique n\'est possible.'}
+                </p>
+            `;
         } else {
-            passiveBlock.classList.add('hidden');
+            // LOCKED STATE
+            passiveBlock.className = "bg-slate-900/50 border border-slate-700 p-4 rounded relative overflow-hidden transition-all duration-300 opacity-50 grayscale";
+
+            passiveBlock.innerHTML = `
+                <div class="absolute -right-2 -top-2 text-6xl text-slate-800/50">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h4 class="text-xs text-slate-500 font-bold uppercase mb-1 tracking-wider">
+                    <i class="fa-solid fa-lock mr-1"></i> Passif Verrouillé
+                </h4>
+                <div class="text-sm font-bold text-slate-400 mb-2 font-mono">???</div>
+                <p class="text-xs text-slate-500 leading-relaxed italic">
+                    Niveau 5.0+ requis pour l'éveil.
+                </p>
+            `;
         }
 
         renderDeck(level, p, d, s, r);
     }
 
     slider.addEventListener('input', (e) => updateUI(e.target.value));
-    updateUI(45); // Start at 4.5
+
+    // Initial call
+    slider.value = 45;
+    updateUI(45);
 </script>
 </body>
 </html>
