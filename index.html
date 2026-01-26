@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiche Personnage unOrdinary - Digital Hive</title>
+    <title>Fiche Agwin - Digital Hive</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
@@ -50,7 +50,6 @@
             animation: glitch-anim 2.5s infinite linear alternate-reverse;
         }
 
-        /* Animations */
         @keyframes glitch-anim {
             0% { clip: rect(12px, 9999px, 56px, 0); }
             20% { clip: rect(98px, 9999px, 12px, 0); }
@@ -75,7 +74,7 @@
 
         /* Card Styles */
         .card-bg {
-            background: rgba(15, 23, 42, 0.6); /* Darker slate */
+            background: rgba(15, 23, 42, 0.8); /* Darker slate */
             backdrop-filter: blur(12px);
             border: 1px solid rgba(6, 182, 212, 0.2); /* Cyan border low opacity */
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -108,13 +107,13 @@
             -webkit-appearance: none;
             height: 28px;
             width: 28px;
-            border-radius: 4px; /* Square-ish for tech feel */
+            border-radius: 4px;
             background: #06b6d4;
             border: 2px solid #fff;
             cursor: pointer;
             margin-top: -12px;
             box-shadow: 0 0 15px #06b6d4;
-            transform: rotate(45deg); /* Diamond shape */
+            transform: rotate(45deg);
         }
         input[type=range]::-webkit-slider-runnable-track {
             width: 100%;
@@ -124,206 +123,304 @@
             border-radius: 2px;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Trading Card Styles */
+        .ygo-card {
+            aspect-ratio: 2/3;
+            border-radius: 8px;
+            padding: 8px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
         }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
+        .ygo-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            z-index: 10;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 4px;
+        .card-monster { background: linear-gradient(135deg, #854d0e 0%, #a16207 100%); border: 2px solid #ca8a04; } /* Effect Monster Color */
+        .card-xyz { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 2px solid #94a3b8; } /* Xyz Black */
+        .card-spell { background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); border: 2px solid #10b981; } /* Spell Green */
+        .card-trap { background: linear-gradient(135deg, #831843 0%, #9d174d 100%); border: 2px solid #ec4899; } /* Trap Pink */
+
+        .card-art {
+            background: #000;
+            width: 100%;
+            aspect-ratio: 1/1;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #334155;
+        .card-desc-box {
+            background: rgba(255,255,255,0.9);
+            color: #000;
+            font-size: 10px;
+            padding: 4px;
+            border-radius: 2px;
+            flex-grow: 1;
+            overflow-y: auto;
+            font-family: 'Roboto', sans-serif;
+            border: 1px solid #000;
         }
+
+        .nav-btn.active {
+            background-color: #06b6d4;
+            color: white;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+        }
+
     </style>
 </head>
-<body class="min-h-screen hex-bg text-slate-300">
+<body class="min-h-screen hex-bg text-slate-300 flex flex-col">
 
 <!-- Header -->
 <header class="p-4 border-b border-cyan-900/50 bg-slate-950/90 sticky top-0 z-50 backdrop-blur-md">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="flex items-center gap-4">
-            <div class="relative w-10 h-10 flex items-center justify-center bg-cyan-950 rounded border border-cyan-500/30">
-                <i class="fa-solid fa-bug text-cyan-400 text-xl"></i>
+            <div class="relative w-12 h-12 flex items-center justify-center bg-cyan-950 rounded border border-cyan-500/30">
+                <i class="fa-solid fa-bug text-cyan-400 text-2xl"></i>
             </div>
             <div>
-                <h1 class="text-2xl font-bold text-white tracking-widest glitch-effect" data-text="BUREAU // ARCHIVES">BUREAU // ARCHIVES</h1>
-                <p class="text-[10px] text-cyan-600 font-mono uppercase tracking-[0.2em]">Wellston Private High School Security Database</p>
+                <h1 class="text-2xl font-bold text-white tracking-widest glitch-effect" data-text="AGWIN HIGH">AGWIN HIGH</h1>
+                <p class="text-[10px] text-cyan-600 font-mono uppercase tracking-[0.2em]">Dossier Étudiant Sécurisé</p>
             </div>
         </div>
+
+        <!-- Navigation -->
+        <nav class="flex bg-slate-900 rounded p-1 border border-slate-700">
+            <button onclick="switchView('profile')" id="btn-profile" class="nav-btn active px-6 py-2 rounded text-xs font-bold uppercase tracking-wider transition-all">
+                <i class="fa-solid fa-id-card mr-2"></i> Profil
+            </button>
+            <button onclick="switchView('deck')" id="btn-deck" class="nav-btn px-6 py-2 rounded text-xs font-bold uppercase tracking-wider transition-all text-slate-400 hover:text-white">
+                <i class="fa-solid fa-layer-group mr-2"></i> Deck
+            </button>
+        </nav>
+
         <div class="text-right hidden md:block">
-            <div class="text-xs text-cyan-500 font-mono">ACCESS LEVEL: ADMINISTRATOR</div>
+            <div class="text-xs text-cyan-500 font-mono">AGWIN SECURITY DB</div>
             <div class="text-xs text-slate-500 font-mono">ID: <span id="student-id" class="text-white">LOADING...</span></div>
         </div>
     </div>
 </header>
 
-<main class="container mx-auto p-4 md:p-8 space-y-8">
+<main class="container mx-auto p-4 md:p-8 space-y-8 flex-grow">
 
-    <!-- Top Section: Identity & Radar -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- VIEW: PROFILE (Original Content) -->
+    <div id="view-profile" class="space-y-8 transition-opacity duration-300">
+        <!-- Top Section: Identity & Radar -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-        <!-- Column 1: Identity & Card (Left) -->
-        <div class="lg:col-span-4 space-y-6">
-            <!-- Profile Card -->
-            <div class="card-bg rounded-none border-l-4 border-l-cyan-500 p-6 relative group transition-all duration-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]">
-                <!-- Scanner Line Animation -->
-                <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-0 group-hover:opacity-20 transition-opacity">
-                    <div class="w-full h-1 bg-cyan-400 blur-sm absolute top-0 animate-[scanline_2s_linear_infinite]"></div>
+            <!-- Column 1: Identity & Card (Left) -->
+            <div class="lg:col-span-4 space-y-6">
+                <!-- Profile Card -->
+                <div class="card-bg rounded-none border-l-4 border-l-cyan-500 p-6 relative group transition-all duration-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]">
+                    <!-- Scanner Line Animation -->
+                    <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-0 group-hover:opacity-20 transition-opacity">
+                        <div class="w-full h-1 bg-cyan-400 blur-sm absolute top-0 animate-[scanline_2s_linear_infinite]"></div>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-40 h-40 rounded-full p-1 border-2 border-dashed border-cyan-500/30 mb-4 relative">
+                            <div class="w-full h-full rounded-full bg-slate-900 overflow-hidden flex items-center justify-center relative z-10">
+                                <i class="fa-solid fa-user-secret text-5xl text-cyan-800"></i>
+                                <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/40 to-transparent"></div>
+                            </div>
+                            <!-- Orbiting dots -->
+                            <div class="absolute top-0 left-0 w-full h-full animate-[spin_10s_linear_infinite]">
+                                <div class="w-2 h-2 bg-cyan-400 rounded-full absolute -top-1 left-1/2 shadow-[0_0_10px_#22d3ee]"></div>
+                            </div>
+                        </div>
+
+                        <h2 class="text-3xl font-bold text-white mb-1 uppercase tracking-wider">Kaito <span class="text-cyan-400">Vance</span></h2>
+                        <div class="flex gap-2 mb-6">
+                            <span class="px-2 py-0.5 bg-cyan-950 border border-cyan-800 text-[10px] text-cyan-300 uppercase rounded">Étudiant</span>
+                            <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 text-[10px] text-slate-400 uppercase rounded">Agwin High</span>
+                        </div>
+
+                        <div class="w-full grid grid-cols-2 gap-y-4 gap-x-2 text-left text-sm font-mono border-t border-slate-700/50 pt-4">
+                            <div>
+                                <span class="text-slate-500 block text-[10px] uppercase">Âge</span>
+                                <span class="text-slate-200">17 Ans</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 block text-[10px] uppercase">Affiliation</span>
+                                <span class="text-slate-200">Club Info / Sécurité</span>
+                            </div>
+                            <div class="col-span-2">
+                                <span class="text-slate-500 block text-[10px] uppercase">Capacité</span>
+                                <span class="text-cyan-400 font-bold text-lg">DIGITAL HIVE</span>
+                            </div>
+                            <div class="col-span-2">
+                                <span class="text-slate-500 block text-[10px] uppercase">Description de l'Aura</span>
+                                <span class="text-slate-300 text-xs">Aura bleu néon composée de voxels et de glyphes hexadécimaux. Elle crépite comme un modem à l'ancienne.</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="flex flex-col items-center text-center">
-                    <div class="w-40 h-40 rounded-full p-1 border-2 border-dashed border-cyan-500/30 mb-4 relative">
-                        <div class="w-full h-full rounded-full bg-slate-900 overflow-hidden flex items-center justify-center relative z-10">
-                            <i class="fa-solid fa-user-secret text-5xl text-cyan-800"></i>
-                            <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/40 to-transparent"></div>
+                <!-- Deck Stats Mini -->
+                <div class="card-bg p-4 border-t-2 border-t-purple-500 cursor-pointer hover:bg-slate-800/80 transition" onclick="switchView('deck')">
+                    <h3 class="text-sm font-bold text-purple-400 mb-2 uppercase flex items-center justify-between">
+                        <span><i class="fa-solid fa-layer-group mr-2"></i> Composition du Deck</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </h3>
+                    <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                        <div class="bg-slate-900/50 p-2 rounded border border-slate-700">
+                            <div class="text-green-400 font-bold text-lg" id="monster-count">0</div>
+                            <div class="text-slate-500 text-[10px]">PROGRAMMES</div>
                         </div>
-                        <!-- Orbiting dots -->
-                        <div class="absolute top-0 left-0 w-full h-full animate-[spin_10s_linear_infinite]">
-                            <div class="w-2 h-2 bg-cyan-400 rounded-full absolute -top-1 left-1/2 shadow-[0_0_10px_#22d3ee]"></div>
+                        <div class="bg-slate-900/50 p-2 rounded border border-slate-700">
+                            <div class="text-cyan-400 font-bold text-lg" id="spell-count">0</div>
+                            <div class="text-slate-500 text-[10px]">SCRIPTS</div>
                         </div>
-                    </div>
-
-                    <h2 class="text-3xl font-bold text-white mb-1 uppercase tracking-wider">Kaito <span class="text-cyan-400">Vance</span></h2>
-                    <div class="flex gap-2 mb-6">
-                        <span class="px-2 py-0.5 bg-cyan-950 border border-cyan-800 text-[10px] text-cyan-300 uppercase rounded">Étudiant</span>
-                        <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 text-[10px] text-slate-400 uppercase rounded">Dossier #8902</span>
-                    </div>
-
-                    <div class="w-full grid grid-cols-2 gap-y-4 gap-x-2 text-left text-sm font-mono border-t border-slate-700/50 pt-4">
-                        <div>
-                            <span class="text-slate-500 block text-[10px] uppercase">Âge</span>
-                            <span class="text-slate-200">17 Ans</span>
-                        </div>
-                        <div>
-                            <span class="text-slate-500 block text-[10px] uppercase">Affiliation</span>
-                            <span class="text-slate-200">Club Informatique</span>
-                        </div>
-                        <div class="col-span-2">
-                            <span class="text-slate-500 block text-[10px] uppercase">Capacité</span>
-                            <span class="text-cyan-400 font-bold text-lg">DIGITAL HIVE</span>
-                        </div>
-                        <div class="col-span-2">
-                            <span class="text-slate-500 block text-[10px] uppercase">Description de l'Aura</span>
-                            <span class="text-slate-300 text-xs">Aura bleu néon composée de voxels et de glyphes hexadécimaux. Elle crépite comme un modem à l'ancienne.</span>
+                        <div class="bg-slate-900/50 p-2 rounded border border-slate-700">
+                            <div class="text-pink-400 font-bold text-lg" id="trap-count">0</div>
+                            <div class="text-slate-500 text-[10px]">SÉCURITÉ</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Deck Stats Mini -->
-            <div class="card-bg p-4 border-t-2 border-t-purple-500">
-                <h3 class="text-sm font-bold text-purple-400 mb-2 uppercase flex items-center gap-2">
-                    <i class="fa-solid fa-layer-group"></i> Composition du Deck
-                </h3>
-                <div class="grid grid-cols-3 gap-2 text-center text-xs">
-                    <div class="bg-slate-900/50 p-2 rounded border border-slate-700">
-                        <div class="text-green-400 font-bold text-lg" id="monster-count">0</div>
-                        <div class="text-slate-500 text-[10px]">INSECTES</div>
+            <!-- Column 2: Stats & Slider (Center/Right) -->
+            <div class="lg:col-span-8 flex flex-col gap-6">
+
+                <!-- Level Slider Control -->
+                <div class="card-bg p-6 relative overflow-hidden">
+                    <div class="absolute right-0 top-0 p-4 opacity-10">
+                        <i class="fa-solid fa-chart-line text-9xl text-white"></i>
                     </div>
-                    <div class="bg-slate-900/50 p-2 rounded border border-slate-700">
-                        <div class="text-cyan-400 font-bold text-lg" id="spell-count">0</div>
-                        <div class="text-slate-500 text-[10px]">LOGICIELS</div>
+
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-6 relative z-10">
+                        <div>
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                                <span class="w-2 h-6 bg-cyan-500 block"></span>
+                                SIMULATION D'ÉVOLUTION
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1 max-w-md">Déplacez le curseur pour observer l'évolution de la capacité.</p>
+                        </div>
+                        <div class="text-right mt-4 md:mt-0">
+                            <div class="text-xs text-slate-500 font-mono mb-1">NIVEAU ACTUEL</div>
+                            <div class="flex items-baseline justify-end gap-2">
+                                <span class="text-5xl font-bold stat-font text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" id="level-display">4.5</span>
+                                <span class="text-sm font-bold tracking-widest px-2 py-1 bg-slate-800 rounded border border-slate-600" id="tier-label">ELITE TIER</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-slate-900/50 p-2 rounded border border-slate-700">
-                        <div class="text-pink-400 font-bold text-lg" id="trap-count">0</div>
-                        <div class="text-slate-500 text-[10px]">PIÈGES</div>
+
+                    <div class="relative z-10 px-2">
+                        <input type="range" min="10" max="100" value="45" class="w-full mb-2" id="level-slider">
+                        <div class="flex justify-between text-[10px] text-slate-500 font-mono uppercase tracking-widest">
+                            <span>1.0</span>
+                            <span>2.0</span>
+                            <span>4.0</span>
+                            <span>6.0</span>
+                            <span>8.0</span>
+                            <span>10.0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content Area: Graph + Details -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
+
+                    <!-- Radar Chart -->
+                    <div class="card-bg p-4 flex flex-col items-center justify-center min-h-[350px] relative">
+                        <!-- Stats Overlay -->
+                        <div class="absolute top-4 left-4 text-[10px] font-mono text-cyan-600">
+                            <div>PWR: <span id="val-power" class="text-cyan-300">0</span></div>
+                            <div>DEF: <span id="val-defense" class="text-cyan-300">0</span></div>
+                        </div>
+                        <div class="absolute top-4 right-4 text-[10px] font-mono text-cyan-600 text-right">
+                            <div>SPD: <span id="val-speed" class="text-cyan-300">0</span></div>
+                            <div>REC: <span id="val-recovery" class="text-cyan-300">0</span></div>
+                            <div>TRK: <span id="val-trick" class="text-cyan-300">0</span></div>
+                        </div>
+
+                        <canvas id="statsChart" class="max-h-[250px]"></canvas>
+
+                        <div class="mt-6 w-full px-4">
+                            <div class="h-1 w-full bg-slate-800 rounded overflow-hidden">
+                                <div id="trick-bar" class="h-full bg-gradient-to-r from-purple-600 to-pink-500 transition-all duration-1000" style="width: 0%"></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-purple-300 mt-1 font-mono">
+                                <span>POTENTIEL DE HACKING</span>
+                                <span id="hack-potential">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Description & Passive -->
+                    <div class="card-bg p-6 flex flex-col gap-4">
+                        <!-- Passive Block -->
+                        <div id="passive-block" class="bg-slate-900/80 border border-slate-700 p-4 rounded relative overflow-hidden hidden">
+                            <div class="absolute -right-2 -top-2 text-6xl text-slate-800/50">
+                                <i class="fa-brands fa-usb"></i>
+                            </div>
+                            <h4 class="text-xs text-cyan-500 font-bold uppercase mb-1 tracking-wider"><i class="fa-solid fa-unlock-keyhole mr-1"></i> Passif Débloqué</h4>
+                            <div class="text-sm font-bold text-white mb-2 font-mono" id="passive-name">Nom du Passif</div>
+                            <p class="text-xs text-slate-400 leading-relaxed" id="passive-desc">Description du passif...</p>
+                        </div>
+
+                        <!-- Mastery Text -->
+                        <div class="flex-grow">
+                            <h3 class="text-sm font-bold text-white mb-3 uppercase border-b border-slate-700 pb-2">
+                                <i class="fa-solid fa-book-open-reader text-cyan-500 mr-2"></i> Rapport de Maîtrise
+                            </h3>
+                            <div class="text-slate-300 text-sm leading-relaxed space-y-3 font-light text-justify" id="mastery-content">
+                                <!-- Content injected via JS -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Column 2: Stats & Slider (Center/Right) -->
-        <div class="lg:col-span-8 flex flex-col gap-6">
+        <!-- Details Section: Lore & Stats Breakdown -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Detailed Stats Analysis -->
+            <div class="card-bg p-6 lg:col-span-3">
+                <h3 class="text-lg font-bold text-white mb-4 font-mono uppercase">
+                    <span class="text-green-400">//</span> Analyse Tactique
+                </h3>
 
-            <!-- Level Slider Control -->
-            <div class="card-bg p-6 relative overflow-hidden">
-                <div class="absolute right-0 top-0 p-4 opacity-10">
-                    <i class="fa-solid fa-chart-line text-9xl text-white"></i>
-                </div>
-
-                <div class="flex flex-col md:flex-row justify-between items-end mb-6 relative z-10">
-                    <div>
-                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                            <span class="w-2 h-6 bg-cyan-500 block"></span>
-                            SIMULATION D'ÉVOLUTION
-                        </h3>
-                        <p class="text-xs text-slate-400 mt-1 max-w-md">Déplacez le curseur pour observer l'évolution de la capacité, du niveau débutant au niveau absolu.</p>
-                    </div>
-                    <div class="text-right mt-4 md:mt-0">
-                        <div class="text-xs text-slate-500 font-mono mb-1">CURRENT LEVEL</div>
-                        <div class="flex items-baseline justify-end gap-2">
-                            <span class="text-5xl font-bold stat-font text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" id="level-display">4.5</span>
-                            <span class="text-sm font-bold tracking-widest px-2 py-1 bg-slate-800 rounded border border-slate-600" id="tier-label">ELITE TIER</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Power & Defense -->
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/50 p-3 rounded border-l-2 border-red-500">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-xs font-bold text-red-400 uppercase">Power (Invocation)</span>
+                                <i class="fa-solid fa-dragon text-red-900"></i>
+                            </div>
+                            <p class="text-xs text-slate-400" id="desc-power">...</p>
+                        </div>
+                        <div class="bg-slate-900/50 p-3 rounded border-l-2 border-yellow-500">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-xs font-bold text-yellow-400 uppercase">Defense (Firewall)</span>
+                                <i class="fa-solid fa-shield-virus text-yellow-900"></i>
+                            </div>
+                            <p class="text-xs text-slate-400" id="desc-defense">...</p>
                         </div>
                     </div>
-                </div>
 
-                <div class="relative z-10 px-2">
-                    <!-- Updated max to 100 for Level 10.0 -->
-                    <input type="range" min="10" max="100" value="45" class="w-full mb-2" id="level-slider">
-                    <div class="flex justify-between text-[10px] text-slate-500 font-mono uppercase tracking-widest">
-                        <span>1.0</span>
-                        <span>2.0</span>
-                        <span>4.0</span>
-                        <span>6.0</span>
-                        <span>8.0</span>
-                        <span>10.0</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Content Area: Graph + Details -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
-
-                <!-- Radar Chart -->
-                <div class="card-bg p-4 flex flex-col items-center justify-center min-h-[350px] relative">
-                    <!-- Stats Overlay -->
-                    <div class="absolute top-4 left-4 text-[10px] font-mono text-cyan-600">
-                        <div>PWR_OUTPUT: <span id="val-power" class="text-cyan-300">0</span></div>
-                        <div>DEF_MATRIX: <span id="val-defense" class="text-cyan-300">0</span></div>
-                    </div>
-                    <div class="absolute top-4 right-4 text-[10px] font-mono text-cyan-600 text-right">
-                        <div>CPU_SPEED: <span id="val-speed" class="text-cyan-300">0</span></div>
-                        <div>RECOV_RATE: <span id="val-recovery" class="text-cyan-300">0</span></div>
-                        <div>TRICK_OPS: <span id="val-trick" class="text-cyan-300">0</span></div>
-                    </div>
-
-                    <canvas id="statsChart" class="max-h-[250px]"></canvas>
-
-                    <div class="mt-6 w-full px-4">
-                        <div class="h-1 w-full bg-slate-800 rounded overflow-hidden">
-                            <div id="trick-bar" class="h-full bg-gradient-to-r from-purple-600 to-pink-500 transition-all duration-1000" style="width: 0%"></div>
+                    <!-- Trick & Hacking -->
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/50 p-3 rounded border-l-2 border-purple-500">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-xs font-bold text-purple-400 uppercase">Trick (Hacking/Surveillance)</span>
+                                <i class="fa-solid fa-network-wired text-purple-900"></i>
+                            </div>
+                            <p class="text-xs text-slate-400" id="desc-trick">...</p>
                         </div>
-                        <div class="flex justify-between text-[10px] text-purple-300 mt-1 font-mono">
-                            <span>POTENTIEL DE HACKING</span>
-                            <span id="hack-potential">0%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dynamic Description & Passive -->
-                <div class="card-bg p-6 flex flex-col gap-4">
-                    <!-- Passive Block -->
-                    <div id="passive-block" class="bg-slate-900/80 border border-slate-700 p-4 rounded relative overflow-hidden hidden">
-                        <div class="absolute -right-2 -top-2 text-6xl text-slate-800/50">
-                            <i class="fa-brands fa-usb"></i>
-                        </div>
-                        <h4 class="text-xs text-cyan-500 font-bold uppercase mb-1 tracking-wider"><i class="fa-solid fa-unlock-keyhole mr-1"></i> Passif Débloqué</h4>
-                        <div class="text-sm font-bold text-white mb-2 font-mono" id="passive-name">Nom du Passif</div>
-                        <p class="text-xs text-slate-400 leading-relaxed" id="passive-desc">Description du passif...</p>
-                    </div>
-
-                    <!-- Mastery Text -->
-                    <div class="flex-grow">
-                        <h3 class="text-sm font-bold text-white mb-3 uppercase border-b border-slate-700 pb-2">
-                            <i class="fa-solid fa-book-open-reader text-cyan-500 mr-2"></i> Rapport de Maîtrise
-                        </h3>
-                        <div class="text-slate-300 text-sm leading-relaxed space-y-3 font-light text-justify" id="mastery-content">
-                            <!-- Content injected via JS -->
+                        <div class="bg-slate-900/50 p-3 rounded border-l-2 border-blue-500">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-xs font-bold text-blue-400 uppercase">Speed (Traitement)</span>
+                                <i class="fa-solid fa-microchip text-blue-900"></i>
+                            </div>
+                            <p class="text-xs text-slate-400" id="desc-speed">...</p>
                         </div>
                     </div>
                 </div>
@@ -331,61 +428,42 @@
         </div>
     </div>
 
-    <!-- Details Section: Lore & Stats Breakdown -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- VIEW: DECK DATABASE (New Content) -->
+    <div id="view-deck" class="hidden space-y-6">
+        <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+            <h2 class="text-2xl font-bold text-white font-mono"><i class="fa-solid fa-database text-cyan-500 mr-2"></i> BASE DE DONNÉES DU DECK</h2>
+            <div class="text-xs text-slate-400">Total Cartes: <span id="total-cards-db">12</span></div>
+        </div>
 
-        <!-- Cards/Abilities List -->
-        <div class="card-bg p-6 lg:col-span-1">
-            <h3 class="text-lg font-bold text-white mb-4 font-mono uppercase">
-                <span class="text-purple-400">//</span> Cartes Activées
-            </h3>
-            <div class="space-y-3" id="signature-list">
-                <!-- Cards injected here -->
+        <!-- Monsters Section -->
+        <div>
+            <h3 class="text-yellow-500 font-bold mb-4 font-mono text-lg border-l-4 border-yellow-500 pl-2">PROGRAMMES (MONSTRES)</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="deck-monsters">
+                <!-- Cards Injected JS -->
             </div>
         </div>
 
-        <!-- Detailed Stats Analysis -->
-        <div class="card-bg p-6 lg:col-span-2">
-            <h3 class="text-lg font-bold text-white mb-4 font-mono uppercase">
-                <span class="text-green-400">//</span> Analyse Tactique
-            </h3>
+        <!-- Xyz Section -->
+        <div>
+            <h3 class="text-slate-300 font-bold mb-4 font-mono text-lg border-l-4 border-slate-500 pl-2">ARCHIVES NOIRES (XYZ)</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="deck-xyz">
+                <!-- Cards Injected JS -->
+            </div>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Power & Defense -->
-                <div class="space-y-4">
-                    <div class="bg-slate-900/50 p-3 rounded border-l-2 border-red-500">
-                        <div class="flex justify-between mb-1">
-                            <span class="text-xs font-bold text-red-400 uppercase">Power (Invocation)</span>
-                            <i class="fa-solid fa-dragon text-red-900"></i>
-                        </div>
-                        <p class="text-xs text-slate-400" id="desc-power">...</p>
-                    </div>
-                    <div class="bg-slate-900/50 p-3 rounded border-l-2 border-yellow-500">
-                        <div class="flex justify-between mb-1">
-                            <span class="text-xs font-bold text-yellow-400 uppercase">Defense (Firewall)</span>
-                            <i class="fa-solid fa-shield-virus text-yellow-900"></i>
-                        </div>
-                        <p class="text-xs text-slate-400" id="desc-defense">...</p>
-                    </div>
-                </div>
+        <!-- Spells Section -->
+        <div>
+            <h3 class="text-green-500 font-bold mb-4 font-mono text-lg border-l-4 border-green-500 pl-2">SCRIPTS (MAGIES)</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="deck-spells">
+                <!-- Cards Injected JS -->
+            </div>
+        </div>
 
-                <!-- Trick & Hacking -->
-                <div class="space-y-4">
-                    <div class="bg-slate-900/50 p-3 rounded border-l-2 border-purple-500">
-                        <div class="flex justify-between mb-1">
-                            <span class="text-xs font-bold text-purple-400 uppercase">Trick (Hacking/Surveillance)</span>
-                            <i class="fa-solid fa-network-wired text-purple-900"></i>
-                        </div>
-                        <p class="text-xs text-slate-400" id="desc-trick">...</p>
-                    </div>
-                    <div class="bg-slate-900/50 p-3 rounded border-l-2 border-blue-500">
-                        <div class="flex justify-between mb-1">
-                            <span class="text-xs font-bold text-blue-400 uppercase">Speed (Traitement)</span>
-                            <i class="fa-solid fa-microchip text-blue-900"></i>
-                        </div>
-                        <p class="text-xs text-slate-400" id="desc-speed">...</p>
-                    </div>
-                </div>
+        <!-- Traps Section -->
+        <div>
+            <h3 class="text-pink-500 font-bold mb-4 font-mono text-lg border-l-4 border-pink-500 pl-2">PROTOCOLES SÉCURITÉ (PIÈGES)</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="deck-traps">
+                <!-- Cards Injected JS -->
             </div>
         </div>
     </div>
@@ -395,14 +473,188 @@
 <footer class="border-t border-slate-800 mt-8 bg-slate-950 py-8">
     <div class="container mx-auto px-4 text-center">
         <p class="text-slate-600 text-xs font-mono">
-            SYSTEME ARCHIVE V.2.1.0 <br>
-            INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI) <br>
-            ACCÈS RESTREINT - USAGE INTERNE SEULEMENT
+            SYSTEME AGWIN V.3.1.0 // DIGITAL HIVE PROJECT <br>
+            INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI)
         </p>
     </div>
 </footer>
 
 <script>
+    // --- NAVIGATION LOGIC ---
+    function switchView(viewName) {
+        const profileView = document.getElementById('view-profile');
+        const deckView = document.getElementById('view-deck');
+        const btnProfile = document.getElementById('btn-profile');
+        const btnDeck = document.getElementById('btn-deck');
+
+        if (viewName === 'profile') {
+            profileView.classList.remove('hidden');
+            deckView.classList.add('hidden');
+            btnProfile.classList.add('active');
+            btnProfile.classList.remove('text-slate-400');
+            btnDeck.classList.remove('active');
+            btnDeck.classList.add('text-slate-400');
+        } else {
+            profileView.classList.add('hidden');
+            deckView.classList.remove('hidden');
+            btnDeck.classList.add('active');
+            btnDeck.classList.remove('text-slate-400');
+            btnProfile.classList.remove('active');
+            btnProfile.classList.add('text-slate-400');
+        }
+    }
+
+    // --- CARD DATABASE ---
+    const cardDatabase = [
+        // MONSTERS (Programmes) - Core Digital Bugs + Supports
+        {
+            id: 'm1', name: 'Digital Bug Cocoondenser', type: 'monster', icon: 'fa-lightbulb', levelReq: 1.0,
+            descReal: "Lumière : Invoque un insecte depuis le Cimetière (Recyclage).",
+            descVirtual: "Data Recovery : Restaure des paquets de données perdus pour réinitialiser une routine."
+        },
+        {
+            id: 'm2', name: 'Digital Bug Centibit', type: 'monster', icon: 'fa-bugs', levelReq: 2.0,
+            descReal: "Mille-pattes : Invoque un autre insecte du deck quand il change de mode.",
+            descVirtual: "Search Index : Scanne la base de données pour appeler un script spécifique."
+        },
+        {
+            id: 'm3', name: 'Digital Bug Websolder', type: 'monster', icon: 'fa-spider', levelReq: 2.5,
+            descReal: "Araignée : Change la position d'une cible et réduit sa défense à 0.",
+            descVirtual: "Firewall Breach : Force l'ouverture des ports de sécurité d'un système cible."
+        },
+        {
+            id: 'm4', name: 'Digital Bug LEDybug', type: 'monster', icon: 'fa-sun', levelReq: 3.0,
+            descReal: "Coccinelle : S'attache pour piocher 1 carte (Boost de ressources).",
+            descVirtual: "Data Mining : Analyse les flux pour extraire des informations bonus."
+        },
+        {
+            id: 'm5', name: 'Digital Bug Registrider', type: 'monster', icon: 'fa-motorcycle', levelReq: 3.5,
+            descReal: "Cavalier : S'équipe pour donner l'effet 'Attaque Perçante' à l'Xyz.",
+            descVirtual: "Rootkit Driver : Installe un pilote permettant de contourner les protections natives."
+        },
+        {
+            id: 'm6', name: 'Galaxy Worm', type: 'monster', icon: 'fa-worm', levelReq: 4.0,
+            descReal: "Ver Galactique : Si contrôlé seul, invoque un Jeton (Clonage).",
+            descVirtual: "Worm Replica : Crée une copie fantôme du processus pour saturer la mémoire."
+        },
+        {
+            id: 'm7', name: 'Bachibachibachi', type: 'monster', icon: 'fa-bolt', levelReq: 4.2,
+            descReal: "Guêpe : Donne 'Dommages Perçants' à un monstre Xyz.",
+            descVirtual: "Penetration Tester : Outil de diagnostic offensif pour percer les pare-feux."
+        },
+
+        // XYZ (Archives Noires - High Level)
+        {
+            id: 'x1', name: 'Number 20: Giga-Brilliant', type: 'xyz', icon: 'fa-star', levelReq: 3.0,
+            descReal: "Fourmi : Augmente l'attaque de tous les monstres de 300.",
+            descVirtual: "System Overclock : Augmente temporairement la cadence de tous les processus alliés."
+        },
+        {
+            id: 'x2', name: 'Digital Bug Scaradiator', type: 'xyz', icon: 'fa-shield-halved', levelReq: 3.5,
+            descReal: "Scarabée Tank : Annule les effets adverses et change leur position.",
+            descVirtual: "Packet Sniffer/Jammer : Intercepte et bloque les paquets suspects en temps réel."
+        },
+        {
+            id: 'x3', name: 'Digital Bug Corebage', type: 'xyz', icon: 'fa-dungeon', levelReq: 5.0,
+            descReal: "Foreur : Mélange un monstre en défense dans le deck (Retrait).",
+            descVirtual: "Kernel Panic : Force le redémarrage d'un sous-système adverse, le retirant du combat."
+        },
+        {
+            id: 'x4', name: 'Digital Bug Rhinosebus', type: 'xyz', icon: 'fa-chess-rook', levelReq: 6.5,
+            descReal: "Colosse : Attaque tous les monstres adverses avec perçage.",
+            descVirtual: "System Purge : Lance un nettoyage complet du disque, attaquant tous les fichiers corrompus."
+        },
+
+        // SPELLS (Scripts)
+        {
+            id: 's1', name: 'Bug Signal', type: 'spell', icon: 'fa-tower-broadcast', levelReq: 1.5,
+            descReal: "Quick-Play : Évolue un Xyz Insecte en un rang supérieur.",
+            descVirtual: "Hotfix Patch : Applique une mise à jour critique instantanée pour améliorer le système."
+        },
+        {
+            id: 's2', name: 'Stumbling', type: 'spell', icon: 'fa-person-falling', levelReq: 4.0,
+            descReal: "Continu : Tout monstre invoqué passe immédiatement en Défense.",
+            descVirtual: "Lag Switch : Force tous les nouveaux processus à entrer en mode 'Veille' (Sleep Mode)."
+        },
+        {
+            id: 's3', name: 'Foolish Burial', type: 'spell', icon: 'fa-tombstone', levelReq: 2.5,
+            descReal: "Envoie un monstre du deck au cimetière (Setup).",
+            descVirtual: "Cache Dump : Envoie des données directement en mémoire cache pour un accès rapide."
+        },
+        {
+            id: 's4', name: 'Mystical Space Typhoon', type: 'spell', icon: 'fa-wind', levelReq: 3.0,
+            descReal: "Détruit une Magie/Piège adverse.",
+            descVirtual: "Process Kill : Termine de force une application ou un script adverse."
+        },
+
+        // TRAPS (Sécurité)
+        {
+            id: 't1', name: 'Bug Emergency', type: 'trap', icon: 'fa-kit-medical', levelReq: 2.0,
+            descReal: "Invocation Spéciale : Rappelle 2 insectes du cimetière.",
+            descVirtual: "Backup Restore : Lance une restauration système à partir d'une sauvegarde antérieure."
+        },
+        {
+            id: 't2', name: 'Mirror Force', type: 'trap', icon: 'fa-mirror', levelReq: 5.0,
+            descReal: "Force de Miroir : Détruit tous les monstres en attaque de l'adversaire.",
+            descVirtual: "DDoS Reflection : Renvoie le trafic malveillant vers l'attaquant pour faire crasher ses serveurs."
+        }
+    ];
+
+    function renderDeck(currentLevel) {
+        const sections = {
+            monster: document.getElementById('deck-monsters'),
+            xyz: document.getElementById('deck-xyz'),
+            spell: document.getElementById('deck-spells'),
+            trap: document.getElementById('deck-traps')
+        };
+
+        // Update total count
+        document.getElementById('total-cards-db').innerText = cardDatabase.length;
+
+        // Clear sections
+        Object.values(sections).forEach(el => el.innerHTML = '');
+
+        cardDatabase.forEach(card => {
+            const isLocked = currentLevel < card.levelReq;
+            const opacity = isLocked ? 'opacity-50 grayscale' : '';
+            const lockIcon = isLocked ? '<div class="absolute inset-0 flex items-center justify-center bg-black/60 z-20"><i class="fa-solid fa-lock text-2xl text-slate-500"></i></div>' : '';
+            const reqText = isLocked ? `<span class="text-red-500 font-bold">Lvl ${card.levelReq}</span>` : `<span class="text-green-500">Débloqué</span>`;
+
+            let cardClass = '';
+            if(card.type === 'monster') cardClass = 'card-monster';
+            if(card.type === 'xyz') cardClass = 'card-xyz';
+            if(card.type === 'spell') cardClass = 'card-spell';
+            if(card.type === 'trap') cardClass = 'card-trap';
+
+            const html = `
+                <div class="ygo-card ${cardClass} ${opacity}">
+                    ${lockIcon}
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[10px] font-bold text-white truncate w-2/3">${card.name}</span>
+                        <div class="text-[8px] bg-black/50 px-1 rounded text-white border border-white/20">${card.type.toUpperCase().substring(0,3)}</div>
+                    </div>
+                    <div class="card-art">
+                        <i class="fa-solid ${card.icon} text-4xl text-white/80"></i>
+                    </div>
+                    <div class="card-desc-box">
+                        <div class="mb-1 border-b border-black/20 pb-1">
+                            <strong>[Physique]</strong><br>${card.descReal}
+                        </div>
+                        <div class="mb-1">
+                            <strong>[Virtuel]</strong><br>${card.descVirtual}
+                        </div>
+                    </div>
+                    <div class="mt-1 text-[8px] text-center bg-black/80 text-white rounded py-0.5">
+                        ${reqText}
+                    </div>
+                </div>
+                `;
+
+            if(sections[card.type]) sections[card.type].innerHTML += html;
+        });
+    }
+
+
     // --- EVOLUTION DATA MODEL ---
     const evolutionData = [
         {
@@ -417,10 +669,6 @@
                     <p class="mt-2"><strong class="text-purple-400">Informatique :</strong> En collant une carte "Digital Bug" sur un appareil (téléphone, serrure électronique), il peut effectuer un "Override" basique : forcer l'ouverture d'une porte non sécurisée ou faire planter un téléphone (Blue Screen of Death).</p>
                 `,
             passive: null,
-            signatures: [
-                { name: "Carte: Cocoondenser (Mode Lumière)", type: "monster", desc: "La carte émet une lumière aveuglante. Pas de corps solide." },
-                { name: "Carte: Bug Signal (Mode Glitch)", type: "spell", desc: "Fait scintiller les écrans à proximité pour distraire." }
-            ],
             descriptions: {
                 power: "Inexistant. Un coup de poing normal fait plus mal.",
                 defense: "La carte elle-même peut durcir légèrement pour parer un coup de couteau, mais c'est tout.",
@@ -433,18 +681,13 @@
             maxLevel: 3.4,
             tier: "Mid Tier",
             stats: { power: 3.0, defense: 3.5, speed: 2.0, recovery: 1.5, trick: 4.5 },
-            deckCounts: { monster: 2, spell: 2, trap: 1 },
+            deckCounts: { monster: 3, spell: 2, trap: 1 },
             hackPot: "35%",
             mastery: `
                     <p><strong class="text-cyan-400">Combat :</strong> Les insectes sortent des cartes ! Ils font la taille d'un chat et sont composés de voxels solides. Kaito peut invoquer <strong>Centibit</strong> pour attaquer (morsure électrique) ou <strong>Websolder</strong> pour créer un petit bouclier.</p>
                     <p class="mt-2"><strong class="text-purple-400">Informatique :</strong> Kaito n'a plus besoin de contact physique. S'il lance une carte près d'une caméra, l'insecte invoqué peut "manger" le flux vidéo et le remplacer par une image statique (loop). Il peut aussi corrompre des fichiers sur un ordinateur à distance de vue.</p>
                 `,
             passive: null,
-            signatures: [
-                { name: "Invocation: Centibit", type: "monster", desc: "Mille-pattes numérique. Rapide, morsure paralysante légère." },
-                { name: "Invocation: Websolder", type: "monster", desc: "Araignée. Tisse une toile de données qui ralentit les mouvements." },
-                { name: "Piège: Bug Emergency", type: "trap", desc: "Si Kaito est frappé, un insecte apparaît automatiquement pour amortir le choc." }
-            ],
             descriptions: {
                 power: "Suffisant pour casser un bras ou laisser des brûlures électriques.",
                 defense: "Les carapaces des insectes résistent aux coups de poing standards.",
@@ -457,18 +700,13 @@
             maxLevel: 4.9,
             tier: "Elite Tier",
             stats: { power: 5.0, defense: 5.5, speed: 3.0, recovery: 2.0, trick: 7.0 },
-            deckCounts: { monster: 3, spell: 4, trap: 3 },
+            deckCounts: { monster: 5, spell: 4, trap: 3 },
             hackPot: "65%",
             mastery: `
                     <p><strong class="text-cyan-400">Combat :</strong> Le Deck s'étoffe. Kaito peut changer la "Position de Combat" de ses invocations instantanément (Attaque = Piques / Défense = Bouclier lourd). Il invoque <strong>Scaradiator</strong> (taille humaine) qui peut absorber l'aura adverse.</p>
                     <p class="mt-2"><strong class="text-purple-400">Hacking Avancé :</strong> Il peut "voir" à travers les yeux de ses insectes. En envoyant un insecte minuscule (taille d'une mouche) dans un port serveur, il peut télécharger des données directement dans sa mémoire à court terme. Il peut couper le courant d'un étage entier.</p>
                 `,
             passive: null,
-            signatures: [
-                { name: "Xyz: Scaradiator", type: "monster", desc: "Scarabée Tank. Absorbe l'aura cinétique et la renvoie." },
-                { name: "Magie: Bug Signal", type: "spell", desc: "Téléporte un insecte instantanément sur une autre cible." },
-                { name: "Surveillance: Drone View", type: "spell", desc: "Partage sensoriel avec les insectes (Vision/Ouïe)." }
-            ],
             descriptions: {
                 power: "Scaradiator peut broyer du métal avec ses mandibules.",
                 defense: "Peut créer un mur d'insectes 'Websolder' très résistant.",
@@ -481,7 +719,7 @@
             maxLevel: 5.9,
             tier: "High Tier",
             stats: { power: 7.5, defense: 6.5, speed: 4.5, recovery: 3.0, trick: 9.0 },
-            deckCounts: { monster: 5, spell: 6, trap: 5 },
+            deckCounts: { monster: 7, spell: 6, trap: 5 },
             hackPot: "85%",
             mastery: `
                     <p><strong class="text-cyan-400">Combat :</strong> Kaito n'a plus besoin de cartes physiques, elles apparaissent comme des hologrammes autour de lui. Il invoque <strong>Corebage</strong>, un insecte foreur massif. Il peut fusionner deux insectes pour créer une variante plus forte (Rank-Up).</p>
@@ -491,11 +729,6 @@
                 name: "Network Sense (Sens Réseau)",
                 desc: "Perception omnidirectionnelle de tous les flux de données (Wifi, 4G, Radio) et des signatures d'aura dans un rayon de 50m. Impossible de le surprendre s'il y a un appareil électronique à proximité."
             },
-            signatures: [
-                { name: "Xyz Rank 5: Corebage", type: "monster", desc: "Insecte Foreur. Si l'ennemi se défend, Corebage traverse la défense." },
-                { name: "Magie: Rank-Up-Magic", type: "spell", desc: "Fait évoluer un insecte. Double ses stats pour 1 minute." },
-                { name: "Piège: Glitch Zone", type: "trap", desc: "Crée une zone où la technologie ennemie se retourne contre elle." }
-            ],
             descriptions: {
                 power: "Destruction de bâtiment possible avec Corebage.",
                 defense: "Peut digitaliser son propre corps 1 seconde pour esquiver une attaque fatale.",
@@ -505,7 +738,7 @@
         },
         {
             minLevel: 6.0,
-            maxLevel: 10.0, // Extention jusqu'au niveau 10
+            maxLevel: 10.0,
             tier: "God Tier",
             stats: { power: 9.5, defense: 8.5, speed: 7.0, recovery: 5.0, trick: 10.0 },
             deckCounts: { monster: 99, spell: 99, trap: 99 },
@@ -518,11 +751,6 @@
                 name: "Reality Overlay (Superposition de Réalité)",
                 desc: "Le monde lui apparaît comme du code source. Il voit les points faibles structurels des objets et des gens. Il détecte les mensonges en analysant les micro-variations biométriques comme des 'bugs'."
             },
-            signatures: [
-                { name: "BOSS: Rhinosebus", type: "monster", desc: "Forteresse volante. Tire des lasers perforants. Quasi-indestructible." },
-                { name: "Terrain: Digital Bug World", type: "spell", desc: "Transforme la zone en monde virtuel. Kaito contrôle la gravité et la physique." },
-                { name: "Hack: Brain Override", type: "trap", desc: "Perturbe les signaux nerveux de l'ennemi (lag physique)." }
-            ],
             descriptions: {
                 power: "Catastrophe naturelle. Peut raser un quartier.",
                 defense: "Peut se sauvegarder et 'respawn' un peu plus loin s'il est blessé (soin via données).",
@@ -587,7 +815,7 @@
         levelDisplay.innerText = level.toFixed(1);
 
         const uniqueId = Math.floor(level * 1024 + 500);
-        studentId.innerText = `DB-${uniqueId}-X`;
+        studentId.innerText = `AGW-${uniqueId}-X`; // Agwin ID
 
         let data = evolutionData.find(d => level >= d.minLevel && level <= d.maxLevel);
         if (!data) data = evolutionData[evolutionData.length - 1];
@@ -600,18 +828,16 @@
         else if(data.tier.includes("Mid")) tierLabel.className += "bg-yellow-950/50 border-yellow-500 text-yellow-400";
         else tierLabel.className += "bg-slate-800 border-slate-600 text-slate-400";
 
-        // Calcul interpolation pour monter jusqu'au niveau 10
-        // Si on est dans le dernier palier (>6.0), on booste les stats si on approche de 10
         let boost = 0;
         if (level > 8.0) {
-            boost = (level - 8.0) * 0.5; // Ajoute jusqu'à 1 point bonus au dela de 8.0
+            boost = (level - 8.0) * 0.5;
         }
 
         const p = Math.min(10, data.stats.power + boost);
         const d = Math.min(10, data.stats.defense + boost);
         const s = Math.min(10, data.stats.speed + boost);
         const r = Math.min(10, data.stats.recovery + boost);
-        const t = Math.min(10, data.stats.trick); // Trick est déjà maxé souvent
+        const t = Math.min(10, data.stats.trick);
 
         radarChart.data.datasets[0].data = [p, d, s, r, t];
         radarChart.update();
@@ -645,23 +871,8 @@
             passiveBlock.classList.add('hidden');
         }
 
-        const sigList = document.getElementById('signature-list');
-        sigList.innerHTML = data.signatures.map(s => {
-            let colorClass = "text-slate-200";
-            let icon = "fa-circle";
-            if(s.type === 'monster') { colorClass = "text-yellow-400"; icon = "fa-dragon"; }
-            if(s.type === 'spell') { colorClass = "text-green-400"; icon = "fa-bolt"; }
-            if(s.type === 'trap') { colorClass = "text-pink-400"; icon = "fa-link-slash"; }
-
-            return `
-                <div class="bg-slate-900/50 p-2 rounded border border-slate-700/50 flex gap-3 items-start">
-                    <div class="mt-1 ${colorClass}"><i class="fa-solid ${icon}"></i></div>
-                    <div>
-                        <div class="text-xs font-bold ${colorClass}">${s.name}</div>
-                        <div class="text-[10px] text-slate-400">${s.desc}</div>
-                    </div>
-                </div>`;
-        }).join('');
+        // Re-render the deck with new lock states based on level
+        renderDeck(level);
     }
 
     slider.addEventListener('input', (e) => updateUI(e.target.value));
