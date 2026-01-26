@@ -320,7 +320,7 @@
                                 <span class="w-2 h-6 bg-cyan-500 block"></span>
                                 SIMULATION D'ÉVOLUTION
                             </h3>
-                            <p class="text-xs text-slate-400 mt-1 max-w-md">Déplacez le curseur pour observer l'évolution de la capacité avec précision décimale.</p>
+                            <p class="text-xs text-slate-400 mt-1 max-w-md">Déplacez le curseur pour observer l'évolution de la capacité (valeurs entières).</p>
                         </div>
                         <div class="text-right mt-4 md:mt-0">
                             <div class="text-xs text-slate-500 font-mono mb-1">NIVEAU ACTUEL</div>
@@ -352,13 +352,13 @@
                     <div class="card-bg p-4 flex flex-col items-center justify-center min-h-[350px] relative">
                         <!-- Stats Overlay -->
                         <div class="absolute top-4 left-4 text-[10px] font-mono text-cyan-600">
-                            <div>PWR: <span id="val-power" class="text-cyan-300">0.00</span></div>
-                            <div>DEF: <span id="val-defense" class="text-cyan-300">0.00</span></div>
+                            <div>PWR: <span id="val-power" class="text-cyan-300">0</span></div>
+                            <div>DEF: <span id="val-defense" class="text-cyan-300">0</span></div>
                         </div>
                         <div class="absolute top-4 right-4 text-[10px] font-mono text-cyan-600 text-right">
-                            <div>SPD: <span id="val-speed" class="text-cyan-300">0.00</span></div>
-                            <div>REC: <span id="val-recovery" class="text-cyan-300">0.00</span></div>
-                            <div>TRK: <span id="val-trick" class="text-cyan-300">0.00</span></div>
+                            <div>SPD: <span id="val-speed" class="text-cyan-300">0</span></div>
+                            <div>REC: <span id="val-recovery" class="text-cyan-300">0</span></div>
+                            <div>TRK: <span id="val-trick" class="text-cyan-300">0</span></div>
                         </div>
 
                         <canvas id="statsChart" class="max-h-[250px]"></canvas>
@@ -494,7 +494,7 @@
 <footer class="border-t border-slate-800 mt-8 bg-slate-950 py-8">
     <div class="container mx-auto px-4 text-center">
         <p class="text-slate-600 text-xs font-mono">
-            SYSTEME AGWIN V.3.4.1 // DIGITAL HIVE PROJECT <br>
+            SYSTEME AGWIN V.3.4.2 // DIGITAL HIVE PROJECT <br>
             INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI)
         </p>
     </div>
@@ -504,11 +504,11 @@
     // --- CONSTANTS ---
     // RATIOS DE STATISTIQUES (Ratio * Niveau = Stat)
     const statRatios = {
-        power: 1.0,     // 1.0 : Puissance pure (9.9 à Lvl 9.9)
-        defense: 0.9,   // 0.9 : Très solide mais pas impénétrable
-        speed: 0.8,     // 0.8 : Vitesse décente
-        recovery: 0.6,  // 0.6 : Faible (Construct, pas soin bio)
-        trick: 1.05     // 1.05 : Stat maîtresse (Max à Lvl 9.6)
+        power: 1.212,     // 1.0 : Puissance pure (9.9 à Lvl 9.9)
+        defense: 1.010,   // 0.9 : Très solide mais pas impénétrable
+        speed: 0.909,     // 0.8 : Vitesse décente
+        recovery: 0.404,  // 0.6 : Faible (Construct, pas soin bio)
+        trick: 1.717     // 1.05 : Stat maîtresse (Max à Lvl 9.6)
     };
 
     // --- NAVIGATION LOGIC ---
@@ -671,24 +671,24 @@
         levelDisplay.innerText = level.toFixed(1);
         studentId.innerText = `AGW-${Math.floor(level * 1024 + 500)}-X`;
 
-        // 1. CALCUL DES STATS (Formule: Min(10, Niveau * Ratio))
-        // Pas d'arrondi ici, on garde le float pour le graphique
-        const p = Math.min(10, level * statRatios.power);
-        const d = Math.min(10, level * statRatios.defense);
-        const s = Math.min(10, level * statRatios.speed);
-        const r = Math.min(10, level * statRatios.recovery);
-        const t = Math.min(10, level * statRatios.trick);
+        // 1. CALCUL DES STATS (Formule: Math.round(Niveau * Ratio))
+        // Arrondi à l'entier
+        const p = Math.round(level * statRatios.power);
+        const d = Math.round(level * statRatios.defense);
+        const s = Math.round(level * statRatios.speed);
+        const r = Math.round(level * statRatios.recovery);
+        const t = Math.round(level * statRatios.trick);
 
-        // Update Graph with raw float values
+        // Update Graph
         radarChart.data.datasets[0].data = [p, d, s, r, t];
         radarChart.update();
 
-        // Update Text with 2 decimals
-        document.getElementById('val-power').innerText = p.toFixed(2);
-        document.getElementById('val-defense').innerText = d.toFixed(2);
-        document.getElementById('val-speed').innerText = s.toFixed(2);
-        document.getElementById('val-recovery').innerText = r.toFixed(2);
-        document.getElementById('val-trick').innerText = t.toFixed(2);
+        // Update Text
+        document.getElementById('val-power').innerText = p;
+        document.getElementById('val-defense').innerText = d;
+        document.getElementById('val-speed').innerText = s;
+        document.getElementById('val-recovery').innerText = r;
+        document.getElementById('val-trick').innerText = t;
 
         // 2. LORE & TIER
         let lore = evolutionLore.find(d => level >= d.min && level <= d.max);
