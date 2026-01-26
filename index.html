@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiche Agwin - Digital Hive</title>
+    <title>Fiche Bureau - Digital Hive</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -12,8 +12,8 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #020617; /* Slate 950 */
-            color: #e2e8f0;
+            background-color: #0f172a; /* Slate 900 */
+            color: #cbd5e1;
             overflow-x: hidden;
         }
         h1, h2, h3, .stat-font, .tech-font {
@@ -28,56 +28,18 @@
             position: relative;
             display: inline-block;
         }
-        .glitch-effect::before, .glitch-effect::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #020617;
-        }
-        .glitch-effect::before {
-            left: 2px;
-            text-shadow: -1px 0 #00ffff;
-            clip: rect(24px, 550px, 90px, 0);
-            animation: glitch-anim-2 3s infinite linear alternate-reverse;
-        }
-        .glitch-effect::after {
-            left: -2px;
-            text-shadow: -1px 0 #ff00ff;
-            clip: rect(85px, 550px, 140px, 0);
-            animation: glitch-anim 2.5s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-anim {
-            0% { clip: rect(12px, 9999px, 56px, 0); }
-            20% { clip: rect(98px, 9999px, 12px, 0); }
-            40% { clip: rect(4px, 9999px, 86px, 0); }
-            60% { clip: rect(34px, 9999px, 3px, 0); }
-            80% { clip: rect(66px, 9999px, 60px, 0); }
-            100% { clip: rect(15px, 9999px, 92px, 0); }
-        }
-        @keyframes glitch-anim-2 {
-            0% { clip: rect(65px, 9999px, 100px, 0); }
-            20% { clip: rect(10px, 9999px, 5px, 0); }
-            40% { clip: rect(88px, 9999px, 36px, 0); }
-            60% { clip: rect(2px, 9999px, 77px, 0); }
-            80% { clip: rect(45px, 9999px, 12px, 0); }
-            100% { clip: rect(90px, 9999px, 2px, 0); }
-        }
 
         @keyframes scanline {
             0% { transform: translateY(-100%); }
             100% { transform: translateY(100%); }
         }
 
-        /* Card Styles */
+        /* Card Styles - Bureau Style (Gold/Dark Blue) */
         .card-bg {
-            background: rgba(15, 23, 42, 0.8); /* Darker slate */
+            background: rgba(30, 41, 59, 0.9);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(6, 182, 212, 0.2); /* Cyan border low opacity */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(234, 179, 8, 0.3); /* Gold border */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
         }
@@ -88,14 +50,14 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
-            opacity: 0.5;
+            background: linear-gradient(90deg, transparent, #eab308, transparent); /* Gold Line */
+            opacity: 0.7;
         }
 
         /* Hexagon Background Pattern */
         .hex-bg {
-            background-color: #020617;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%230e7490' fill-opacity='0.1'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-color: #0f172a;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23eab308' fill-opacity='0.03'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
         /* Slider Styling */
@@ -108,11 +70,11 @@
             height: 28px;
             width: 28px;
             border-radius: 4px;
-            background: #06b6d4;
+            background: #eab308; /* Gold thumb */
             border: 2px solid #fff;
             cursor: pointer;
             margin-top: -12px;
-            box-shadow: 0 0 15px #06b6d4;
+            box-shadow: 0 0 10px #ca8a04;
             transform: rotate(45deg);
         }
         input[type=range]::-webkit-slider-runnable-track {
@@ -138,10 +100,10 @@
             transform: translateY(-5px) scale(1.02);
             z-index: 10;
         }
-        .card-monster { background: linear-gradient(135deg, #854d0e 0%, #a16207 100%); border: 2px solid #ca8a04; } /* Effect Monster Color */
-        .card-xyz { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 2px solid #94a3b8; } /* Xyz Black */
-        .card-spell { background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); border: 2px solid #10b981; } /* Spell Green */
-        .card-trap { background: linear-gradient(135deg, #831843 0%, #9d174d 100%); border: 2px solid #ec4899; } /* Trap Pink */
+        .card-monster { background: linear-gradient(135deg, #854d0e 0%, #a16207 100%); border: 2px solid #ca8a04; }
+        .card-xyz { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 2px solid #94a3b8; }
+        .card-spell { background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); border: 2px solid #10b981; }
+        .card-trap { background: linear-gradient(135deg, #831843 0%, #9d174d 100%); border: 2px solid #ec4899; }
 
         .card-art {
             background: #000;
@@ -168,9 +130,44 @@
         }
 
         .nav-btn.active {
-            background-color: #06b6d4;
-            color: white;
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            background-color: #eab308; /* Gold active */
+            color: black;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
+        }
+
+        /* Timeline Styles */
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #334155;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 30px;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 11px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #0f172a;
+            border: 2px solid #eab308;
+            z-index: 10;
+        }
+        .report-header {
+            font-family: 'Share Tech Mono', monospace;
+            border-bottom: 1px dashed #475569;
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+            color: #94a3b8;
+            font-size: 10px;
         }
 
     </style>
@@ -178,30 +175,33 @@
 <body class="min-h-screen hex-bg text-slate-300 flex flex-col">
 
 <!-- Header -->
-<header class="p-4 border-b border-cyan-900/50 bg-slate-950/90 sticky top-0 z-50 backdrop-blur-md">
+<header class="p-4 border-b border-yellow-900/30 bg-slate-950/95 sticky top-0 z-50 backdrop-blur-md shadow-lg">
     <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="flex items-center gap-4">
-            <div class="relative w-12 h-12 flex items-center justify-center bg-cyan-950 rounded border border-cyan-500/30">
-                <i class="fa-solid fa-bug text-cyan-400 text-2xl"></i>
+            <div class="relative w-12 h-12 flex items-center justify-center bg-slate-900 rounded border border-yellow-600">
+                <i class="fa-solid fa-scale-balanced text-yellow-500 text-2xl"></i>
             </div>
             <div>
-                <h1 class="text-2xl font-bold text-white tracking-widest glitch-effect" data-text="SPECTRE DB">SPECTRE DB</h1>
-                <p class="text-[10px] text-cyan-600 font-mono uppercase tracking-[0.2em]">Dossier Agent Sécurisé</p>
+                <h1 class="text-2xl font-bold text-white tracking-widest" data-text="AUTHORITY DB">AUTHORITY DB</h1>
+                <p class="text-[10px] text-yellow-600 font-mono uppercase tracking-[0.2em]">Bureau National des Autorités</p>
             </div>
         </div>
 
         <!-- Navigation -->
         <nav class="flex bg-slate-900 rounded p-1 border border-slate-700">
-            <button onclick="switchView('profile')" id="btn-profile" class="nav-btn active px-6 py-2 rounded text-xs font-bold uppercase tracking-wider transition-all">
+            <button onclick="switchView('profile')" id="btn-profile" class="nav-btn active px-4 md:px-6 py-2 rounded text-xs font-bold uppercase tracking-wider transition-all">
                 <i class="fa-solid fa-id-card mr-2"></i> Profil
             </button>
-            <button onclick="switchView('deck')" id="btn-deck" class="nav-btn px-6 py-2 rounded text-xs font-bold uppercase tracking-wider transition-all text-slate-400 hover:text-white">
-                <i class="fa-solid fa-layer-group mr-2"></i> Deck
+            <button onclick="switchView('history')" id="btn-history" class="nav-btn px-4 md:px-6 py-2 rounded text-xs font-bold uppercase tracking-wider transition-all text-slate-400 hover:text-white">
+                <i class="fa-solid fa-file-contract mr-2"></i> Dossier
+            </button>
+            <button onclick="switchView('deck')" id="btn-deck" class="nav-btn px-4 md:px-6 py-2 rounded text-xs font-bold uppercase tracking-wider transition-all text-slate-400 hover:text-white">
+                <i class="fa-solid fa-layer-group mr-2"></i> Capacité
             </button>
         </nav>
 
         <div class="text-right hidden md:block">
-            <div class="text-xs text-purple-500 font-mono">SPECTRE INTEL</div>
+            <div class="text-xs text-red-500 font-mono font-bold">EMBER CLEARANCE: ALPHA</div>
             <div class="text-xs text-slate-500 font-mono">ID: <span id="student-id" class="text-white">LOADING...</span></div>
         </div>
     </div>
@@ -209,7 +209,7 @@
 
 <main class="container mx-auto p-4 md:p-8 space-y-8 flex-grow">
 
-    <!-- VIEW: PROFILE (Original Content) -->
+    <!-- VIEW: PROFILE (Summary) -->
     <div id="view-profile" class="space-y-8 transition-opacity duration-300">
         <!-- Top Section: Identity & Radar -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -217,28 +217,21 @@
             <!-- Column 1: Identity & Card (Left) -->
             <div class="lg:col-span-4 space-y-6">
                 <!-- Profile Card -->
-                <div class="card-bg rounded-none border-l-4 border-l-purple-500 p-6 relative group transition-all duration-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]">
-                    <!-- Scanner Line Animation -->
-                    <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-0 group-hover:opacity-20 transition-opacity">
-                        <div class="w-full h-1 bg-purple-400 blur-sm absolute top-0 animate-[scanline_2s_linear_infinite]"></div>
-                    </div>
+                <div class="card-bg rounded-none border-t-4 border-t-yellow-500 p-6 relative group hover:border-t-red-500 transition-colors duration-500">
 
                     <div class="flex flex-col items-center text-center">
-                        <div class="w-40 h-40 rounded-full p-1 border-2 border-dashed border-purple-500/30 mb-4 relative">
+                        <div class="w-40 h-40 rounded-full p-1 border-2 border-solid border-yellow-600/50 mb-4 relative">
                             <div class="w-full h-full rounded-full bg-slate-900 overflow-hidden flex items-center justify-center relative z-10">
-                                <i class="fa-solid fa-user-tie text-5xl text-purple-800"></i>
-                                <div class="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent"></div>
-                            </div>
-                            <!-- Orbiting dots -->
-                            <div class="absolute top-0 left-0 w-full h-full animate-[spin_10s_linear_infinite]">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full absolute -top-1 left-1/2 shadow-[0_0_10px_#a855f7]"></div>
+                                <!-- Lawyer/Professional Image Placeholder -->
+                                <i class="fa-solid fa-user-tie text-6xl text-slate-400"></i>
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
                             </div>
                         </div>
 
-                        <h2 class="text-3xl font-bold text-white mb-1 uppercase tracking-wider">Kaito <span class="text-purple-400">Vance</span></h2>
+                        <h2 class="text-3xl font-bold text-white mb-1 uppercase tracking-wider">Kaito <span class="text-yellow-500">Vance</span></h2>
                         <div class="flex gap-2 mb-6">
-                            <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 text-[10px] text-slate-300 uppercase rounded">Avocat</span>
-                            <span class="px-2 py-0.5 bg-purple-950 border border-purple-800 text-[10px] text-purple-300 uppercase rounded">SPECTRE</span>
+                            <span class="px-2 py-0.5 bg-slate-800 border border-slate-600 text-[10px] text-slate-300 uppercase rounded">Civil: Avocat</span>
+                            <span class="px-2 py-0.5 bg-red-950 border border-red-800 text-[10px] text-red-400 uppercase rounded font-bold">EMBER</span>
                         </div>
 
                         <div class="w-full grid grid-cols-2 gap-y-4 gap-x-2 text-left text-sm font-mono border-t border-slate-700/50 pt-4">
@@ -247,61 +240,36 @@
                                 <span class="text-slate-200">21 Ans</span>
                             </div>
                             <div>
-                                <span class="text-slate-500 block text-[10px] uppercase">Affiliation</span>
-                                <span class="text-purple-400">SPECTRE</span>
+                                <span class="text-slate-500 block text-[10px] uppercase">Rang</span>
+                                <span class="text-yellow-500">God-Tier</span>
                             </div>
                             <div class="col-span-2">
-                                <span class="text-slate-500 block text-[10px] uppercase">Couverture Civile</span>
-                                <span class="text-slate-200 text-xs">Avocat (Droit Pénal) - Diplômé</span>
+                                <span class="text-slate-500 block text-[10px] uppercase">Superviseur Direct</span>
+                                <span class="text-red-400 font-bold"><i class="fa-solid fa-fire mr-1"></i> Valerie</span>
                             </div>
                             <div class="col-span-2">
                                 <span class="text-slate-500 block text-[10px] uppercase">Capacité</span>
-                                <span class="text-cyan-400 font-bold text-lg">DIGITAL HIVE</span>
+                                <span class="text-blue-400 font-bold text-lg">DIGITAL HIVE</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Security Alert / History Card -->
-                <div class="card-bg p-4 border-l-4 border-l-red-500 relative overflow-hidden bg-red-950/10">
-                    <div class="absolute right-0 top-0 p-2 opacity-20 text-red-500"><i class="fa-solid fa-triangle-exclamation text-4xl"></i></div>
-                    <h3 class="text-xs font-bold text-red-400 mb-2 uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-file-shield"></i> Dossier Historique
+                <!-- Readjustment History Card (Crucial Update) -->
+                <div class="card-bg p-4 border-l-4 border-l-green-500 relative overflow-hidden bg-green-950/10 cursor-pointer hover:bg-green-900/20 transition" onclick="switchView('history')">
+                    <div class="absolute right-0 top-0 p-2 opacity-20 text-green-500"><i class="fa-solid fa-brain text-4xl"></i></div>
+                    <h3 class="text-xs font-bold text-green-400 mb-2 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-check-circle"></i> Statut: Réhabilité
                     </h3>
                     <p class="text-xs text-slate-300 leading-relaxed text-justify font-mono">
-                        <span class="text-slate-500 block mb-1">PARCOURS ACADÉMIQUE:</span>
-                        <span class="text-white">Diplômé en Droit (Malgré 2x Redoublements)</span>
+                        <span class="text-slate-500 block mb-1">DOSSIER #774-R (JUVIE):</span>
+                        Sujet soumis au programme de correction standard (Instructeur: <strong class="text-white">Keon</strong>). Résistance initiale élevée.
                         <br><br>
-                        <span class="text-slate-500 block mb-1">INCIDENT MAJEUR (Passé):</span>
-                        Incarcération (6 mois) en centre de détention juvénile.
-                        <br>
-                        <span class="text-slate-500 block mt-1 mb-1">MOTIF:</span>
-                        <span class="text-red-300">Intrusion cybernétique de niveau 4</span> dans les serveurs régionaux du Bureau des Autorités.
+                        <span class="text-slate-500 block mb-1">INTERVENTION SPÉCIALE:</span>
+                        Conditionnement neuro-cognitif appliqué par l'Agent <strong class="text-red-300">Farrah</strong>. Reprogrammation de la loyauté réussie.
                         <br><br>
-                        <span class="text-slate-500">NOTE:</span> A utilisé ses compétences juridiques et techniques pour effacer partiellement ses traces et intégrer SPECTRE.
+                        <span class="text-slate-500 text-[10px] italic">Cliquez pour voir le dossier complet...</span>
                     </p>
-                </div>
-
-                <!-- Deck Stats Mini -->
-                <div class="card-bg p-4 border-t-2 border-t-purple-500 cursor-pointer hover:bg-slate-800/80 transition" onclick="switchView('deck')">
-                    <h3 class="text-sm font-bold text-purple-400 mb-2 uppercase flex items-center justify-between">
-                        <span><i class="fa-solid fa-layer-group mr-2"></i> Composition du Deck</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </h3>
-                    <div class="grid grid-cols-3 gap-2 text-center text-xs">
-                        <div class="bg-slate-900/50 p-2 rounded border border-slate-700">
-                            <div class="text-green-400 font-bold text-lg" id="monster-count">0</div>
-                            <div class="text-slate-500 text-[10px]">PROGRAMMES</div>
-                        </div>
-                        <div class="bg-slate-900/50 p-2 rounded border border-slate-700">
-                            <div class="text-cyan-400 font-bold text-lg" id="spell-count">0</div>
-                            <div class="text-slate-500 text-[10px]">SCRIPTS</div>
-                        </div>
-                        <div class="bg-slate-900/50 p-2 rounded border border-slate-700">
-                            <div class="text-pink-400 font-bold text-lg" id="trap-count">0</div>
-                            <div class="text-slate-500 text-[10px]">SÉCURITÉ</div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -311,16 +279,16 @@
                 <!-- Level Slider Control -->
                 <div class="card-bg p-6 relative overflow-hidden">
                     <div class="absolute right-0 top-0 p-4 opacity-10">
-                        <i class="fa-solid fa-chart-line text-9xl text-white"></i>
+                        <i class="fa-solid fa-chart-line text-9xl text-yellow-500"></i>
                     </div>
 
                     <div class="flex flex-col md:flex-row justify-between items-end mb-6 relative z-10">
                         <div>
                             <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                                <span class="w-2 h-6 bg-cyan-500 block"></span>
-                                SIMULATION D'ÉVOLUTION
+                                <span class="w-2 h-6 bg-red-500 block"></span>
+                                SUIVI DE PUISSANCE
                             </h3>
-                            <p class="text-xs text-slate-400 mt-1 max-w-md">Déplacez le curseur pour observer l'évolution de la capacité (valeurs entières).</p>
+                            <p class="text-xs text-slate-400 mt-1 max-w-md">Niveau actuel enregistré dans la base de données du Bureau.</p>
                         </div>
                         <div class="text-right mt-4 md:mt-0">
                             <div class="text-xs text-slate-500 font-mono mb-1">NIVEAU ACTUEL</div>
@@ -351,24 +319,24 @@
                     <!-- Radar Chart -->
                     <div class="card-bg p-4 flex flex-col items-center justify-center min-h-[350px] relative">
                         <!-- Stats Overlay -->
-                        <div class="absolute top-4 left-4 text-[10px] font-mono text-cyan-600">
-                            <div>PWR: <span id="val-power" class="text-cyan-300">0</span></div>
-                            <div>DEF: <span id="val-defense" class="text-cyan-300">0</span></div>
+                        <div class="absolute top-4 left-4 text-[10px] font-mono text-yellow-600">
+                            <div>PWR: <span id="val-power" class="text-yellow-300">0</span></div>
+                            <div>DEF: <span id="val-defense" class="text-yellow-300">0</span></div>
                         </div>
-                        <div class="absolute top-4 right-4 text-[10px] font-mono text-cyan-600 text-right">
-                            <div>SPD: <span id="val-speed" class="text-cyan-300">0</span></div>
-                            <div>REC: <span id="val-recovery" class="text-cyan-300">0</span></div>
-                            <div>TRK: <span id="val-trick" class="text-cyan-300">0</span></div>
+                        <div class="absolute top-4 right-4 text-[10px] font-mono text-yellow-600 text-right">
+                            <div>SPD: <span id="val-speed" class="text-yellow-300">0</span></div>
+                            <div>REC: <span id="val-recovery" class="text-yellow-300">0</span></div>
+                            <div>TRK: <span id="val-trick" class="text-yellow-300">0</span></div>
                         </div>
 
                         <canvas id="statsChart" class="max-h-[250px]"></canvas>
 
                         <div class="mt-6 w-full px-4">
                             <div class="h-1 w-full bg-slate-800 rounded overflow-hidden">
-                                <div id="trick-bar" class="h-full bg-gradient-to-r from-purple-600 to-pink-500 transition-all duration-1000" style="width: 0%"></div>
+                                <div id="trick-bar" class="h-full bg-gradient-to-r from-red-600 to-yellow-500 transition-all duration-1000" style="width: 0%"></div>
                             </div>
-                            <div class="flex justify-between text-[10px] text-purple-300 mt-1 font-mono">
-                                <span>POTENTIEL DE HACKING</span>
+                            <div class="flex justify-between text-[10px] text-red-300 mt-1 font-mono">
+                                <span>POTENTIEL DE CONTRÔLE</span>
                                 <span id="hack-potential">0.0%</span>
                             </div>
                         </div>
@@ -381,7 +349,7 @@
                             <div class="absolute -right-2 -top-2 text-6xl text-slate-800/50">
                                 <i class="fa-brands fa-usb"></i>
                             </div>
-                            <h4 class="text-xs text-cyan-500 font-bold uppercase mb-1 tracking-wider"><i class="fa-solid fa-unlock-keyhole mr-1"></i> Passif Débloqué</h4>
+                            <h4 class="text-xs text-yellow-500 font-bold uppercase mb-1 tracking-wider"><i class="fa-solid fa-unlock-keyhole mr-1"></i> Passif Débloqué</h4>
                             <div class="text-sm font-bold text-white mb-2 font-mono" id="passive-name">Nom du Passif</div>
                             <p class="text-xs text-slate-400 leading-relaxed" id="passive-desc">Description du passif...</p>
                         </div>
@@ -389,7 +357,7 @@
                         <!-- Mastery Text -->
                         <div class="flex-grow">
                             <h3 class="text-sm font-bold text-white mb-3 uppercase border-b border-slate-700 pb-2">
-                                <i class="fa-solid fa-book-open-reader text-cyan-500 mr-2"></i> Rapport de Maîtrise
+                                <i class="fa-solid fa-book-open-reader text-yellow-500 mr-2"></i> Rapport de Maîtrise
                             </h3>
                             <div class="text-slate-300 text-sm leading-relaxed space-y-3 font-light text-justify" id="mastery-content">
                                 <!-- Content injected via JS -->
@@ -402,7 +370,7 @@
 
         <!-- Details Section: Lore & Stats Breakdown -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Character Analysis (New) -->
+            <!-- Character Analysis -->
             <div class="card-bg p-6 lg:col-span-1 relative overflow-hidden">
                 <div class="absolute right-0 top-0 p-4 opacity-10">
                     <i class="fa-solid fa-brain text-6xl text-pink-500"></i>
@@ -411,8 +379,8 @@
                     <span class="text-pink-400">//</span> Profil Psychologique
                 </h3>
                 <p class="text-xs text-slate-300 leading-relaxed text-justify font-mono relative z-10">
-                    Kaito mesure 175 cm, pèse 58 kg, a un QI de 400 et est de groupe sanguin « B ». Il est populaire et charismatique, un atout pour sa carrière d'avocat. C'est un filou compulsif qui aime démontrer ses tours de magie, et déteste voir les gens bouleversés.<br><br>
-                    Bien qu'il ne l'ait pas démontré en costume complet, Kaito a une peur extrême du poisson (Icthyophobie).
+                    Kaito mesure 175 cm, pèse 58 kg, QI 400. Groupe sanguin B. Officiellement avocat charismatique, sa personnalité a été "lissée" par le conditionnement. Il conserve son amour pour la magie de scène, utilisant souvent des métaphores d'illusionniste au tribunal.<br><br>
+                    <strong>Phobie Persistante:</strong> Icthyophobie (peur extrême des poissons), un trait que Farrah n'a pas jugé nécessaire de supprimer, le considérant comme un "mécanisme d'humilité".
                 </p>
             </div>
 
@@ -463,10 +431,112 @@
         </div>
     </div>
 
+    <!-- VIEW: HISTORY (New Section) -->
+    <div id="view-history" class="hidden space-y-6">
+        <div class="flex justify-between items-center border-b border-yellow-700/50 pb-4">
+            <h2 class="text-2xl font-bold text-white font-mono"><i class="fa-solid fa-file-contract text-yellow-500 mr-2"></i> ARCHIVES BIOGRAPHIQUES</h2>
+            <div class="text-xs text-red-500 bg-red-950/30 px-2 py-1 rounded border border-red-900">CLASIFICATION: TOP SECRET</div>
+        </div>
+
+        <div class="relative">
+            <div class="timeline-line"></div>
+
+            <!-- Item 1: Enfance -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="card-bg p-6 ml-4">
+                    <div class="report-header flex justify-between">
+                        <span>PÉRIODE: 0 - 14 ANS</span>
+                        <span>STATUS: OBSERVATION CIVILE</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">L'Éveil du "Magicien"</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed text-justify mb-2">
+                        Kaito Vance manifeste sa capacité très tôt. Fils unique, il développe une fascination obsessionnelle pour l'illusionnisme et la magie de scène pour compenser un manque d'attention parentale. Sa capacité "Digital Hive" ne se manifeste d'abord que par des flashs lumineux (les "lucioles").
+                    </p>
+                    <p class="text-sm text-slate-400 leading-relaxed text-justify">
+                        Il utilise ses premiers insectes pour tricher à l'école et jouer des tours. Son QI exceptionnel (détecté à 400) le rend arrogant et détaché de ses pairs. Il commence à voir le monde comme un système à exploiter.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 2: Agwin High -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="card-bg p-6 ml-4 border-l-4 border-l-blue-500">
+                    <div class="report-header flex justify-between">
+                        <span>PÉRIODE: 15 - 17 ANS</span>
+                        <span>LIEU: AGWIN HIGH SCHOOL</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">L'Ascension et l'Hubris</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed text-justify mb-2">
+                        À Agwin, Kaito devient rapidement populaire mais problématique. Il refuse la hiérarchie traditionnelle, utilisant son charme et ses tours pour séduire et manipuler. Ses tendances de "filou" s'aggravent (vols mineurs de données, blagues humiliantes sur la royauté).
+                    </p>
+                    <p class="text-sm text-slate-400 leading-relaxed text-justify">
+                        <strong>L'Incident Zero:</strong> À 17 ans, par simple défi intellectuel, il lance une cyber-attaque massive contre les serveurs régionaux du Bureau. Il ne vole rien, se contentant de changer les fonds d'écran des terminaux sécurisés par des images de lapins sortant de chapeaux. Il est tracé en moins de 4 heures.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 3: Juvie / Keon -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="card-bg p-6 ml-4 border-l-4 border-l-red-600 bg-red-950/10">
+                    <div class="report-header flex justify-between text-red-400">
+                        <span>PÉRIODE: 17 - 18 ANS</span>
+                        <span>LIEU: CENTRE DE RÉADJUSTEMENT</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-red-400 mb-2">Le Brisement (Instructeur Keon)</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed text-justify mb-2">
+                        Arrêté pour cyber-terrorisme. Keon prend en charge son dossier. Les séances de "Memory Recall" forcent Kaito à revivre en boucle la solitude de son enfance et la vacuité de ses tours de magie.
+                    </p>
+                    <p class="text-sm text-slate-300 leading-relaxed text-justify">
+                        Keon brise méthodiquement son ego. Kaito passe de l'arrogance au mutisme complet en 3 semaines. Son esprit brillant s'effondre sous la culpabilité fabriquée. Il est classé comme "À risque d'échec critique".
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 4: Intervention Farrah -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="card-bg p-6 ml-4 border-l-4 border-l-purple-500 bg-purple-950/10">
+                    <div class="report-header flex justify-between text-purple-400">
+                        <span>INTERVENTION SPÉCIALE</span>
+                        <span>AGENT: FARRAH</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-purple-400 mb-2">La Reprogrammation</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed text-justify mb-2">
+                        L'agent Farrah repère le potentiel de Kaito (God-Tier + Génie tactique). Elle interrompt le protocole de Keon pour appliquer une méthode plus subtile : l'hypnose et le conditionnement positif.
+                    </p>
+                    <p class="text-sm text-slate-300 leading-relaxed text-justify">
+                        Elle ne le force pas à détester son pouvoir, mais à l'aimer <em>uniquement</em> lorsqu'il sert l'Ordre. Elle devient une figure maternelle tordue. Kaito développe une loyauté inébranlable envers elle et, par extension, envers Valérie. Sa personnalité de "magicien" est restaurée, mais comme un masque pour ses opérations.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 5: Graduation / EMBER -->
+            <div class="timeline-item">
+                <div class="timeline-dot bg-yellow-500"></div>
+                <div class="card-bg p-6 ml-4 border-2 border-yellow-500 shadow-[0_0_15px_rgba(234,179,8,0.2)]">
+                    <div class="report-header flex justify-between text-yellow-500">
+                        <span>PÉRIODE: 19 - 21 ANS</span>
+                        <span>STATUT ACTUEL</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-yellow-500 mb-2">L'Avocat du Diable</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed text-justify mb-2">
+                        Relâché avec un casier "nettoyé". Il reprend ses études de droit et obtient son diplôme en un temps record (2 ans) grâce à des cours intensifs et son QI.
+                    </p>
+                    <p class="text-sm text-slate-300 leading-relaxed text-justify">
+                        Aujourd'hui, Kaito Vance est un avocat respecté qui défend les intérêts des corporations liées au Bureau. En secret, il est l'Opérateur Alpha pour l'unité de Valérie au sein d'EMBER. Il gère la surveillance numérique, l'effacement de preuves et le support tactique via ses insectes. Il est l'œil qui voit tout, le magicien qui fait disparaître les problèmes... et les gens.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- VIEW: DECK DATABASE (Original Content) -->
     <div id="view-deck" class="hidden space-y-6">
         <div class="flex justify-between items-center border-b border-slate-700 pb-4">
-            <h2 class="text-2xl font-bold text-white font-mono"><i class="fa-solid fa-database text-cyan-500 mr-2"></i> BASE DE DONNÉES DU DECK</h2>
+            <h2 class="text-2xl font-bold text-white font-mono"><i class="fa-solid fa-database text-yellow-500 mr-2"></i> ARSENAL DECK (ACCÈS RESTREINT)</h2>
             <div class="text-xs text-slate-400">Total Cartes: <span id="total-cards-db">12</span></div>
         </div>
 
@@ -508,8 +578,8 @@
 <footer class="border-t border-slate-800 mt-8 bg-slate-950 py-8">
     <div class="container mx-auto px-4 text-center">
         <p class="text-slate-600 text-xs font-mono">
-            SYSTEME SPECTRE V.3.4.7 // DIGITAL HIVE PROJECT <br>
-            INSPIRÉ PAR UNORDINARY (URU-CHAN) & YU-GI-OH! (KONAMI)
+            SYSTEME BUREAU V.4.0.0 // DOSSIER CONFIDENTIEL<br>
+            PROPRIÉTÉ DU BUREAU DES AUTORITÉS
         </p>
     </div>
 </footer>
@@ -527,25 +597,29 @@
 
     // --- NAVIGATION LOGIC ---
     function switchView(viewName) {
-        const profileView = document.getElementById('view-profile');
-        const deckView = document.getElementById('view-deck');
-        const btnProfile = document.getElementById('btn-profile');
-        const btnDeck = document.getElementById('btn-deck');
+        const views = {
+            profile: document.getElementById('view-profile'),
+            deck: document.getElementById('view-deck'),
+            history: document.getElementById('view-history')
+        };
+        const btns = {
+            profile: document.getElementById('btn-profile'),
+            deck: document.getElementById('btn-deck'),
+            history: document.getElementById('btn-history')
+        };
 
-        if (viewName === 'profile') {
-            profileView.classList.remove('hidden');
-            deckView.classList.add('hidden');
-            btnProfile.classList.add('active');
-            btnProfile.classList.remove('text-slate-400');
-            btnDeck.classList.remove('active');
-            btnDeck.classList.add('text-slate-400');
-        } else {
-            profileView.classList.add('hidden');
-            deckView.classList.remove('hidden');
-            btnDeck.classList.add('active');
-            btnDeck.classList.remove('text-slate-400');
-            btnProfile.classList.remove('active');
-            btnProfile.classList.add('text-slate-400');
+        // Reset all
+        Object.values(views).forEach(el => el.classList.add('hidden'));
+        Object.values(btns).forEach(el => {
+            el.classList.remove('active', 'text-black', 'font-bold');
+            el.classList.add('text-slate-400');
+        });
+
+        // Activate selected
+        if (views[viewName]) {
+            views[viewName].classList.remove('hidden');
+            btns[viewName].classList.add('active');
+            btns[viewName].classList.remove('text-slate-400');
         }
     }
 
@@ -677,12 +751,12 @@
     // --- CHART SETUP ---
     const ctx = document.getElementById('statsChart').getContext('2d');
     let gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgba(6, 182, 212, 0.5)'); gradient.addColorStop(1, 'rgba(147, 51, 234, 0.1)');
+    gradient.addColorStop(0, 'rgba(234, 179, 8, 0.5)'); gradient.addColorStop(1, 'rgba(185, 28, 28, 0.1)'); // Yellow/Red
     let radarChart = new Chart(ctx, {
         type: 'radar',
         data: {
             labels: ['POWER', 'DEFENSE', 'SPEED', 'RECOVERY', 'TRICK'],
-            datasets: [{ label: 'Stats', data: [1, 1, 1, 1, 1], backgroundColor: gradient, borderColor: '#06b6d4', borderWidth: 2, pointBackgroundColor: '#fff', pointBorderColor: '#a855f7' }]
+            datasets: [{ label: 'Stats', data: [1, 1, 1, 1, 1], backgroundColor: gradient, borderColor: '#eab308', borderWidth: 2, pointBackgroundColor: '#fff', pointBorderColor: '#b91c1c' }]
         },
         options: {
             responsive: true, maintainAspectRatio: false,
@@ -692,7 +766,7 @@
                     max: 10,
                     angleLines: { color: 'rgba(255,255,255,0.05)' },
                     grid: { color: 'rgba(255,255,255,0.1)' },
-                    pointLabels: { color: '#94a3b8', font: { family: 'Orbitron', size: 10 } },
+                    pointLabels: { color: '#fbbf24', font: { family: 'Orbitron', size: 10 } },
                     ticks: { display: false, stepSize: 2 }
                 }
             },
@@ -709,7 +783,7 @@
     function updateUI(levelVal) {
         const level = levelVal / 10;
         levelDisplay.innerText = level.toFixed(1);
-        studentId.innerText = `SPC-${Math.floor(level * 1024 + 500)}-K`; // Updated ID format for Spectre
+        studentId.innerText = `BUR-${Math.floor(level * 1024 + 500)}-EM`; // BUR for Bureau, EM for EMBER
 
         // 1. CALCUL DES STATS (Formule: Max(1, Math.round(Niveau * Ratio)))
         // Arrondi à l'entier
