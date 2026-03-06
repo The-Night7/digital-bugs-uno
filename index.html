@@ -277,7 +277,7 @@
             <div class="lg:col-span-8 flex flex-col gap-6">
 
                 <!-- Level Slider Control -->
-                <div class="card-bg p-6 relative overflow-hidden">
+                <div class="card-bg p-6 relative overflow-hidden h-72">
                     <div class="absolute right-0 top-0 p-4 opacity-10">
                         <i class="fa-solid fa-chart-line text-9xl text-yellow-500"></i>
                     </div>
@@ -329,7 +329,9 @@
                             <div>TRK: <span id="val-trick" class="text-yellow-300">0</span></div>
                         </div>
 
-                        <canvas id="statsChart" class="max-h-[250px]"></canvas>
+                        <div w-[1000px] h-[1000px]>
+                            <canvas id="statsChart" class="max-h-[500px] mt-8"></canva>
+                        </div>
 
                         <div class="mt-6 w-full px-4">
                             <div class="h-1 w-full bg-slate-800 rounded overflow-hidden">
@@ -774,7 +776,7 @@
             datasets: [{ label: 'Stats', data: [1, 1, 1, 1, 1], backgroundColor: gradient, borderColor: '#eab308', borderWidth: 2, pointBackgroundColor: '#fff', pointBorderColor: '#b91c1c' }]
         },
         options: {
-            responsive: true, maintainAspectRatio: false,
+            responsive: true, maintainAspectRatio: true,
             scales: {
                 r: {
                     min: 0,
@@ -785,7 +787,16 @@
                     ticks: { display: false, stepSize: 2 }
                 }
             },
-            plugins: { legend: { display: false } }
+            plugins: { legend: { display: false } },
+
+            layout: {
+                padding: {
+                    top: 25,
+                    bottom: 25,
+                    left: 25,
+                    right: 25
+                }
+            }
         }
     });
 
