@@ -402,6 +402,26 @@
                 </div>
             </div>
         </div>
+
+        <!-- Capacity Summary Box -->
+        <div class="card-bg p-6 border-l-4 border-yellow-500 relative overflow-hidden">
+            <div class="absolute right-0 top-0 p-4 opacity-10">
+                <i class="fa-solid fa-layer-group text-6xl text-yellow-500"></i>
+            </div>
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 relative z-10">
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">
+                        <span class="text-yellow-400">//</span> Résumé — Capacité Digital Hive
+                    </h3>
+                    <p class="text-xs text-slate-300 leading-relaxed max-w-2xl">
+                        La capacité de Kaito matérialise un deck de cartes (Programmes, Archives Noires, Scripts, Protocoles) inspiré de l'univers "Digital Bug". Chaque carte se débloque à un palier de niveau précis, et ses statistiques (PWR/DEF/SPD/REC) sont recalculées en temps réel à partir des propres stats de Kaito. Consultez l'onglet <strong class="text-white">Capacité</strong> pour l'arsenal complet et le détail de chaque carte.
+                    </p>
+                </div>
+                <button onclick="switchView('deck')" class="shrink-0 self-start md:self-center px-4 py-2 bg-yellow-600 hover:bg-yellow-500 text-black text-xs font-bold uppercase rounded transition-colors">
+                    <i class="fa-solid fa-layer-group mr-2"></i>Voir le deck
+                </button>
+            </div>
+        </div>
     </div>
 
     <div id="view-history" class="hidden space-y-6">
@@ -520,6 +540,46 @@
         <div class="flex justify-between items-center border-b border-slate-700 pb-4">
             <h2 class="text-2xl font-bold text-white font-mono"><i class="fa-solid fa-database text-yellow-500 mr-2"></i> ARSENAL DECK (ACCÈS SÉCURISÉ)</h2>
             <div class="text-xs text-slate-400">Total Cartes: <span id="total-cards-db">12</span></div>
+        </div>
+
+        <!-- Capacity System Explanation -->
+        <div class="card-bg p-6 border border-slate-700 relative overflow-hidden">
+            <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">
+                <span class="text-yellow-400">//</span> Fonctionnement du Deck — Digital Hive
+            </h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4 max-w-4xl">
+                La capacité de Kaito matérialise chaque carte de son deck sous forme d'insecte, de script ou de protocole numérique. L'arsenal complet n'est jamais disponible d'un coup : chaque carte possède un <strong class="text-yellow-400">niveau requis</strong> (indiqué sous chaque carte). Tant que le niveau de maîtrise de Kaito (visible dans l'onglet Profil) n'atteint pas ce seuil, la carte reste grisée et verrouillée <i class="fa-solid fa-lock text-slate-500"></i>.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-slate-900/50 p-3 rounded border-l-2 border-yellow-500">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-unlock-keyhole text-yellow-500"></i>
+                        <span class="text-xs font-bold text-yellow-400 uppercase">Déblocage</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">Chaque carte a un niveau minimum requis, de 1.0 à 6.5. En dessous, elle est inaccessible.</p>
+                </div>
+                <div class="bg-slate-900/50 p-3 rounded border-l-2 border-red-500">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-chart-line text-red-500"></i>
+                        <span class="text-xs font-bold text-red-400 uppercase">Stats évolutives</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">PWR/DEF/SPD/REC de chaque carte sont un pourcentage des stats globales de Kaito : elles montent avec son niveau.</p>
+                </div>
+                <div class="bg-slate-900/50 p-3 rounded border-l-2 border-purple-500">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-code-branch text-purple-500"></i>
+                        <span class="text-xs font-bold text-purple-400 uppercase">Double effet</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">Chaque carte a un effet [Physique] dans le monde réel et un effet [Virtuel] dans le cyberespace.</p>
+                </div>
+                <div class="bg-slate-900/50 p-3 rounded border-l-2 border-green-500">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-layer-group text-green-500"></i>
+                        <span class="text-xs font-bold text-green-400 uppercase">4 catégories</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">Programmes (Monstres), Archives Noires (Xyz), Scripts (Magies), Protocoles Sécurité (Pièges).</p>
+                </div>
+            </div>
         </div>
 
         <div>
