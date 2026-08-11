@@ -753,32 +753,32 @@
             mastery: "Contrôle tactique avancé. Kaito peut changer instantanément le mode de ses insectes (Attaque/Défense). Le hacking devient distant via des micro-insectes espions qui infiltrent les ports de données. Invocations de taille humaine.",
             descP: "Scaradiator peut broyer du métal léger et causer des fractures.",
             descD: "Peut ériger un mur de 'Websolder' résistant à plusieurs assauts physiques.",
-            descT: "Hacking avancé : Vol d'identité, coupure de courant locale, brouillage de signal.",
+            descT: "Hacking avancé : infiltration et neutralisation de systèmes de sécurité proches (caméras, serrures, alarmes).",
             descS: "Mobilité accrue : Peut se faire tracter ou porter par un insecte volant.",
         },
         {
             min: 5.0, max: 5.9, tier: "High Tier",
-            mastery: "Dématérialisation du support. Plus besoin de cartes physiques, elles apparaissent comme des hologrammes autour de lui. Passif 'Network Sense' éveillé : Kaito 'voit' les flux de données et d'aura. Fusion d'insectes pour créer des formes évoluées (Rank-Up).",
+            mastery: "Dématérialisation du support : les cartes apparaissent comme des hologrammes autour de lui, sans besoin de les tenir en main. Fusion d'insectes pour créer des formes évoluées (Rank-Up).",
             descP: "Destruction structurelle. Corebage peut percer des murs en béton armé.",
-            descD: "Digitalisation corporelle partielle (1s) pour esquiver des attaques mortelles.",
-            descT: "Contrôle d'infrastructure urbaine (feux tricolores, réseau électrique de quartier).",
-            descS: "Réflexes surhumains grâce à l'analyse prédictive des mouvements adverses.",
+            descD: "Esquive d'urgence : dématérialisation corporelle d'une seconde pour éviter un coup dangereux, au prix d'un temps de recharge.",
+            descT: "Piratage étendu : prise de contrôle de systèmes connectés dans un rayon élargi (caméras, serrures, feux de circulation).",
+            descS: "Traitement accéléré de l'information, qui améliore nettement ses réflexes en combat rapproché.",
         },
         {
             min: 6.0, max: 7.9, tier: "God Tier",
-            mastery: "Maîtrise totale du hacking et invocation sans limite de mode. Kaito peut faire apparaître son Boss 'Rhinosebus', une forteresse volante autonome, et prendre le contrôle de n'importe quelle infrastructure connectée à portée.",
+            mastery: "Invocation sans limite de mode et piratage renforcé. Kaito peut faire apparaître son Boss 'Rhinosebus', une forteresse volante autonome, et prendre le contrôle de systèmes connectés isolés à portée (sécurité, véhicules).",
             descP: "Catastrophique. Rhinosebus et les Xyz de rang supérieur peuvent raser un petit bâtiment.",
             descD: "Régénération accélérée : des scripts de réparation referment ses blessures en quelques secondes.",
-            descT: "Accès root total sur toute technologie à portée : caméras, serrures, véhicules, réseaux électriques.",
+            descT: "Accès root sur la plupart des systèmes de sécurité et véhicules connectés à portée.",
             descS: "Invocation instantanée : n'importe quelle carte du deck peut être activée sans délai.",
         },
         {
             min: 8.0, max: 10.0, tier: "Max Tier",
-            mastery: "Maîtrise complète de l'Arsenal Digital Hive. Kaito peut invoquer et faire agir simultanément plusieurs cartes de son deck, et maintient une connexion permanente à l'ensemble des réseaux à portée.",
+            mastery: "Maîtrise complète de l'Arsenal Digital Hive. Kaito peut invoquer et faire agir simultanément plusieurs cartes de son deck, et maintenir une connexion à de nombreux réseaux à portée.",
             descP: "Extrême : invocation simultanée de plusieurs Xyz et monstres de rang supérieur.",
             descD: "Protocoles défensifs multiples actifs en permanence : pièges et scripts de protection se déclenchent automatiquement.",
-            descT: "Accès root simultané sur l'ensemble des réseaux et appareils à portée ; aucun système connecté ne peut lui résister.",
-            descS: "Activation instantanée de l'intégralité du deck, sans délai ni limite de mode.",
+            descT: "Accès root simultané sur plusieurs systèmes connectés à portée, sans délai entre les cibles.",
+            descS: "Activation rapide de plusieurs cartes du deck, sans délai ni limite de mode.",
         }
     ];
 
@@ -894,7 +894,7 @@
                     ${isGod ? 'Network Root (Accès Racine)' : 'Network Sense (Sens Réseau)'}
                 </div>
                 <p class="text-xs text-slate-400 leading-relaxed">
-                    ${isGod ? 'Kaito maintient une connexion permanente à tous les réseaux et appareils à portée : il peut invoquer n\'importe quelle carte de son deck instantanément, sans limite de mode.' : 'Kaito perçoit les ondes et appareils électroniques actifs dans un rayon de 50m. Aucune embuscade technologique n\'est possible.'}
+                    ${isGod ? 'Kaito maintient une connexion à de nombreux réseaux et appareils à portée, ce qui lui permet d\'invoquer rapidement les cartes de son deck, sans limite de mode.' : 'Kaito perçoit les ondes et appareils électroniques actifs dans un rayon de 50m. Aucune embuscade technologique n\'est possible.'}
                 </p>
             `;
         } else {
