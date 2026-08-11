@@ -234,7 +234,7 @@
                             </div>
                             <div>
                                 <span class="text-slate-500 block text-[10px] uppercase">Rang</span>
-                                <span class="text-yellow-500">God-Tier</span>
+                                <span class="text-yellow-500" id="rank-label">God-Tier</span>
                             </div>
                             <div class="col-span-2">
                                 <span class="text-slate-500 block text-[10px] uppercase">Affiliation</span>
@@ -852,6 +852,7 @@
         if (!lore) lore = evolutionLore[evolutionLore.length - 1];
 
         tierLabel.innerText = lore.tier;
+        document.getElementById('rank-label').innerText = lore.tier;
         tierLabel.className = "text-sm font-bold tracking-widest px-2 py-1 rounded border uppercase ";
         if(lore.tier.includes("God") || lore.tier.includes("Max")) tierLabel.className += "bg-pink-950/50 border-pink-500 text-pink-400";
         else if(lore.tier.includes("High")) tierLabel.className += "bg-red-950/50 border-red-500 text-red-400";
@@ -921,8 +922,8 @@
     slider.addEventListener('input', (e) => updateUI(e.target.value));
 
     // Initial call
-    slider.value = 45;
-    updateUI(45);
+    slider.value = 75;
+    updateUI(75);
 </script>
 </body>
 </html>
