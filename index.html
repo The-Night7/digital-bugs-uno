@@ -86,7 +86,7 @@
         }
 
         /* Trading Card Styles */
-        .ygo-card {
+        .hive-card {
             aspect-ratio: 2/3;
             border-radius: 8px;
             padding: 8px;
@@ -96,12 +96,12 @@
             display: flex;
             flex-direction: column;
         }
-        .ygo-card:hover {
+        .hive-card:hover {
             transform: translateY(-5px) scale(1.02);
             z-index: 10;
         }
         .card-monster { background: linear-gradient(135deg, #854d0e 0%, #a16207 100%); border: 2px solid #ca8a04; }
-        .card-xyz { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 2px solid #94a3b8; }
+        .card-evo { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 2px solid #94a3b8; }
         .card-spell { background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); border: 2px solid #10b981; }
         .card-trap { background: linear-gradient(135deg, #831843 0%, #9d174d 100%); border: 2px solid #ec4899; }
 
@@ -414,7 +414,7 @@
                         <span class="text-yellow-400">//</span> Résumé — Capacité Digital Hive
                     </h3>
                     <p class="text-xs text-slate-300 leading-relaxed max-w-2xl">
-                        La capacité de Kaito matérialise un deck de cartes (Programmes, Archives Noires, Scripts, Protocoles) inspiré de l'univers "Digital Bug". Chaque carte se débloque à un palier de niveau précis, et ses statistiques (PWR/DEF/SPD/REC) sont recalculées en temps réel à partir des propres stats de Kaito. Consultez l'onglet <strong class="text-white">Capacité</strong> pour l'arsenal complet et le détail de chaque carte.
+                        La capacité de Kaito matérialise un deck de cartes propre à l'univers "Digital Hive" (Programmes, Archives Noires, Scripts, Protocoles). Chaque carte se débloque à un palier de niveau précis, et ses statistiques (PWR/DEF/SPD/REC) sont recalculées en temps réel à partir des propres stats de Kaito. Consultez l'onglet <strong class="text-white">Capacité</strong> pour l'arsenal complet et le détail de chaque carte.
                     </p>
                 </div>
                 <button onclick="switchView('deck')" class="shrink-0 self-start md:self-center px-4 py-2 bg-yellow-600 hover:bg-yellow-500 text-black text-xs font-bold uppercase rounded transition-colors">
@@ -577,7 +577,7 @@
                         <i class="fa-solid fa-layer-group text-green-500"></i>
                         <span class="text-xs font-bold text-green-400 uppercase">4 catégories</span>
                     </div>
-                    <p class="text-[11px] text-slate-400">Programmes (Monstres), Archives Noires (Xyz), Scripts (Magies), Protocoles Sécurité (Pièges).</p>
+                    <p class="text-[11px] text-slate-400">Programmes (Monstres), Archives Noires (Évolutions), Scripts (Magies), Protocoles Sécurité (Pièges).</p>
                 </div>
             </div>
         </div>
@@ -589,8 +589,8 @@
         </div>
 
         <div>
-            <h3 class="text-slate-300 font-bold mb-4 font-mono text-lg border-l-4 border-slate-500 pl-2">ARCHIVES NOIRES (XYZ)</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="deck-xyz">
+            <h3 class="text-slate-300 font-bold mb-4 font-mono text-lg border-l-4 border-slate-500 pl-2">ARCHIVES NOIRES (ÉVOLUTIONS)</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="deck-evo">
                 </div>
         </div>
 
@@ -659,29 +659,29 @@
 
     // --- CARD DATABASE (New Ratios: 0.0 to 1.0 based on Kaito's PWR/DEF/SPD/REC) ---
     const cardDatabase = [
-        { id: 'm1', name: 'Digital Bug Cocoondenser', type: 'monster', icon: 'fa-lightbulb', levelReq: 1.0, descReal: "Lumière : Invoque un insecte depuis le Cimetière.", descVirtual: "Data Recovery : Restaure des données perdues.", atkRatio: 0.2, defRatio: 0.8, spdRatio: 0.8, recRatio: 0.5 },
-        { id: 'm2', name: 'Digital Bug Centibit', type: 'monster', icon: 'fa-bugs', levelReq: 2.0, descReal: "Mille-pattes : Invoque du deck au changement de mode.", descVirtual: "Search Index : Scanne la base pour un script.", atkRatio: 0.6, defRatio: 0.6, spdRatio: 0.5, recRatio: 0.3 },
-        { id: 'm3', name: 'Digital Bug Websolder', type: 'monster', icon: 'fa-spider', levelReq: 2.5, descReal: "Araignée : Change position cible, def à 0.", descVirtual: "Firewall Breach : Force l'ouverture des ports.", atkRatio: 0.3, defRatio: 0.9, spdRatio: 0.3, recRatio: 0.6 },
-        { id: 'm4', name: 'Digital Bug LEDybug', type: 'monster', icon: 'fa-sun', levelReq: 3.0, descReal: "Coccinelle : Pioche 1 carte.", descVirtual: "Data Mining : Analyse flux pour info bonus.", atkRatio: 0.1, defRatio: 0.2, spdRatio: 0.7, recRatio: 0.2 },
-        { id: 'm5', name: 'Digital Bug Registrider', type: 'monster', icon: 'fa-motorcycle', levelReq: 3.5, descReal: "Cavalier : Donne 'Perçant' à l'Xyz.", descVirtual: "Rootkit Driver : Contourne protections natives.", atkRatio: 0.8, defRatio: 0.4, spdRatio: 0.9, recRatio: 0.2 },
-        { id: 'm6', name: 'Galaxy Worm', type: 'monster', icon: 'fa-worm', levelReq: 4.0, descReal: "Ver : Invoque Jeton (Clone).", descVirtual: "Worm Replica : Crée copie fantôme.", atkRatio: 0.5, defRatio: 0.5, spdRatio: 0.2, recRatio: 0.8 },
-        { id: 'm7', name: 'Bachibachibachi', type: 'monster', icon: 'fa-bolt', levelReq: 4.2, descReal: "Guêpe : Donne 'Perçant'.", descVirtual: "Penetration Tester : Diagnostic offensif.", atkRatio: 0.9, defRatio: 0.2, spdRatio: 0.8, recRatio: 0.2 },
-        { id: 'x1', name: 'Number 20: Giga-Brilliant', type: 'xyz', icon: 'fa-star', levelReq: 3.0, descReal: "Fourmi : Boost ATK de 300.", descVirtual: "System Overclock : Boost cadence processus.", atkRatio: 0.8, defRatio: 0.8, spdRatio: 0.7, recRatio: 0.4 },
-        { id: 'x2', name: 'Digital Bug Scaradiator', type: 'xyz', icon: 'fa-shield-halved', levelReq: 3.5, descReal: "Scarabée Tank : Annule effet + change position.", descVirtual: "Packet Sniffer : Bloque paquets suspects.", atkRatio: 0.7, defRatio: 1.0, spdRatio: 0.4, recRatio: 0.9 },
-        { id: 'x3', name: 'Digital Bug Corebage', type: 'xyz', icon: 'fa-dungeon', levelReq: 5.0, descReal: "Foreur : Mélange défenseur dans deck.", descVirtual: "Kernel Panic : Force reboot sous-système.", atkRatio: 0.9, defRatio: 0.7, spdRatio: 0.6, recRatio: 0.5 },
-        { id: 'x4', name: 'Digital Bug Rhinosebus', type: 'xyz', icon: 'fa-chess-rook', levelReq: 6.5, descReal: "Colosse : Attaque tout + perçant.", descVirtual: "System Purge : Nettoyage disque complet.", atkRatio: 1.0, defRatio: 1.0, spdRatio: 0.7, recRatio: 1.0 },
-        { id: 's1', name: 'Bug Signal', type: 'spell', icon: 'fa-tower-broadcast', levelReq: 1.5, descReal: "Quick-Play : Évolution Xyz.", descVirtual: "Hotfix Patch : Mise à jour critique instantanée." },
-        { id: 's2', name: 'Stumbling', type: 'spell', icon: 'fa-person-falling', levelReq: 4.0, descReal: "Continu : Invocations passent en Défense.", descVirtual: "Lag Switch : Force mode 'Veille'." },
-        { id: 's3', name: 'Foolish Burial', type: 'spell', icon: 'fa-tombstone', levelReq: 2.5, descReal: "Envoie monstre au cimetière.", descVirtual: "Cache Dump : Envoie données en cache." },
-        { id: 's4', name: 'Mystical Space Typhoon', type: 'spell', icon: 'fa-wind', levelReq: 3.0, descReal: "Détruit Magie/Piège.", descVirtual: "Process Kill : Termine application." },
-        { id: 't1', name: 'Bug Emergency', type: 'trap', icon: 'fa-kit-medical', levelReq: 2.0, descReal: "Rappelle 2 insectes.", descVirtual: "Backup Restore : Restauration système." },
-        { id: 't2', name: 'Mirror Force', type: 'trap', icon: 'fa-mirror', levelReq: 5.0, descReal: "Miroir : Renvoie l'attaque physique.", descVirtual: "DDoS Reflection : Renvoie trafic malveillant." }
+        { id: 'm1', name: 'Hivebyte Luxling', type: 'monster', icon: 'fa-lightbulb', levelReq: 1.0, descReal: "Lumière : Invoque un insecte depuis le Cimetière.", descVirtual: "Data Recovery : Restaure des données perdues.", atkRatio: 0.2, defRatio: 0.8, spdRatio: 0.8, recRatio: 0.5 },
+        { id: 'm2', name: 'Hivebyte Centipuls', type: 'monster', icon: 'fa-bugs', levelReq: 2.0, descReal: "Mille-pattes : Invoque du deck au changement de mode.", descVirtual: "Search Index : Scanne la base pour un script.", atkRatio: 0.6, defRatio: 0.6, spdRatio: 0.5, recRatio: 0.3 },
+        { id: 'm3', name: 'Hivebyte Webforge', type: 'monster', icon: 'fa-spider', levelReq: 2.5, descReal: "Araignée : Change position cible, def à 0.", descVirtual: "Firewall Breach : Force l'ouverture des ports.", atkRatio: 0.3, defRatio: 0.9, spdRatio: 0.3, recRatio: 0.6 },
+        { id: 'm4', name: 'Hivebyte Glimmerwing', type: 'monster', icon: 'fa-sun', levelReq: 3.0, descReal: "Coccinelle : Pioche 1 carte.", descVirtual: "Data Mining : Analyse flux pour info bonus.", atkRatio: 0.1, defRatio: 0.2, spdRatio: 0.7, recRatio: 0.2 },
+        { id: 'm5', name: 'Hivebyte Ryder-Log', type: 'monster', icon: 'fa-motorcycle', levelReq: 3.5, descReal: "Cavalier : Donne 'Perçant' à l'unité évoluée.", descVirtual: "Rootkit Driver : Contourne protections natives.", atkRatio: 0.8, defRatio: 0.4, spdRatio: 0.9, recRatio: 0.2 },
+        { id: 'm6', name: 'Hivebyte Nebulworm', type: 'monster', icon: 'fa-worm', levelReq: 4.0, descReal: "Ver : Invoque Jeton (Clone).", descVirtual: "Worm Replica : Crée copie fantôme.", atkRatio: 0.5, defRatio: 0.5, spdRatio: 0.2, recRatio: 0.8 },
+        { id: 'm7', name: 'Hivebyte Sparkwasp', type: 'monster', icon: 'fa-bolt', levelReq: 4.2, descReal: "Guêpe : Donne 'Perçant'.", descVirtual: "Penetration Tester : Diagnostic offensif.", atkRatio: 0.9, defRatio: 0.2, spdRatio: 0.8, recRatio: 0.2 },
+        { id: 'e1', name: 'Hivecore Vector-20', type: 'evo', icon: 'fa-star', levelReq: 3.0, descReal: "Fourmi : Boost ATK de 300.", descVirtual: "System Overclock : Boost cadence processus.", atkRatio: 0.8, defRatio: 0.8, spdRatio: 0.7, recRatio: 0.4 },
+        { id: 'e2', name: 'Hivecore Scarabank', type: 'evo', icon: 'fa-shield-halved', levelReq: 3.5, descReal: "Scarabée Tank : Annule effet + change position.", descVirtual: "Packet Sniffer : Bloque paquets suspects.", atkRatio: 0.7, defRatio: 1.0, spdRatio: 0.4, recRatio: 0.9 },
+        { id: 'e3', name: 'Hivecore Coredrill', type: 'evo', icon: 'fa-dungeon', levelReq: 5.0, descReal: "Foreur : Mélange défenseur dans deck.", descVirtual: "Kernel Panic : Force reboot sous-système.", atkRatio: 0.9, defRatio: 0.7, spdRatio: 0.6, recRatio: 0.5 },
+        { id: 'e4', name: 'Hivecore Rhinovault', type: 'evo', icon: 'fa-chess-rook', levelReq: 6.5, descReal: "Colosse : Attaque tout + perçant.", descVirtual: "System Purge : Nettoyage disque complet.", atkRatio: 1.0, defRatio: 1.0, spdRatio: 0.7, recRatio: 1.0 },
+        { id: 's1', name: 'Hive Broadcast', type: 'spell', icon: 'fa-tower-broadcast', levelReq: 1.5, descReal: "Activation rapide : évolution instantanée.", descVirtual: "Hotfix Patch : Mise à jour critique instantanée." },
+        { id: 's2', name: 'Lag Trip', type: 'spell', icon: 'fa-person-falling', levelReq: 4.0, descReal: "Continu : Invocations passent en Défense.", descVirtual: "Lag Switch : Force mode 'Veille'." },
+        { id: 's3', name: 'Cache Purge', type: 'spell', icon: 'fa-tombstone', levelReq: 2.5, descReal: "Envoie monstre au cimetière.", descVirtual: "Cache Dump : Envoie données en cache." },
+        { id: 's4', name: 'Signal Squall', type: 'spell', icon: 'fa-wind', levelReq: 3.0, descReal: "Détruit Magie/Piège.", descVirtual: "Process Kill : Termine application." },
+        { id: 't1', name: 'Hive Recall', type: 'trap', icon: 'fa-kit-medical', levelReq: 2.0, descReal: "Rappelle 2 insectes.", descVirtual: "Backup Restore : Restauration système." },
+        { id: 't2', name: 'Reflect Protocol', type: 'trap', icon: 'fa-mirror', levelReq: 5.0, descReal: "Miroir : Renvoie l'attaque physique.", descVirtual: "DDoS Reflection : Renvoie trafic malveillant." }
     ];
 
     function renderDeck(currentLevel, kaitoPower, kaitoDefense, kaitoSpeed, kaitoRecovery) {
         const sections = {
             monster: document.getElementById('deck-monsters'),
-            xyz: document.getElementById('deck-xyz'),
+            evo: document.getElementById('deck-evo'),
             spell: document.getElementById('deck-spells'),
             trap: document.getElementById('deck-traps')
         };
@@ -693,11 +693,11 @@
             const opacity = isLocked ? 'opacity-50 grayscale' : '';
             const lockIcon = isLocked ? '<div class="absolute inset-0 flex items-center justify-center bg-black/60 z-20"><i class="fa-solid fa-lock text-2xl text-slate-500"></i></div>' : '';
             const reqText = isLocked ? `<span class="text-red-500 font-bold">Lvl ${card.levelReq}</span>` : `<span class="text-green-500">Débloqué</span>`;
-            let cardClass = card.type === 'monster' ? 'card-monster' : card.type === 'xyz' ? 'card-xyz' : card.type === 'spell' ? 'card-spell' : 'card-trap';
+            let cardClass = card.type === 'monster' ? 'card-monster' : card.type === 'evo' ? 'card-evo' : card.type === 'spell' ? 'card-spell' : 'card-trap';
 
-            // Calculate Stats for Monsters/Xyz (Integer, max Kaito's stats)
+            // Calculate Stats for Monsters/Evolutions (Integer, max Kaito's stats)
             let statBlock = '';
-            if (card.type === 'monster' || card.type === 'xyz') {
+            if (card.type === 'monster' || card.type === 'evo') {
                 const atk = Math.round(kaitoPower * card.atkRatio);
                 const def = Math.round(kaitoDefense * card.defRatio);
                 const spd = Math.round(kaitoSpeed * card.spdRatio);
@@ -712,7 +712,7 @@
             }
 
             const html = `
-                <div class="ygo-card ${cardClass} ${opacity}">
+                <div class="hive-card ${cardClass} ${opacity}">
                     ${lockIcon}
                     <div class="flex justify-between items-center mb-1">
                         <span class="text-[10px] font-bold text-white truncate w-2/3">${card.name}</span>
@@ -758,7 +758,7 @@
         },
         {
             min: 5.0, max: 5.9, tier: "High Tier",
-            mastery: "Dématérialisation du support : les cartes apparaissent comme des hologrammes autour de lui, sans besoin de les tenir en main. Fusion d'insectes pour créer des formes évoluées (Rank-Up).",
+            mastery: "Dématérialisation du support : les cartes apparaissent comme des hologrammes autour de lui, sans besoin de les tenir en main. Fusion d'insectes pour créer des formes évoluées.",
             descP: "Destruction structurelle. Corebage peut percer des murs en béton armé.",
             descD: "Esquive d'urgence : dématérialisation corporelle d'une seconde pour éviter un coup dangereux, au prix d'un temps de recharge.",
             descT: "Piratage étendu : prise de contrôle de systèmes connectés dans un rayon élargi (caméras, serrures, feux de circulation).",
@@ -766,8 +766,8 @@
         },
         {
             min: 6.0, max: 7.9, tier: "God Tier",
-            mastery: "Invocation sans limite de mode et piratage renforcé. Kaito peut faire apparaître son Boss 'Rhinosebus', une forteresse volante autonome, et prendre le contrôle de systèmes connectés isolés à portée (sécurité, véhicules).",
-            descP: "Catastrophique. Rhinosebus et les Xyz de rang supérieur peuvent raser un petit bâtiment.",
+            mastery: "Invocation sans limite de mode et piratage renforcé. Kaito peut faire apparaître son Boss 'Rhinovault', une forteresse volante autonome, et prendre le contrôle de systèmes connectés isolés à portée (sécurité, véhicules).",
+            descP: "Catastrophique. Rhinovault et les évolutions de rang supérieur peuvent raser un petit bâtiment.",
             descD: "Régénération accélérée : des scripts de réparation referment ses blessures en quelques secondes.",
             descT: "Accès root sur la plupart des systèmes de sécurité et véhicules connectés à portée.",
             descS: "Invocation instantanée : n'importe quelle carte du deck peut être activée sans délai.",
@@ -775,7 +775,7 @@
         {
             min: 8.0, max: 10.0, tier: "Max Tier",
             mastery: "Maîtrise complète de l'Arsenal Digital Hive. Kaito peut invoquer et faire agir simultanément plusieurs cartes de son deck, et maintenir une connexion à de nombreux réseaux à portée.",
-            descP: "Extrême : invocation simultanée de plusieurs Xyz et monstres de rang supérieur.",
+            descP: "Extrême : invocation simultanée de plusieurs évolutions et monstres de rang supérieur.",
             descD: "Protocoles défensifs multiples actifs en permanence : pièges et scripts de protection se déclenchent automatiquement.",
             descT: "Accès root simultané sur plusieurs systèmes connectés à portée, sans délai entre les cibles.",
             descS: "Activation rapide de plusieurs cartes du deck, sans délai ni limite de mode.",
