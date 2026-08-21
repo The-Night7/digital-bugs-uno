@@ -301,5 +301,5 @@ function updateUI(levelVal) {
 slider.addEventListener('input', (e) => updateUI(e.target.value));
 
 // Initial call
-slider.value = 68;
-updateUI(68);
+slider.value = 76;
+updateUI(76);
