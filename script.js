@@ -52,7 +52,7 @@ const cardDatabase = [
     { id: 's1', name: 'Hive Broadcast', type: 'spell', icon: 'fa-tower-broadcast', levelReq: 1.5, descReal: "Diffusion : Déclenche une évolution instantanée en plein combat.", descVirtual: "Hotfix Patch : Mise à jour critique instantanée." },
     { id: 's2', name: 'Lag Trip', type: 'spell', icon: 'fa-person-falling', levelReq: 4.0, descReal: "Ralentit l'adversaire, le forçant à rester sur la défensive.", descVirtual: "Lag Switch : Force mode 'Veille'." },
     { id: 's3', name: 'Cache Purge', type: 'spell', icon: 'fa-tombstone', levelReq: 2.5, descReal: "Un essaim submerge l'adversaire et le neutralise temporairement.", descVirtual: "Cache Dump : Envoie données en cache." },
-    { id: 's4', name: 'Signal Squall', type: 'spell', icon: 'fa-wind', levelReq: 3.0, descReal: "Annule une attaque énergétique.", descVirtual: "Process Kill : Termine application." },
+    { id: 's4', name: 'Signal Squall', type: 'spell', icon: 'fa-wind', levelReq: 3.0, descReal: "Annule les attaques portées à Kaito (4 max simultanément).", descVirtual: "Process Kill : Termine application." },
     { id: 't1', name: 'Hive Recall', type: 'trap', icon: 'fa-kit-medical', levelReq: 2.0, descReal: "Rappelle 2 insectes en renfort immédiat.", descVirtual: "Backup Restore : Restauration système." },
     { id: 't2', name: 'Reflect Protocol', type: 'trap', icon: 'fa-mirror', levelReq: 5.0, descReal: "Miroir : Renvoie une attaque physique vers le lanceur.", descVirtual: "DDoS Reflection : Renvoie trafic malveillant." }
 ];
