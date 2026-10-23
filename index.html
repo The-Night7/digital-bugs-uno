@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-span-2">
                                 <span class="text-slate-500 block text-[10px] uppercase">Capacité</span>
-                                <span class="text-blue-400 font-bold text-lg">DIGITAL HIVE</span>
+                                <span class="text-blue-400 font-bold text-lg">CANCELLATION</span>
                             </div>
                         </div>
                     </div>
@@ -121,14 +121,14 @@
                         <div class="text-right mt-4 md:mt-0">
                             <div class="text-xs text-slate-500 font-mono mb-1">NIVEAU ACTUEL</div>
                             <div class="flex items-baseline justify-end gap-2">
-                                <span class="text-5xl font-bold stat-font text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" id="level-display">4.5</span>
+                                <span class="text-5xl font-bold stat-font text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" id="level-display">5.8</span>
                                 <span class="text-sm font-bold tracking-widest px-2 py-1 bg-slate-800 rounded border border-slate-600" id="tier-label">ELITE TIER</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="relative z-10 px-2">
-                        <input type="range" min="10" max="100" value="76" class="w-full mb-2" id="level-slider">
+                        <input type="range" min="10" max="100" value="58" class="w-full mb-2" id="level-slider">
                         <div class="flex justify-between text-[10px] text-slate-500 font-mono uppercase tracking-widest">
                             <span>1.0</span>
                             <span>2.0</span>
@@ -249,14 +249,14 @@
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 relative z-10">
                 <div>
                     <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">
-                        <span class="text-yellow-400">//</span> Résumé — Capacité Digital Hive
+                        <span class="text-yellow-400">//</span> Résumé — Capacité Cancellation
                     </h3>
                     <p class="text-xs text-slate-300 leading-relaxed max-w-2xl">
-                        La capacité de Kaito matérialise un deck de cartes propre à l'univers "Digital Hive" (Programmes, Archives Noires, Scripts, Protocoles). Chaque carte se débloque à un palier de niveau précis, et ses statistiques (PWR/DEF/SPD/REC) sont recalculées en temps réel à partir des propres stats de Kaito. Consultez l'onglet <strong class="text-white">Capacité</strong> pour l'arsenal complet et le détail de chaque carte.
+                        Capacité défensive de type annulation, enregistrée au niveau 5.8. Kaito matérialise une unique carte, <strong class="text-white">Signal Squall</strong>, qui annule les attaques portées contre lui, jusqu'à 4 simultanément. Aucune capacité offensive n'est déclarée. Consultez l'onglet <strong class="text-white">Capacité</strong> pour le détail de la carte.
                     </p>
                 </div>
                 <button onclick="switchView('deck')" class="shrink-0 self-start md:self-center px-4 py-2 bg-yellow-600 hover:bg-yellow-500 text-black text-xs font-bold uppercase rounded transition-colors">
-                    <i class="fa-solid fa-layer-group mr-2"></i>Voir le deck
+                    <i class="fa-solid fa-layer-group mr-2"></i>Voir la carte
                 </button>
             </div>
         </div>
@@ -376,73 +376,28 @@
 
     <div id="view-deck" class="hidden space-y-6">
         <div class="flex justify-between items-center border-b border-slate-700 pb-4">
-            <h2 class="text-2xl font-bold text-white font-mono"><i class="fa-solid fa-database text-yellow-500 mr-2"></i> ARSENAL DECK (ACCÈS SÉCURISÉ)</h2>
-            <div class="text-xs text-slate-400">Total Cartes: <span id="total-cards-db">12</span></div>
+            <h2 class="text-2xl font-bold text-white font-mono"><i class="fa-solid fa-database text-yellow-500 mr-2"></i> CAPACITÉ DÉCLARÉE</h2>
+            <div class="text-xs text-slate-400">Total Cartes: <span id="total-cards-db">1</span></div>
         </div>
 
         <!-- Capacity System Explanation -->
         <div class="card-bg p-6 border border-slate-700 relative overflow-hidden">
             <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">
-                <span class="text-yellow-400">//</span> Fonctionnement du Deck — Digital Hive
+                <span class="text-yellow-400">//</span> Fonctionnement — Cancellation
             </h3>
             <p class="text-xs text-slate-300 leading-relaxed mb-4 max-w-4xl">
-                La capacité de Kaito matérialise chaque carte de son deck sous forme d'insecte, de script ou de protocole numérique. L'arsenal complet n'est jamais disponible d'un coup : chaque carte possède un <strong class="text-yellow-400">niveau requis</strong> (indiqué sous chaque carte). Tant que le niveau de maîtrise de Kaito (visible dans l'onglet Profil) n'atteint pas ce seuil, la carte reste grisée et verrouillée <i class="fa-solid fa-lock text-slate-500"></i>.
+                La capacité de Kaito se limite à une seule carte enregistrée : <strong class="text-yellow-400">Signal Squall</strong>. Lorsqu'elle est activée, elle annule les attaques portées contre lui, avec un maximum de <strong class="text-yellow-400">4 attaques simultanées</strong>. Au-delà, les attaques supplémentaires l'atteignent normalement.
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-slate-900/50 p-3 rounded border-l-2 border-yellow-500">
-                    <div class="flex items-center gap-2 mb-1">
-                        <i class="fa-solid fa-unlock-keyhole text-yellow-500"></i>
-                        <span class="text-xs font-bold text-yellow-400 uppercase">Déblocage</span>
-                    </div>
-                    <p class="text-[11px] text-slate-400">Chaque carte a un niveau minimum requis, de 1.0 à 6.5. En dessous, elle est inaccessible.</p>
-                </div>
-                <div class="bg-slate-900/50 p-3 rounded border-l-2 border-red-500">
-                    <div class="flex items-center gap-2 mb-1">
-                        <i class="fa-solid fa-chart-line text-red-500"></i>
-                        <span class="text-xs font-bold text-red-400 uppercase">Stats évolutives</span>
-                    </div>
-                    <p class="text-[11px] text-slate-400">PWR/DEF/SPD/REC de chaque carte sont un pourcentage des stats globales de Kaito : elles montent avec son niveau.</p>
-                </div>
-                <div class="bg-slate-900/50 p-3 rounded border-l-2 border-purple-500">
-                    <div class="flex items-center gap-2 mb-1">
-                        <i class="fa-solid fa-code-branch text-purple-500"></i>
-                        <span class="text-xs font-bold text-purple-400 uppercase">Double effet</span>
-                    </div>
-                    <p class="text-[11px] text-slate-400">Chaque carte a un effet [Physique] dans le monde réel et un effet [Virtuel] dans le cyberespace.</p>
-                </div>
-                <div class="bg-slate-900/50 p-3 rounded border-l-2 border-green-500">
-                    <div class="flex items-center gap-2 mb-1">
-                        <i class="fa-solid fa-layer-group text-green-500"></i>
-                        <span class="text-xs font-bold text-green-400 uppercase">4 catégories</span>
-                    </div>
-                    <p class="text-[11px] text-slate-400">Programmes (Monstres), Archives Noires (Évolutions), Scripts (Magies), Protocoles Sécurité (Pièges).</p>
-                </div>
-            </div>
         </div>
 
-        <div>
-            <h3 class="text-yellow-500 font-bold mb-4 font-mono text-lg border-l-4 border-yellow-500 pl-2">PROGRAMMES (MONSTRES)</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="deck-monsters">
-                </div>
-        </div>
+
 
         <div>
-            <h3 class="text-slate-300 font-bold mb-4 font-mono text-lg border-l-4 border-slate-500 pl-2">ARCHIVES NOIRES (ÉVOLUTIONS)</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="deck-evo">
-                </div>
-        </div>
-
-        <div>
-            <h3 class="text-green-500 font-bold mb-4 font-mono text-lg border-l-4 border-green-500 pl-2">SCRIPTS (MAGIES)</h3>
+            <h3 class="text-green-500 font-bold mb-4 font-mono text-lg border-l-4 border-green-500 pl-2">CARTE ENREGISTRÉE</h3>
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="deck-spells">
                 </div>
         </div>
 
-        <div>
-            <h3 class="text-pink-500 font-bold mb-4 font-mono text-lg border-l-4 border-pink-500 pl-2">PROTOCOLES SÉCURITÉ (PIÈGES)</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="deck-traps">
-                </div>
-        </div>
     </div>
 
 </main>

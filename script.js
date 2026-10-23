@@ -64,10 +64,12 @@ function renderDeck(currentLevel, kaitoPower, kaitoDefense, kaitoSpeed, kaitoRec
         spell: document.getElementById('deck-spells'),
         trap: document.getElementById('deck-traps')
     };
-    document.getElementById('total-cards-db').innerText = cardDatabase.length;
-    Object.values(sections).forEach(el => el.innerHTML = '');
+    // Fiche civile : seule la carte de couverture (Signal Squall) est déclarée
+    const publicCards = cardDatabase.filter(card => card.id === 's4');
+    document.getElementById('total-cards-db').innerText = publicCards.length;
+    Object.values(sections).forEach(el => { if (el) el.innerHTML = ''; });
 
-    cardDatabase.forEach(card => {
+    publicCards.forEach(card => {
         const isLocked = currentLevel < card.levelReq;
         const opacity = isLocked ? 'opacity-50 grayscale' : '';
         const lockIcon = isLocked ? '<div class="absolute inset-0 flex items-center justify-center bg-black/60 z-20"><i class="fa-solid fa-lock text-2xl text-slate-500"></i></div>' : '';
@@ -301,5 +303,5 @@ function updateUI(levelVal) {
 slider.addEventListener('input', (e) => updateUI(e.target.value));
 
 // Initial call
-slider.value = 76;
-updateUI(76);
+slider.value = 58;
+updateUI(58);
