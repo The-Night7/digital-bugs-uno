@@ -170,7 +170,7 @@ gradient.addColorStop(0, 'rgba(234, 179, 8, 0.5)'); gradient.addColorStop(1, 'rg
 let radarChart = new Chart(ctx, {
     type: 'radar',
     data: {
-        labels: ['POWER', 'DEFENSE', 'SPEED', 'RECOVERY', 'TRICK'],
+        labels: ['POWER', 'SPEED', 'TRICK', 'RECOVERY', 'DEFENSE'],
         datasets: [{ label: 'Stats', data: [1, 1, 1, 1, 1], backgroundColor: gradient, borderColor: '#eab308', borderWidth: 2, pointBackgroundColor: '#fff', pointBorderColor: '#2563eb' }]
     },
     options: {
@@ -218,7 +218,7 @@ function updateUI(levelVal) {
     const t = Math.max(1, Math.round(level * statRatios.trick));
 
     // Update Graph
-    radarChart.data.datasets[0].data = [p, d, s, r, t];
+    radarChart.data.datasets[0].data = [p, s, t, r, d];
     radarChart.update();
 
     // Update Text
